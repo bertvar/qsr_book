@@ -1,0 +1,29 @@
+{
+  "index.qmd": {
+    "index.html": "e88e5415"
+  },
+  "intro.qmd": {
+    "intro.html": "fa8f5055"
+  },
+  "summary.qmd": {
+    "summary.html": "ee0b895a"
+  },
+  "references.qmd": {
+    "references.html": "38a1893b"
+  },
+  "ch1_continuous.qmd": {
+    "ch1_continuous.html": "8352b5ea"
+  },
+  "02_continuous.qmd": {
+    "02_continuous.html": "f747c09e"
+  },
+  "01_intro.qmd": {
+    "01_intro.html": "ea6900be"
+  },
+  "03_categorical.qmd": {
+    "03_categorical.html": "aa3b4c40"
+  },
+  "04_wrangling.qmd": {
+    "04_wrangling.html": "1be952a2"
+  }
+}

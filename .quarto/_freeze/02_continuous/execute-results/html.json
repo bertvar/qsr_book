@@ -1,0 +1,15 @@
+{
+  "hash": "e0df5bab51f610a321d7cd128a3b0a59",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Describing Continuous Data\"\n---\n\n::: {.cell}\n\n```{.r .cell-code}\ngetwd()\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] \"/Users/albertvarelamontane/Library/CloudStorage/Dropbox/Teaching/Leeds/qsr_book\"\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
