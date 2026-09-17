@@ -5,7 +5,7 @@ project:
 book:
   title: "Quantitative Social Research: On-line textbook"
   author: "Albert Varela"
-  date: "28/09/2026"
+  date: "2026/09/17"
   chapters:
     - index.qmd
     - 01_intro.qmd
