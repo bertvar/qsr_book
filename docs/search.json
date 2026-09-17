@@ -2,9 +2,19 @@
   {
     "objectID": "01_intro.html",
     "href": "01_intro.html",
+    "title": "1  Get ready!",
+    "section": "",
+    "text": "1.1 Required software\nUnlike most modules you may have taken so far, the regular learning activities and tasks involved in completing Quantitative Social Research require intensive use of computers, scientific software and data.\nYou are also strongly encouraged to bring your laptop to the workshops to make sure you have a consistent working environment in which your code can run without major issues.\nThus, and to make sure we are all in the same page as far as computing is concerned, this pre-sessional learning unit introduces some basic steps you need to follow to set up your computer for the module.\nIn this module we will conduct data analysis using R, which is is a free and open-source programming language for statistical analysis and data visualisation that works across most computer operative systems (Windows/Mac/Linux).\nR is now an extremely popular language for statistics and data science in academia, industry, data journalism and increasingly in government. You can think of it as an extremely sophisticated calculator or engine that will process and analyse your data by means of its own core functions - e.g. mean() will calculate the average of a variable - and those in packages programmed by other contributors that you will need to install - e.g. geom_bar() from the ggplot2 package will draw the bars in bar chart based.\nThis is what the R terminal looks like:\nIn practice, you will probably never use the R terminal to conduct your research. Instead you will use RStudio which is an extremely popular Integrated Development Environment (IDE). RStudio essentially acts as an intermediate layer between the researcher and R that helps make R much easier to use by providing a more structured and user-friendly interface as well as a large number of additional features, for example, Quarto which allows us to produce documents with code and output (such as this electronic book). It looks like this:",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get ready!</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#first-steps",
+    "href": "01_intro.html#first-steps",
     "title": "1  Introduction",
     "section": "",
-    "text": "1.1 First steps\nThis on-line textbook…",
+    "text": "Unit\nTopic\n\n\n\n\n1\nDescribing Categorical Data\n\n\n2\nDescribing Continuous Data\n\n\n3\nData Wrangling\n\n\n4\nInference\n\n\n5\nLinear Regression\n\n\n6\nLogistic Regression\n\n\n7\nModel building\n\n\n8\nReporting your findings\n\n\n9\nThinking about the assessment\n\n\n10\nProducing plots and tables\n\n\n11\nWorking with surveys",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
     ]
@@ -100,33 +110,63 @@
     ]
   },
   {
-    "objectID": "summary.html",
-    "href": "summary.html",
-    "title": "5  Summary",
+    "objectID": "05_inference.html",
+    "href": "05_inference.html",
+    "title": "5  Inference",
     "section": "",
-    "text": "In summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2",
+    "text": "5.1",
     "crumbs": [
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Summary</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Inference</span>"
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Quantitative Social Research: On-line textbook",
-    "section": "",
-    "text": "Preface\nWelcome to the on-line textbook for SLSP3066 Quantitative Social Research.\nThis website provides the written materials for the module workshops so you can access them via a standard web browser.\nPlease bear in mind that this website is in its first iteration and will be updated throughout the semester.\nRemember that access to the datasets will be provided through the VLE.",
+    "objectID": "05_inference.html#whatveer-wq",
+    "href": "05_inference.html#whatveer-wq",
+    "title": "5  Inference",
+    "section": "5.2 whatveer wq",
+    "text": "5.2 whatveer wq",
     "crumbs": [
-      "Preface"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Inference</span>"
     ]
   },
   {
-    "objectID": "01_intro.html#first-steps",
-    "href": "01_intro.html#first-steps",
-    "title": "1  Introduction",
+    "objectID": "01_intro.html#required-software",
+    "href": "01_intro.html#required-software",
+    "title": "1  Get ready!",
     "section": "",
-    "text": "Unit\nTopic\n\n\n\n\n1\nDescribing Categorical Data\n\n\n2\nDescribing Continuous Data\n\n\n3\n..dd\n\n\n4\n\n\n\n5\n\n\n\n6\n\n\n\n7\n\n\n\n8\n\n\n\n9\n\n\n\n10\n\n\n\n11",
+    "text": "Screenshot of the R Terminal Window (Source: [Wikipedia](https://commons.wikimedia.org/w/index.php?curid=90393195))\n\n\n\n\n\n\nScreenshot of RStudio IDE window (Source: Wikipedia)\n\n\n\n1.1.0.1 Step 1: Install R\nYou can download R from here . Choose the version that corresponds to your operative system (Windows/Mac/Linux) and download the file.\nOnce downloaded, double-click the installation file and accept all the default options.\n\n\n1.1.0.2 Step 2: Install R-Studio\nYou can download RStudio from here. Again, choose the version that corresponds to your operative system, though the web will probably recognise it automatically and give you the correct file.\nIf you prefer, here’s a video guide on how to install R and RStudio and a brief intro to the RStudio interface",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get ready!</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#other-software-you-may-want-to-consider",
+    "href": "01_intro.html#other-software-you-may-want-to-consider",
+    "title": "1  Get ready!",
+    "section": "1.2 Other software you may want to consider:",
+    "text": "1.2 Other software you may want to consider:\nAlthough, strictly speaking, only R and R-Studio are needed, there is other software out there that you may find helpful in working towards your assessment and even for your dissertation. This list may grow throughout the semester.\n\nZotero - This is a powerful bibliography manager that helps you organise all of your references (articles, books, reports, websites, etc) as well as annotate them. It will also produce files that you can then use to produce formatted citations and lists of references when writing your work in either RStudio or Word.\n…",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get ready!</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#uk-data-service-registration",
+    "href": "01_intro.html#uk-data-service-registration",
+    "title": "1  Get ready!",
+    "section": "1.3 UK Data Service Registration",
+    "text": "1.3 UK Data Service Registration\nIn this module we will exclusively work with secondary datasets. These are computer files that contain data previously collected from human participants by researchers other than ourselves and research agencies other than those we may work for or on behalf of (in our case, the University). These datasets have in turn been made publicly available in data repositories for other researchers to use for purposes that may or may not be the same as those originally intended by the data holders. Sometimes, such as for general surveys, questionnaires are designed to include a long list of items such that the resulting datasets enable researchers across different disciplines (sociology, criminology, social policy, economics, political science, geography, etc) to conduct analysis on very different topics.\nThere are however some access conditions and use restrictions that researchers need to agree to comply with before they can get access to such datasets. This is why you are expected to register your use of the datasets and sign a declaration.\nIn this module we will work with datasets from the UK Data Service and with the European Social Survey",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get ready!</span>"
+    ]
+  },
+  {
+    "objectID": "01_intro.html#access-to-workshop-data",
+    "href": "01_intro.html#access-to-workshop-data",
+    "title": "1  Get ready!",
+    "section": "1.3 Access to workshop data",
+    "text": "1.3 Access to workshop data\nIn this module we will exclusively work with secondary datasets. These are computer files that contain data previously collected from human participants by researchers other than ourselves and research agencies other than those we may work for or on behalf of (in our case, the University). These datasets have in turn been made publicly available in data repositories for other researchers to use for purposes that may or may not be the same as those originally intended by the data holders. Sometimes, such as for general surveys, questionnaires are designed to include a long list of items such that the resulting datasets enable researchers across different disciplines (sociology, criminology, social policy, economics, political science, geography, etc) to conduct analysis on very different topics.\nIn this module we will primarily work with datasets from the UK Data Service, but to make things easier the files will be made available to you via Minerva. Before accessing the data files, you need to sign the declaration in the section [SPECIFY SECTION] on Minerva.\nTo do this, follow this procedure\n\n1.3.1 Access to project (and dissertation?) data\nBeyond the datasets we use in the workshops, you are likely to draw from either the UK Data Service or other repositories (GESIS, ESS) to choose a dataset for your assessment project.\nThere are however some access conditions and use restrictions that researchers need to agree to comply with before they can get access to such datasets. This is why you are expected to register your use of the datasets and sign a declaration.\nhttps://ukdataservice.ac.uk/learning-hub/students/resources/data-for-your-project/\nand with the European Social Survey\nt.\nhttps://ukdataservice.ac.uk/learning-hub/students/resources/data-for-your-project/",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Get ready!</span>"
     ]
   }
 ]
