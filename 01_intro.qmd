@@ -8,7 +8,7 @@ This on-line textbook...
 |------|-----------------------------|
 | 1    | Describing Categorical Data |
 | 2    | Describing Continuous Data  |
-| 3    | ..                          |
+| 3    | ..dd                        |
 | 4    |                             |
 | 5    |                             |
 | 6    |                             |
