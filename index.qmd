@@ -1,9 +1,13 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
+Welcome to the on-line textbook for SLSP3066 Quantitative Social Research.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+This website provides the written materials for the module workshops so you can access them via a standard web browser.
 
-```{r}
-1 + 1
-```
+Please bear in mind that this website is in its first iteration and will be updated throughout the semester. 
+
+Remember that access to the datasets  will be provided through the VLE.
+
+
+
+
