@@ -108,5 +108,15 @@
     "crumbs": [
       "<span class='chapter-number'>5</span>  <span class='chapter-title'>Summary</span>"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Quantitative Social Research: On-line textbook",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book for QSR",
+    "crumbs": [
+      "Preface"
+    ]
   }
 ]
