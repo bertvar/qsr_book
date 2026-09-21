@@ -61,7 +61,26 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -111,6 +130,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -157,7 +205,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./01_intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Get ready!</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -208,20 +256,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">3.1</span> Introduction</a></li>
   <li><a href="#data-and-libraries" id="toc-data-and-libraries" class="nav-link" data-scroll-target="#data-and-libraries"><span class="header-section-number">3.2</span> Data and libraries</a></li>
-  <li><a href="#numerical-description-of-categorical-data" id="toc-numerical-description-of-categorical-data" class="nav-link" data-scroll-target="#numerical-description-of-categorical-data"><span class="header-section-number">3.3</span> Numerical description of categorical data:</a>
+  <li><a href="#univariate-categorical-data" id="toc-univariate-categorical-data" class="nav-link" data-scroll-target="#univariate-categorical-data"><span class="header-section-number">3.3</span> Univariate categorical data</a>
   <ul class="collapse">
-  <li><a href="#base-r" id="toc-base-r" class="nav-link" data-scroll-target="#base-r"><span class="header-section-number">3.3.1</span> Base R</a></li>
-  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">3.3.2</span> Tidyverse</a></li>
+  <li><a href="#numerical-description-of-univariate-categorical-data" id="toc-numerical-description-of-univariate-categorical-data" class="nav-link" data-scroll-target="#numerical-description-of-univariate-categorical-data"><span class="header-section-number">3.3.1</span> Numerical description of univariate categorical data:</a></li>
+  <li><a href="#graphical-representation-of-univariate-categorical-data" id="toc-graphical-representation-of-univariate-categorical-data" class="nav-link" data-scroll-target="#graphical-representation-of-univariate-categorical-data"><span class="header-section-number">3.3.2</span> Graphical representation of univariate categorical data:</a></li>
+  <li><a href="#exercise-i" id="toc-exercise-i" class="nav-link" data-scroll-target="#exercise-i"><span class="header-section-number">3.3.3</span> Exercise I</a></li>
   </ul></li>
-  <li><a href="#graphical-representation-of-univariate-categorical-data" id="toc-graphical-representation-of-univariate-categorical-data" class="nav-link" data-scroll-target="#graphical-representation-of-univariate-categorical-data"><span class="header-section-number">3.4</span> Graphical representation of univariate categorical data:</a></li>
-  <li><a href="#exercise-i" id="toc-exercise-i" class="nav-link" data-scroll-target="#exercise-i"><span class="header-section-number">3.5</span> Exercise I</a></li>
-  <li><a href="#working-with-bivariate-categorical-data" id="toc-working-with-bivariate-categorical-data" class="nav-link" data-scroll-target="#working-with-bivariate-categorical-data"><span class="header-section-number">3.6</span> Working with bivariate categorical data</a>
+  <li><a href="#working-with-bivariate-categorical-data" id="toc-working-with-bivariate-categorical-data" class="nav-link" data-scroll-target="#working-with-bivariate-categorical-data"><span class="header-section-number">3.4</span> Working with bivariate categorical data</a>
   <ul class="collapse">
-  <li><a href="#base-r-1" id="toc-base-r-1" class="nav-link" data-scroll-target="#base-r-1"><span class="header-section-number">3.6.1</span> Base R</a></li>
-  <li><a href="#tidyverse-1" id="toc-tidyverse-1" class="nav-link" data-scroll-target="#tidyverse-1"><span class="header-section-number">3.6.2</span> Tidyverse</a></li>
+  <li><a href="#numerical-description-of-bivariate-categorical-data" id="toc-numerical-description-of-bivariate-categorical-data" class="nav-link" data-scroll-target="#numerical-description-of-bivariate-categorical-data"><span class="header-section-number">3.4.1</span> Numerical description of bivariate categorical data:</a></li>
+  <li><a href="#graphical-representation-of-bivariate-categorical-data" id="toc-graphical-representation-of-bivariate-categorical-data" class="nav-link" data-scroll-target="#graphical-representation-of-bivariate-categorical-data"><span class="header-section-number">3.4.2</span> Graphical representation of bivariate categorical data:</a></li>
+  <li><a href="#exercise-ii" id="toc-exercise-ii" class="nav-link" data-scroll-target="#exercise-ii"><span class="header-section-number">3.4.3</span> Exercise II</a></li>
   </ul></li>
-  <li><a href="#graphical-representation-of-bivariate-categorical-data" id="toc-graphical-representation-of-bivariate-categorical-data" class="nav-link" data-scroll-target="#graphical-representation-of-bivariate-categorical-data"><span class="header-section-number">3.7</span> Graphical representation of bivariate categorical data:</a></li>
-  <li><a href="#exercise-ii" id="toc-exercise-ii" class="nav-link" data-scroll-target="#exercise-ii"><span class="header-section-number">3.8</span> Exercise II</a></li>
+  <li><a href="#key-take-home-points" id="toc-key-take-home-points" class="nav-link" data-scroll-target="#key-take-home-points"><span class="header-section-number">3.5</span> Key take home points</a></li>
   </ul>
 </nav>
     </div>
@@ -249,18 +296,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">3.1</span> Introduction</h2>
-<p>In this workshop we will get to grips with the basics of describing categorical data using RStudio. To follow this guide you should have first watched the video lectures on the VLE where each of the techniques here used are discussed in detail. Also on the VLE, you will find RStudio video tutorials that elaborate on this workshop guide.</p>
-<p>The dataset we will analyse the “2012 UK Omnibus Poverty and Social Exclusion Survey: Necessities of Life” which is an</p>
+<p>In this first unit we will get to grips with the basics of describing categorical data using RStudio. To follow this guide you should have first watched the video lectures on the VLE where each of the techniques here used are discussed in detail. Also on the VLE, you will find RStudio video tutorials that elaborate on this workshop guide.</p>
+<p>The dataset we will analyse the <strong>2012 UK Omnibus Poverty and Social Exclusion Survey: Necessities of Life</strong> which is an</p>
 <blockquote class="blockquote">
 <p>‘attitudinal survey aimed to identify what the population as a whole think are ’necessities’: things that everyone should be able to afford and which no one should have to go without. Data were collected in Northern Ireland Statistics and Research Agency (NISRA), and in Great Britain (Scotland, England and Wales) by NatCen Social Research’.</p>
 </blockquote>
-<p>You can find the dataset and relevant documentation in the UK Data Service by clicking this <a href="https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=7878">link</a>. If interested in finding out more, you can read a report on the main findings <a href="https://www.poverty.ac.uk/pse-research/what-do-we-think-we-need">here</a></p>
-<p>The substantive questions that drive this workshop are:</p>
+<p>You can find and download the <a href="https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=7878">dataset and relevant documentatio</a>n in the UK Data Service. If interested in finding out more about the substantive findings of the project, you can read the relevant <a href="https://www.poverty.ac.uk/pse-research/what-do-we-think-we-need">report</a>.</p>
+<p>The substantive questions that motivate this unit analysis are :</p>
 <ol type="1">
-<li>to what extent do UK residents regard a range of goods and services as necessary or merely desirable?</li>
+<li>to what extent do UK residents regard a range of goods and services as “necessary” or “merely desirable”?</li>
 <li>to what extent do perceptions of necessities vary across relevant socio-demographic groups?</li>
 </ol>
-<p>To answer these questions we will learn about and use in practice the following analytical techniques:</p>
+<p>In pursuing answers to these questions, you will learn more about the practical aspects of the using the following analytical techniques:</p>
 <ul>
 <li>Numerical Summaries
 <ul>
@@ -273,33 +320,79 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Bivariate clustered and Stacked bar plots</li>
 </ul></li>
 </ul>
-<p>You will notice that these are the very same techniques you learnt about in the quantitative part of Level 2 Research Methods, so none of this material should be new to you. Having said this, we will be able to explore some aspects in a bit more detail to strengthen both your intuitive and statistical understanding of what the techniques are doing.</p>
+<p>You may have noticed that these are the very same techniques you learnt about in the quantitative semester of Research Methods module in Year 2, so none of this material should be new to you. Having said this, we will be able to explore some aspects in a bit more detail to strengthen both your intuitive and statistical understanding of what the techniques are doing.</p>
 </section>
 <section id="data-and-libraries" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="data-and-libraries"><span class="header-section-number">3.2</span> Data and libraries</h2>
-<p>Assuming that you are already initialised RStudio in your computer and you have opened a project located in a folder containing the dataset file, the first steps is to load the dataset, call a number of packages that are necessary to run the code for this workshop:</p>
+<p>Assuming that you are already initialised RStudio in your computer and you have opened a project located in a folder containing the dataset file, the first step is call a number of <strong>packages or libraries</strong> that provide additional functions needed to run the code for this workshop:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load R packages</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstats)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"pse_omni.Rdata"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># data wrangling, visualisation, etc</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales) <span class="co"># formatting of scales</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggstats) <span class="co"># additional visualisation functions</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>If you want to have a quick look at the dataset to get a sense of what it is like, you can use the functions <em>glimpse() - list of variables and values -</em> or <em>view()</em> - the dataset in spreadsheet form - with the dataset called <strong>omni</strong> - this is not shown in the guide as it takes up multiple pages!</p>
+<p>We then proceed to load the PSE data file, called <code>omni.Rdata,</code> into the computer’s memory so we can work with it. In this case we are using a data file in a format that is <strong>native</strong> to R - i.e.&nbsp;extensions <code>.Rdata</code> and <code>.Rda</code>can be directly opened into R without any further processing - so you can use the function <code>load()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(omni)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"pse_omni.Rdata"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>We will then move straight to the analysis.</p>
+<p>We can now get started with the analysis, but before we do this, though, it is worth noting that in going through the unit and running the code you risk</p>
+<p>As a general rule, before you start running code take some time to:</p>
+<ol type="1">
+<li>think carefully about what it is that you are attempting to do,</li>
+<li>spell out the steps that are required</li>
+<li>develop a mental, physical or virtual image of the outcome that you expect to see at the end of the process.</li>
+</ol>
+<blockquote class="blockquote">
+<p>REMEMBER: only if we have <strong>clear sense of what we are after</strong>, should we then ask the computer to do the counting for us. Only then can we be in a position to tell whether what the computer has done for us is what we (thought we) wanted.</p>
+</blockquote>
 </section>
-<section id="numerical-description-of-categorical-data" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="numerical-description-of-categorical-data"><span class="header-section-number">3.3</span> Numerical description of categorical data:</h2>
-<section id="base-r" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="base-r"><span class="header-section-number">3.3.1</span> Base R</h3>
-<p>To describe the univariate distribution of a categorical variable we use frequency tables. Frequency tables can be produced in R using the function <strong>table()</strong> which can report both raw counts and percentages depending on how we specify the code.</p>
+<section id="univariate-categorical-data" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="univariate-categorical-data"><span class="header-section-number">3.3</span> Univariate categorical data</h2>
+<p>Remember that to our objective in this unit is to learn to describe the <strong>distribution</strong> of categorical data.</p>
+<blockquote class="blockquote">
+<p>Definition: The distribution of a variable is a description of all the values that a variable can take and how often each value occurs in your data.</p>
+</blockquote>
+<p>We can convey this same information in two main ways - numerically and graphically - and the following subsections shows you how to do this in R</p>
+<section id="numerical-description-of-univariate-categorical-data" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="numerical-description-of-univariate-categorical-data"><span class="header-section-number">3.3.1</span> Numerical description of univariate categorical data:</h3>
+<p>For instance, when producing a frequency table</p>
+<ol type="1">
+<li><p>Select a categorical variable and figure out how many categories it has;</p></li>
+<li><p><strong>Count</strong> how many observations in your data are classified into each one of those categories;</p></li>
+<li><p>Represent these counts (or a derived quantity) as numbers in a table where values for each category are clearly separated</p></li>
+</ol>
+<p>This process applied to our survey data on subjective perception of needs would be roughly like this:</p>
+<ol type="1">
+<li>In the codebook we learn that categorical variable TV has <strong>two possible</strong> responses: either having a TV is <strong>Necessary</strong> or is instead simply <strong>Desirable</strong>.</li>
+<li>We then count how many respondents answered Necessary and how many answered Desirable. These will be the raw counts which can be transformed into proportions or percentages.</li>
+<li>We can then create a table that represents and labels these quantities such that it is obvious which quantity corresponds to each category, which should look something like this</li>
+</ol>
+<table class="caption-top table">
+<caption>Simulated structure of a frequency table for variable TV</caption>
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Necessary</th>
+<th style="text-align: center;">Desirable</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math display">\[                   
+   P(TV = Necessary)   
+           \]</span></td>
+<td style="text-align: center;"><span class="math display">\[                              
+                                                P(TV = Desirable)    
+                                                        \]</span></td>
+</tr>
+</tbody>
+</table>
+<section id="base-r" class="level4" data-number="3.3.1.1">
+<h4 data-number="3.3.1.1" class="anchored" data-anchor-id="base-r"><span class="header-section-number">3.3.1.1</span> Base R</h4>
+<p>Frequency tables can be produced in R using the function <code>table()</code> which can report both raw counts and percentages depending on how we specify the code.</p>
 <p>We begin by describing the univariate distribution as raw counts of respondents for each category of the variable tv.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(omni<span class="sc">$</span>tv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -323,7 +416,7 @@ Necessary Desirable
      1013       892 </code></pre>
 </div>
 </div>
-<p>The first thing we can do is to add margins to the tabtv table - i.e.&nbsp;the sum of all observations contained in your table - using the function <em>addmargins()</em></p>
+<p>The first thing we can do is to add margins to the tabtv table - i.e.&nbsp;the sum of all observations contained in your table - using the function <code>addmargins()</code></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(tabtv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -332,7 +425,7 @@ Necessary Desirable       Sum
      1013       892      1905 </code></pre>
 </div>
 </div>
-<p>We can also express the numbers in the table as proportions or percentages</p>
+<p>We can also express the numbers in the table as proportions or percentages using the function <code>prop.table():</code></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># as proportion</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tabtv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -350,181 +443,116 @@ Necessary Desirable
 </div>
 </div>
 </section>
-<section id="tidyverse" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">3.3.2</span> Tidyverse</h3>
-<p>You can produce the same results using tidyverse functions. The tidyverse is a family of packages that have consistent coding principles and data handling conventions. For a detailed treatment of the tidyverse see the book <a href="https://r4ds.hadley.nz">R for Data Science (2nd Edition)</a> by Wickham, Çetinkaya-Rundel and Grolemund.</p>
-<p>A key element of the tidyverse is the use of the pipe operator <strong>|&gt;</strong> <em>(hotkey: command/ctrl + shift + m</em>) which allow us to write sequences or chains of functions - a bit like a baking recipe as shown in figure 1.</p>
+<section id="tidyverse-and-the-pipe-operator" class="level4" data-number="3.3.1.2">
+<h4 data-number="3.3.1.2" class="anchored" data-anchor-id="tidyverse-and-the-pipe-operator"><span class="header-section-number">3.3.1.2</span> Tidyverse and the pipe operator</h4>
+<p>You can produce the same results using <em>tidyverse</em> functions. The tidyverse is a family of packages that have consistent coding style and data handling conventions. For a detailed treatment of the tidyverse see the book <a href="https://r4ds.hadley.nz">R for Data Science (2nd Edition)</a> by <span class="citation" data-cites="wickham2023">Wickham et al. (<a href="references.html#ref-wickham2023" role="doc-biblioref">2023</a>)</span>.</p>
+<p>A key element of the tidyverse is the use of the pipe operator <strong><code>|&gt;</code></strong> <em>(hotkey: command/ctrl + shift + m</em>) which allow us to write sequences or chains of functions. It’s a bit like a baking recipe shown in figure 1 where an object (the cake ingredients) are processed or transformed by function or verb (techniques like mixing, baking or decorating) in a particular order:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/Screenshot 2024-10-01 at 17.44.34.png" class="img-fluid figure-img" width="353"></p>
-<figcaption>Piping in R (@ArthurWelle)</figcaption>
+<p><img src="images/pipe_baking.gif" class="img-fluid figure-img" alt="This diagram illustrates how the pipe operator in R works by showing a cake recipe as a sequence of baking techniques (functions) being applied to ingredients (objects))"></p>
+<figcaption>Figure 1: Piping in R (@ArthurWelle)</figcaption>
 </figure>
 </div>
-<p>Here’s an example of how we create a frequency table in R using tidyverse functions or verbs and the pipe operator:</p>
+<p>Here’s an example of how we create a frequency table in R using tidyverse functions or verbs and the pipe operator. As shown below, each line in the sequence can be read in natural language where the pipe operator <code>|&gt;</code> can be taken to mean “and then”:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> <span class="co"># dataset </span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> <span class="co"># drop missing values from variable tv</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tv) <span class="sc">|&gt;</span> <span class="co"># across the response categories</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> <span class="co"># count the respondents</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="co"># render nice looking table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">tv</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">perc</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Necessary</td>
-<td style="text-align: right;">1013</td>
-<td style="text-align: right;">53.17585</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desirable</td>
-<td style="text-align: right;">892</td>
-<td style="text-align: right;">46.82415</td>
-</tr>
-</tbody>
-</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode r code-annotation-code code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-8-1" class="code-annotation-target"><a href="#annotated-cell-8-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-8-2" class="code-annotation-target"><a href="#annotated-cell-8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-8-3" class="code-annotation-target"><a href="#annotated-cell-8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tv) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="4" onclick="event.preventDefault();">4</a><span id="annotated-cell-8-4" class="code-annotation-target"><a href="#annotated-cell-8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="5" onclick="event.preventDefault();">5</a><span id="annotated-cell-8-5" class="code-annotation-target"><a href="#annotated-cell-8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="1" data-code-annotation="1">Take the data <code>omni</code>, <strong>and then…</strong></span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="2" data-code-annotation="2">drop missing values (NAs) - i.e.&nbsp;exclude all respondents who did not provide a valid response for the questionnaire item <code>tv</code>, <strong>and then…</strong></span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="3" data-code-annotation="3">group respondents by their response categories, <strong>and then…</strong></span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="4" data-code-annotation="4">count the number of respondents grouped in each category, <strong>and then…</strong></span>
+</dd>
+<dt data-target-cell="annotated-cell-8" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="5" data-code-annotation="5">divide the number of respondents in each category by the total number (or sum) of respondents and multiply it all by 100 to get the percentages.</span>
+</dd>
+</dl>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  tv            n  perc
+  &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;
+1 Necessary  1013  53.2
+2 Desirable   892  46.8</code></pre>
 </div>
 </div>
-<p>or using the function <em>count()</em></p>
+<p>This can also be achieved using the function <code>count()</code> instead of <code>n()</code>without the need for grouping the responses first with <code>group_by().</code></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> <span class="co"># dataset</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> <span class="co"># drop missing values from variable tv</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tv) <span class="sc">|&gt;</span> <span class="co"># count the respondents in each category</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="co"># render nice looking table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">tv</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">perc</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Necessary</td>
-<td style="text-align: right;">1013</td>
-<td style="text-align: right;">53.17585</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desirable</td>
-<td style="text-align: right;">892</td>
-<td style="text-align: right;">46.82415</td>
-</tr>
-</tbody>
-</table>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         tv    n     perc
+1 Necessary 1013 53.17585
+2 Desirable  892 46.82415</code></pre>
 </div>
 </div>
-<p>To round percentages up to 2 digits you can use the <em>round()</em> function</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> <span class="co"># dataset</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> <span class="co"># drop missing values from variable tv</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tv) <span class="sc">|&gt;</span> <span class="co"># count the respondents in each category</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span> <span class="co"># calculate percentage</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="co"># render nice looking table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">tv</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">perc</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Necessary</td>
-<td style="text-align: right;">1013</td>
-<td style="text-align: right;">53.18</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desirable</td>
-<td style="text-align: right;">892</td>
-<td style="text-align: right;">46.82</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Or you can use the function <em>percent</em> from the package <strong>scales</strong> which will also add the % sign</p>
+<p>Note however that the code will return a table that has the exact same values but is <strong>printed</strong> with different formatting conventions (check out the number of decimals) as a result of being objects of different classes (a dataframe instead of a tibble). To round percentages up to 2 digits you can use the <code>round()</code> function</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> <span class="co"># dataset</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> <span class="co"># drop missing values from variable tv</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tv) <span class="sc">|&gt;</span> <span class="co"># count the respondents in each category</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="fu">percent</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="fl">0.01</span>)) <span class="sc">|&gt;</span> <span class="co"># calculate percentage</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>() <span class="co"># render nice looking table</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">tv</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: left;">perc</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Necessary</td>
-<td style="text-align: right;">1013</td>
-<td style="text-align: left;">53.18%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desirable</td>
-<td style="text-align: right;">892</td>
-<td style="text-align: left;">46.82%</td>
-</tr>
-</tbody>
-</table>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="fu">round</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">2</span>)) <span class="co"># calculate percentage</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         tv    n  perc
+1 Necessary 1013 53.18
+2 Desirable  892 46.82</code></pre>
 </div>
 </div>
-<p>Finally, the <em>tabyl</em> function (from the <strong>janitor</strong> package) makes it quite easy to produce nice tables, which becomes particularly useful for contingency tables discussed further below.</p>
+<p>Or you can use the function <code>percent()</code> from the package <strong>scales</strong> which will also add the % sign</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(tv) <span class="sc">|&gt;</span> <span class="co"># create frequency table</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="co"># choose number of decimals</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">tv</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: left;">percent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Necessary</td>
-<td style="text-align: right;">1013</td>
-<td style="text-align: left;">53.2%</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desirable</td>
-<td style="text-align: right;">892</td>
-<td style="text-align: left;">46.8%</td>
-</tr>
-</tbody>
-</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> <span class="co"># dataset</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> <span class="co"># drop missing values from variable tv</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(tv) <span class="sc">|&gt;</span> <span class="co"># count the respondents in each category</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> <span class="fu">percent</span>(n <span class="sc">/</span> <span class="fu">sum</span>(n), <span class="fl">0.01</span>)) <span class="co"># calculate percentage</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         tv    n   perc
+1 Necessary 1013 53.18%
+2 Desirable  892 46.82%</code></pre>
 </div>
 </div>
 </section>
 </section>
-<section id="graphical-representation-of-univariate-categorical-data" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="graphical-representation-of-univariate-categorical-data"><span class="header-section-number">3.4</span> Graphical representation of univariate categorical data:</h2>
-<p>With ggplot we can create bar charts easily using the <em>geom_bar</em> option. The basic syntax is as follows:</p>
+<section id="graphical-representation-of-univariate-categorical-data" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="graphical-representation-of-univariate-categorical-data"><span class="header-section-number">3.3.2</span> Graphical representation of univariate categorical data:</h3>
+<p>There are different ways in which we can generate plots of all sorts in R, using both base R as well as other packages. In this module we will primarily use the package <code>ggplot2</code>, part of the <code>tidyverse</code> family.</p>
+<p>This package is particularly useful for us because it allows us to produce different types of plots using a consistent and systematic coding style and because it is underpinned by an intuitive way of thinking about data visualisation, known as a ‘layered grammar of graphics’ <span class="citation" data-cites="wickham2010">(<a href="references.html#ref-wickham2010" role="doc-biblioref">Wickham 2010</a>)</span>.</p>
+<p>A ggplot object is in this sense</p>
+<p>bar charts easily using the <em>geom_bar</em> option. The basic syntax is as follows:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic barplot</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> omni, <span class="fu">aes</span>(<span class="at">x =</span> tv)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic barplot</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> omni, <span class="fu">aes</span>(<span class="at">x =</span> tv)) <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_categorical_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Notice that R ggplot creates a bar for the missing values (called NA). This NA bar draws away our attention from the Necessary and Desirable bars and could potentially distort the plot as a whole. We will remove the missing values by subsetting the data we input into the graph. To subset the data we use the following line when defining the data in ggplot: <strong>omni[!is.na(omni$tv), ]</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminate missing value category from the chart with (omni[!is.na(omni$tv), ]</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(omni[<span class="sc">!</span><span class="fu">is.na</span>(omni<span class="sc">$</span>tv), ], <span class="fu">aes</span>(<span class="at">x=</span>tv)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -533,11 +561,11 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>Notice that R ggplot creates a bar for the missing values (called NA). This NA bar draws away our attention from the Necessary and Desirable bars and could potentially distort the plot as a whole. We will remove the missing values by subsetting the data we input into the graph. To subset the data we use the following line when defining the data in ggplot: <strong>omni[!is.na(omni$tv), ]</strong></p>
+<p>Alternatively we can use the function <strong>complete.cases()</strong> which is a bit more readable and produces the same result:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminate missing value category from the chart with (omni[!is.na(omni$tv), ]</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(omni[<span class="sc">!</span><span class="fu">is.na</span>(omni<span class="sc">$</span>tv), ], <span class="fu">aes</span>(<span class="at">x=</span>tv)) <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminate missing value category from the chart with (omni[complete.cases(omni$tv), ]</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(omni[<span class="fu">complete.cases</span>(omni<span class="sc">$</span>tv), ], <span class="fu">aes</span>(<span class="at">x=</span>tv)) <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -546,11 +574,10 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>Alternatively we can use the function <strong>complete.cases()</strong> which is a bit more readable and produces the same result:</p>
+<p>Often you may want to plot proportions rather than counts, which can be achieved by changing the aesthetics’ options. In this case, after declaring the variables write a <strong>comma</strong> and add <strong>after_stat(prop), group = 1</strong>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminate missing value category from the chart with (omni[complete.cases(omni$tv), ]</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(omni[<span class="fu">complete.cases</span>(omni<span class="sc">$</span>tv), ], <span class="fu">aes</span>(<span class="at">x=</span>tv)) <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> omni[<span class="fu">complete.cases</span>(omni<span class="sc">$</span>tv), ], <span class="fu">aes</span>(<span class="at">x=</span>tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -559,10 +586,14 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>Often you may want to plot proportions rather than counts, which can be achieved by changing the aesthetics’ options. In this case, after declaring the variables write a <strong>comma</strong> and add <strong>after_stat(prop), group = 1</strong>:</p>
+<p>Since percentages are basically proportions multiplied by 100, we can have percentages on our plot by re-scaling (changing the scale) of the vertical axis using the option <code>+ scale_y_continuous(labels = scales::percent)</code></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> omni[<span class="fu">complete.cases</span>(omni<span class="sc">$</span>tv), ], <span class="fu">aes</span>(<span class="at">x=</span>tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want proportions, you need to modify the aesthetics options for the y axis</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> omni[<span class="fu">complete.cases</span>(omni<span class="sc">$</span>tv), ], </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -571,14 +602,13 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>Since percentages are basically proportions multiplied by 100, we can have percentages on our plot by re-scaling (changing the scale) of the vertical axis using the option <em>scale_y_continuous(labels = scales::percent)</em></p>
+<p>Or using the <strong>tidyverse</strong> you can integrate the specification of the ggplot graphs as part of a wider sequence of functions applied to the same data:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want proportions, you need to modify the aesthetics options for the y axis</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> omni[<span class="fu">complete.cases</span>(omni<span class="sc">$</span>tv), ], </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>) <span class="sc">+</span> </span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>( <span class="at">x =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -587,13 +617,16 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>Or using the <strong>tidyverse</strong> you can integrate the specification of the ggplot graphs as part of a wider sequence of functions applied to the same data:</p>
+<p>Finally, we should change the labels in the plot and add a title to make it more informative</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>( <span class="at">x =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>( <span class="at">x =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Is a TV set necessary?"</span>) <span class="sc">+</span> <span class="co"># change the x axis label</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Percentage of respondents"</span>) <span class="sc">+</span> <span class="co"># change the y axis label</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"A majority of respondents think a TV is necessary"</span>) <span class="co"># change the main title of the graph</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -602,16 +635,16 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>Finally, we should change the labels in the plot and add a title to make it more informative</p>
+<p>You can also use specify labels and title within the function <code>labs()</code> and produce the exact same results:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>( <span class="at">x =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Is a TV set necessary?"</span>) <span class="sc">+</span> <span class="co"># change the x axis label</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">"Percentage of respondents"</span>) <span class="sc">+</span> <span class="co"># change the y axis label</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">"A majority of respondents think a TV is necessary"</span>) <span class="co"># change the main title of the graph</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>( <span class="at">x =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Is a TV set necessary?"</span>, <span class="co"># specify x-axis lab</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage of respondents"</span>, <span class="co"># specify y-axis lab</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Poverty and Social Exclusion Survey 2012"</span>,</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"A majority of respondents think a TV is necessary"</span>)  <span class="co"># main title</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -620,27 +653,9 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>You can also use specify labels and title within the function <strong>labs</strong> and produce the exact same results:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>( <span class="at">x =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop), <span class="at">group =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Is a TV set necessary?"</span>, <span class="co"># specify x-axis lab</span></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage of respondents"</span>, <span class="co"># specify y-axis lab</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Poverty and Social Exclusion Survey 2012"</span>,</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"A majority of respondents think a TV is necessary"</span>)  <span class="co"># main title</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_categorical_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
 </section>
-<section id="exercise-i" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="exercise-i"><span class="header-section-number">3.5</span> Exercise I</h2>
+<section id="exercise-i" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="exercise-i"><span class="header-section-number">3.3.3</span> Exercise I</h3>
 <p>Provide the code necessary to calculate and plot the univariate distribution (as counts and percentages) of respondents according to whether they think having a “a damp-free house” (variable <em>nodamp</em>) is necessary as opposed to just desirable. You should obtain the following results:</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -648,54 +663,39 @@ Necessary Desirable
 Necessary Desirable 
     94.47      5.53 </code></pre>
 </div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">nodamp</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">percent</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Necessary</td>
-<td style="text-align: right;">1811</td>
-<td style="text-align: right;">94.470527</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Desirable</td>
-<td style="text-align: right;">106</td>
-<td style="text-align: right;">5.529473</td>
-</tr>
-</tbody>
-</table>
+<div class="cell-output cell-output-stdout">
+<pre><code>     nodamp    n   percent
+1 Necessary 1811 94.470527
+2 Desirable  106  5.529473</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_categorical_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="03_categorical_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_categorical_files/figure-html/unnamed-chunk-20-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="03_categorical_files/figure-html/unnamed-chunk-19-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="working-with-bivariate-categorical-data" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="working-with-bivariate-categorical-data"><span class="header-section-number">3.6</span> Working with bivariate categorical data</h2>
+</section>
+<section id="working-with-bivariate-categorical-data" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="working-with-bivariate-categorical-data"><span class="header-section-number">3.4</span> Working with bivariate categorical data</h2>
+<section id="numerical-description-of-bivariate-categorical-data" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="numerical-description-of-bivariate-categorical-data"><span class="header-section-number">3.4.1</span> Numerical description of bivariate categorical data:</h3>
 <p>After learning how to produce a frequency table, we move onto contingency tables or crosstabulations. Contingency tables help us represent the cross-classification of two or more categorical variables - i.e.&nbsp;how individuals are classified simultaneously in the categories of more than one variable.</p>
 <p>For instance, we may want to find out whether one’s perception of TV as a necessity or a mere desire depends on past employment status. Not unlike the comparisons of pay between men and women (or levels of educational achievement) here we also compare the distribution of attitudes towards different goods between individuals classified in different socioeconomic categories.</p>
-<section id="base-r-1" class="level3" data-number="3.6.1">
-<h3 data-number="3.6.1" class="anchored" data-anchor-id="base-r-1"><span class="header-section-number">3.6.1</span> Base R</h3>
+<section id="base-r-1" class="level4" data-number="3.4.1.1">
+<h4 data-number="3.4.1.1" class="anchored" data-anchor-id="base-r-1"><span class="header-section-number">3.4.1.1</span> Base R</h4>
 <p>We use again the function <strong>table()</strong> but this time we specify 2 variables as <strong>table(var1, var2)</strong>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(omni<span class="sc">$</span>paidwork, omni<span class="sc">$</span>tv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(omni<span class="sc">$</span>paidwork, omni<span class="sc">$</span>tv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
       Necessary Desirable
@@ -705,8 +705,8 @@ Necessary Desirable
 </div>
 <p>Notice how now we obtain the marginal values for each category.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tvpw<span class="ot">&lt;-</span><span class="fu">table</span>(omni<span class="sc">$</span>paidwork, omni<span class="sc">$</span>tv) <span class="co"># create table object</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(tvpw) <span class="co"># add row, column and total sums</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tvpw<span class="ot">&lt;-</span><span class="fu">table</span>(omni<span class="sc">$</span>paidwork, omni<span class="sc">$</span>tv) <span class="co"># create table object</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(tvpw) <span class="co"># add row, column and total sums</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
       Necessary Desirable  Sum
@@ -717,17 +717,17 @@ Necessary Desirable
 </div>
 <p>It may be difficult to make sense of the raw counts, so it is often desirable to include either row or column proportions or percentages. This is easily done</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># row percentages</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tvpw, <span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># row percentages</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tvpw, <span class="dv">1</span>)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     
       Necessary Desirable
   Yes  45.91195  54.08805
   No   61.00427  38.99573</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#column percentages (re-arrange the table with omni$tv in the rows)</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>tvpw_inv<span class="ot">&lt;-</span><span class="fu">table</span>(omni<span class="sc">$</span>tv, omni<span class="sc">$</span>paidwork)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tvpw_inv, <span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#column percentages (re-arrange the table with omni$tv in the rows)</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>tvpw_inv<span class="ot">&lt;-</span><span class="fu">table</span>(omni<span class="sc">$</span>tv, omni<span class="sc">$</span>paidwork)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.table</span>(tvpw_inv, <span class="dv">2</span>)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
                  Yes       No
@@ -736,222 +736,88 @@ Necessary Desirable
 </div>
 </div>
 </section>
-<section id="tidyverse-1" class="level3" data-number="3.6.2">
-<h3 data-number="3.6.2" class="anchored" data-anchor-id="tidyverse-1"><span class="header-section-number">3.6.2</span> Tidyverse</h3>
-<p>We can achieve the same using tidyverse code, though it is decidedly more involved:</p>
+<section id="tidyverse" class="level4" data-number="3.4.1.2">
+<h4 data-number="3.4.1.2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">3.4.1.2</span> Tidyverse</h4>
+<p>We can achieve the same using tidyverse code, though it is decidedly more involved. This is because tidyverse, by default, presents data in long form. To see this run the following code which only varies from the one for frequency tables in that it specifies two variables rather than one - note that the order in which you introduce the variable names in the <code>group_by()</code> has consequences on how the data will appear:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> <span class="co"># remove missing values on two vars</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(paidwork, tv) <span class="sc">|&gt;</span> <span class="co">#arrange by the categories of two vars</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span>  <span class="co"># count respondents in each combination</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(tv, n) <span class="sc">|&gt;</span> <span class="co"># organise them as contingency table</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"row"</span>, <span class="st">"col"</span>)) <span class="sc">|&gt;</span> <span class="co">#add margins from tabyl</span></span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">paidwork</th>
-<th style="text-align: right;">Necessary</th>
-<th style="text-align: right;">Desirable</th>
-<th style="text-align: right;">Total</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Yes</td>
-<td style="text-align: right;">438</td>
-<td style="text-align: right;">516</td>
-<td style="text-align: right;">954</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">571</td>
-<td style="text-align: right;">365</td>
-<td style="text-align: right;">936</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Total</td>
-<td style="text-align: right;">1009</td>
-<td style="text-align: right;">881</td>
-<td style="text-align: right;">1890</td>
-</tr>
-</tbody>
-</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> <span class="co"># remove missing values on two vars</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(paidwork, tv) <span class="sc">|&gt;</span> <span class="co">#arrange by the categories of two vars</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="co"># count respondents in each combination</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'paidwork'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+# Groups:   paidwork [2]
+  paidwork tv            n
+  &lt;fct&gt;    &lt;fct&gt;     &lt;int&gt;
+1 Yes      Necessary   438
+2 Yes      Desirable   516
+3 No       Necessary   571
+4 No       Desirable   365</code></pre>
 </div>
 </div>
-<p>For row percentages you would use:</p>
+<p>As you can see the raw counts for each combination of <code>tv</code> and <code>paidwork</code> are exactly the same as we got before using the <code>table()</code> function but they are presented in a very different way. Instead of a table with two rows and two columns - a.k.a. a 2 x 2 table - that represent each of the 2 variables’ response categories, we instead get a 4 x 3 table where both the response categories for two variables AND the corresponding raw counts for each combination are shown as values in three separate columns. This is what we call a <strong>long format dataset.</strong></p>
+<p>Although it provides <strong>exactly the same information as the standard contingency table</strong>, this particular formatting is perhaps less commonly used and less suitable to the kinds of analyses we conduct in the social sciences. Thus, in order to re-arrange this to a <strong>wide format dataset</strong> we will use the <code>pivot_wider()</code> function to get the more familiar layout:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(paidwork, tv) <span class="sc">|&gt;</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop=</span>n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n) <span class="sc">|&gt;</span> </span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(tv, prop) <span class="sc">|&gt;</span> </span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">paidwork</th>
-<th style="text-align: right;">Necessary</th>
-<th style="text-align: right;">Desirable</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Yes</td>
-<td style="text-align: right;">0.4591195</td>
-<td style="text-align: right;">0.5408805</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.6100427</td>
-<td style="text-align: right;">0.3899573</td>
-</tr>
-</tbody>
-</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> <span class="co"># remove missing values on two vars</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(paidwork, tv) <span class="sc">|&gt;</span> <span class="co">#arrange by the categories of two vars</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span>  <span class="co"># count respondents in each combination</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> tv, </span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> n)  <span class="co"># this re-organises the table to appear as wide format</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+# Groups:   paidwork [2]
+  paidwork Necessary Desirable
+  &lt;fct&gt;        &lt;int&gt;     &lt;int&gt;
+1 Yes            438       516
+2 No             571       365</code></pre>
+</div>
+</div>
+<p>Now, if yould like like row percentages you would use:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> </span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(paidwork, tv) <span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc=</span>n<span class="sc">/</span><span class="fu">sum</span>(n)<span class="sc">*</span><span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n) <span class="sc">|&gt;</span> </span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> tv, </span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> perc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+# Groups:   paidwork [2]
+  paidwork Necessary Desirable
+  &lt;fct&gt;        &lt;dbl&gt;     &lt;dbl&gt;
+1 Yes           45.9      54.1
+2 No            61.0      39.0</code></pre>
 </div>
 </div>
 <p>For column percentages you could use:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> </span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop=</span>n<span class="sc">/</span><span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n) <span class="sc">|&gt;</span> </span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">spread</span>(tv, prop) <span class="sc">|&gt;</span> </span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">paidwork</th>
-<th style="text-align: right;">Necessary</th>
-<th style="text-align: right;">Desirable</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Yes</td>
-<td style="text-align: right;">0.4340932</td>
-<td style="text-align: right;">0.5856981</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">No</td>
-<td style="text-align: right;">0.5659068</td>
-<td style="text-align: right;">0.4143019</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Finally, you could use <em>tabyl()</em> for row percentages</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(paidwork, tv) <span class="sc">|&gt;</span> </span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"row"</span>, <span class="st">"col"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="st">"row"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_ns</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_title</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">tv</th>
-<th style="text-align: left;"></th>
-<th style="text-align: left;"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">paidwork</td>
-<td style="text-align: left;">Necessary</td>
-<td style="text-align: left;">Desirable</td>
-<td style="text-align: left;">Total</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Yes</td>
-<td style="text-align: left;">45.9% (438)</td>
-<td style="text-align: left;">54.1% (516)</td>
-<td style="text-align: left;">100.0% (954)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">61.0% (571)</td>
-<td style="text-align: left;">39.0% (365)</td>
-<td style="text-align: left;">100.0% (936)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Total</td>
-<td style="text-align: left;">53.4% (1,009)</td>
-<td style="text-align: left;">46.6% (881)</td>
-<td style="text-align: left;">100.0% (1,890)</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Or column percentages</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> </span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabyl</span>(paidwork, tv) <span class="sc">|&gt;</span> </span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_totals</span>(<span class="fu">c</span>(<span class="st">"row"</span>, <span class="st">"col"</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_percentages</span>(<span class="st">"col"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_pct_formatting</span>(<span class="at">digits =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_ns</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">adorn_title</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<table class="caption-top table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;"></th>
-<th style="text-align: left;">tv</th>
-<th style="text-align: left;"></th>
-<th style="text-align: left;"></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">paidwork</td>
-<td style="text-align: left;">Necessary</td>
-<td style="text-align: left;">Desirable</td>
-<td style="text-align: left;">Total</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Yes</td>
-<td style="text-align: left;">43.4% (438)</td>
-<td style="text-align: left;">58.6% (516)</td>
-<td style="text-align: left;">50.5% (954)</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">No</td>
-<td style="text-align: left;">56.6% (571)</td>
-<td style="text-align: left;">41.4% (365)</td>
-<td style="text-align: left;">49.5% (936)</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Total</td>
-<td style="text-align: left;">100.0% (1,009)</td>
-<td style="text-align: left;">100.0% (881)</td>
-<td style="text-align: left;">100.0% (1,890)</td>
-</tr>
-</tbody>
-</table>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(paidwork, tv) <span class="sc">|&gt;</span> </span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">|&gt;</span> </span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">perc =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n) <span class="sc">|&gt;</span> </span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> tv, </span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> perc)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  paidwork Necessary Desirable
+  &lt;fct&gt;        &lt;dbl&gt;     &lt;dbl&gt;
+1 Yes           43.4      58.6
+2 No            56.6      41.4</code></pre>
 </div>
 </div>
 </section>
 </section>
-<section id="graphical-representation-of-bivariate-categorical-data" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="graphical-representation-of-bivariate-categorical-data"><span class="header-section-number">3.7</span> Graphical representation of bivariate categorical data:</h2>
+<section id="graphical-representation-of-bivariate-categorical-data" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="graphical-representation-of-bivariate-categorical-data"><span class="header-section-number">3.4.2</span> Graphical representation of bivariate categorical data:</h3>
 <p>Contingency tables can also be represented graphically using bar plots, but the bars have to be plotted for each of the categories of the independent variable separately. This means we need to think carefully about what is the substantive nature of the relationship between both variables. Thus we may want to know:</p>
 <ol type="1">
 <li>How the distribution of perception of necessities varies between different economic positions.</li>
@@ -960,10 +826,43 @@ Necessary Desirable
 <p>The first seems to be a more plausible relation. It makes sense that we should care whether people with greater attachment to the labour market are more or less likely to consider TVs a necessity compared to those without.</p>
 <p>The first bar plot we will create is a stacked bar chart.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#stacked bar chart</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> omni[<span class="fu">complete.cases</span>(omni<span class="sc">$</span>tv) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(omni<span class="sc">$</span>paidwork) ,] , </span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x=</span>paidwork)) <span class="sc">+</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="fu">aes</span>(<span class="at">fill=</span>tv)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#stacked bar chart</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> paidwork)) <span class="sc">+</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="fu">aes</span>(<span class="at">fill =</span> tv)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_categorical_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If we are interested in comparing the proportions within each group, particularly if there are large differences in raw counts, we can also stack them to add to 100%:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#stacked bar chart up to 100%</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> paidwork)) <span class="sc">+</span></span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="fu">aes</span>(<span class="at">fill =</span> tv), <span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_categorical_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We can also build a <strong>clustered bar chart</strong> which we can create in two different ways. The first is the classic clustered bar chart using the option <code>position="dodge"</code> <strong>(<code>position="dodge2"</code></strong> will leave a space between the bars)</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clustered bar chart</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x =</span> paidwork)) <span class="sc">+</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>, <span class="fu">aes</span>(<span class="at">fill =</span> tv), </span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">position =</span> <span class="st">"dodge"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -972,14 +871,17 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>If we are interested in comparing the proportions within each group, particularly if there are large differences in raw counts, we can also stack them to add to 100%:</p>
+<p>To add percentages to a clustered bar chart is a bit cumbersome but here is a possible solution which basically involves calculating directly the proportions before plotting them. It requires an additional package called <strong>ggstats</strong> for <code>geom_bar()</code> to recognise proportions as the quantity to plot</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#stacked bar chart up to 100%</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>paidwork)) <span class="sc">+</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="fu">aes</span>(<span class="at">fill=</span>tv), <span class="at">position=</span><span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span> (paidwork, tv) <span class="sc">|&gt;</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>paidwork, <span class="at">fill =</span> tv, <span class="at">weight =</span> n, </span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop))) <span class="sc">+</span></span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"prop"</span>, </span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">position=</span><span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -988,14 +890,21 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>We can also build a <strong>clustered bar chart</strong> which we can create in two different ways. The first is the classic clustered bar chart using the option <strong>position=“dodge” (position=“dodge2” will leave a space between the bars)</strong></p>
+<p>And we can obviously add labels and titles using the same functions as before.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clustered bar chart</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x=</span>paidwork)) <span class="sc">+</span></span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>, <span class="fu">aes</span>(<span class="at">fill=</span>tv), </span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">position=</span><span class="st">"dodge"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span> (paidwork, tv) <span class="sc">|&gt;</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>paidwork, <span class="at">fill =</span> tv, <span class="at">weight =</span> n, </span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">by =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop))) <span class="sc">+</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"prop"</span>, </span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">position=</span><span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent) <span class="sc">+</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Are you in Paid Work?"</span>, <span class="co"># specify x-axis lab</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Percentage of respondents"</span>, <span class="co"># specify y-axis lab</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Poverty and Social Exclusion Survey 2012"</span>,</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Paid work and perception of necessities: TV sets"</span>)  <span class="co"># main title</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1004,17 +913,14 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>To add percentages to a clustered bar chart is a bit cumbersome but here is a possible solution which basically involves calculating directly the proportions before plotting them. It requires an additional package called <strong>ggstats</strong> for geom_bar() to recognise proportions as the quantity to plot</p>
+<p>Finally, an alternative is rather than clustering within the same graph, an alternative is to use faceting:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span> (paidwork, tv) <span class="sc">|&gt;</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>paidwork, <span class="at">fill =</span> tv, <span class="at">weight =</span> n, </span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">by =</span> tv, <span class="at">y =</span> <span class="fu">after_stat</span>(prop))) <span class="sc">+</span></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"prop"</span>, </span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">position=</span><span class="st">"dodge"</span>) <span class="sc">+</span></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "faceted" clustered bar chart</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> tv)) <span class="sc">+</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"count"</span>) <span class="sc">+</span> </span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>paidwork)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -1023,38 +929,11 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>Rather than clustering within the same graph, an alternative is to use faceting:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># "faceted" clustered bar chart</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv, paidwork) <span class="sc">|&gt;</span> </span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>tv)) <span class="sc">+</span></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat=</span><span class="st">"count"</span>) <span class="sc">+</span> </span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>paidwork)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_categorical_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>And we can obviously add labels and titles using the same functions as before.</p>
 </section>
-<section id="exercise-ii" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="exercise-ii"><span class="header-section-number">3.8</span> Exercise II</h2>
+<section id="exercise-ii" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="exercise-ii"><span class="header-section-number">3.4.3</span> Exercise II</h3>
 <p>Write the code to produce the contingency table and clustered and stacked bar charts below. Describe the bivariate distribution of item “appropriate clothes for a job interview” (variable <em>jobfrock</em>) across the educational categories of variable <em>graduate</em>.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Graduates Not Graduates 
-          347          1582 </code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Necessary Desirable 
-     1236       643 </code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               
                 Necessary Desirable
@@ -1064,20 +943,39 @@ Necessary Desirable
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_categorical_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="03_categorical_files/figure-html/unnamed-chunk-33-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_categorical_files/figure-html/unnamed-chunk-34-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="03_categorical_files/figure-html/unnamed-chunk-33-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="key-take-home-points" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="key-take-home-points"><span class="header-section-number">3.5</span> Key take home points</h2>
+<ol type="1">
+<li>The distribution of a variable is a description of all the values that it can take and how often each value occurs in your data.</li>
+<li>The quantities we use to describe categorical distributions are raw frequency counts and proportions or percentages. These quantitaties can be represented numerically and graphically and provide virtually the same information, even though they may be more appropriate depending on the intended purpose and target audience.</li>
+<li>Univariate categorical data can be described using frequency tables and simple bar charts (amongst others) and bivariate categorical data are best described using contingency tables and stacked or clustered bar charts (among others).</li>
+<li>The specification of tables and plots for univariate categorical data is fairly straightforward, but that for bivariate categorical data is much trickier because choices must reflect core questions about the underlying research design, including some idea of what is the postulated causal direction.</li>
+<li>R code comes in a number of different flavours or styles: base R and tidyverse. Each has strengths and weaknesses and may involve considerably different ways of approaching the analysis of your data. Use one, the other or both depending on what feels easier or more intuitive to you in the moment.</li>
+</ol>
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-wickham2010" class="csl-entry" role="listitem">
+Wickham, Hadley. 2010. <span>“A Layered Grammar of Graphics.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.
+</div>
+<div id="ref-wickham2023" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. O’Reilly.
+</div>
+</div>
 </section>
 
 </main> <!-- /main -->

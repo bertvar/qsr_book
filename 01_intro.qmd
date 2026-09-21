@@ -14,21 +14,21 @@ R is now an extremely popular language for statistics and data science in academ
 
 This is what the R terminal looks like:
 
-[![Screenshot of the R Terminal Window (Source: [Wikipedia](https://commons.wikimedia.org/w/index.php?curid=90393195))](images/rterminal.png){fig-alt="Screenshot of the R Terminal Window"}](https://en.wikipedia.org/wiki/R_(programming_language))
+[![Screenshot of the R Terminal Window (Source: \[Wikipedia\](https://commons.wikimedia.org/w/index.php?curid=90393195))](images/rterminal.png){fig-alt="Screenshot of the R Terminal Window"}](https://en.wikipedia.org/wiki/R_(programming_language))
 
 In practice, you will probably never use the R terminal to conduct your research. Instead you will use **RStudio** which is an extremely popular Integrated Development Environment (IDE). RStudio essentially acts as an intermediate layer between the researcher and R that helps make R much easier to use by providing a more structured and user-friendly interface as well as a large number of additional features, for example, [Quarto](https://quarto.org) which allows us to produce documents with code and output (such as this electronic book). It looks like this:
 
 ![Screenshot of RStudio IDE window (Source: [Wikipedia](https://commons.wikimedia.org/w/index.php?curid=101293607))](images/rstudio.png){fig-alt="Screenshot of RStudio IDE window"}
 
-#### Step 1: Install R  
+#### Step 1: Install R
 
 You can download R from [here](https://www.stats.bris.ac.uk/R/) . Choose the version that corresponds to your operative system (Windows/Mac/Linux) and download the file.
 
 Once downloaded, double-click the installation file and accept all the default options.
 
-#### Step 2: Install R-Studio 
+#### Step 2: Install R-Studio
 
-You can download RStudio from [here]( https://posit.co/download/rstudio-desktop/). Again, choose the version that corresponds to your operative system, though the web will probably recognise it automatically and give you the correct file.
+You can download RStudio from [here](https://posit.co/download/rstudio-desktop/). Again, choose the version that corresponds to your operative system, though the web will probably recognise it automatically and give you the correct file.
 
 If you prefer, here's a [video guide](https://www.youtube.com/watch?v=ZvPFKfNHBNQ) on how to install R and RStudio and a [brief intro](https://www.youtube.com/watch?v=HWnanydsBCs.) to the RStudio interface
 
@@ -38,7 +38,7 @@ Although, strictly speaking, only R and R-Studio are needed, there is other soft
 
 - [Zotero](https://www.zotero.org) - This is a powerful bibliography manager that helps you organise all of your references (articles, books, reports, websites, etc) as well as annotate them. It will also produce files that you can then use to produce formatted citations and lists of references when writing your work in either RStudio or Word.
 
--  ...
+- ...
 
 ## Access to workshop data
 
@@ -48,7 +48,7 @@ In this module we will primarily work with datasets from the [UK Data Service](h
 
 To do this, follow this procedure
 
-### Access to project (and dissertation?) data 
+### Access to project (and dissertation?) data
 
 Beyond the datasets we use in the workshops, you are likely to draw from either the UK Data Service or other repositories (GESIS, ESS) to choose a dataset for your assessment project.
 
