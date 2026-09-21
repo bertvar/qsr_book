@@ -4,59 +4,95 @@ title: "Describing Categorical data"
 
 ## Introduction
 
-In this workshop we will get to grips with the basics of describing categorical data using RStudio. To follow this guide you should have first watched the video lectures on the VLE where each of the techniques here used are discussed in detail. Also on the VLE, you will find RStudio video tutorials that elaborate on this workshop guide.
+In this first unit we will get to grips with the basics of describing categorical data using RStudio. To follow this guide you should have first watched the video lectures on the VLE where each of the techniques here used are discussed in detail. Also on the VLE, you will find RStudio video tutorials that elaborate on this workshop guide.
 
-The dataset we will analyse the "2012 UK Omnibus Poverty and Social Exclusion Survey: Necessities of Life" which is an
+The dataset we will analyse the **2012 UK Omnibus Poverty and Social Exclusion Survey: Necessities of Life** which is an
 
 > 'attitudinal survey aimed to identify what the population as a whole think are 'necessities': things that everyone should be able to afford and which no one should have to go without. Data were collected in Northern Ireland Statistics and Research Agency (NISRA), and in Great Britain (Scotland, England and Wales) by NatCen Social Research'.
 
-You can find the dataset and relevant documentation in the UK Data Service by clicking this [link](https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=7878). If interested in finding out more, you can read a report on the main findings [here](https://www.poverty.ac.uk/pse-research/what-do-we-think-we-need)
+You can find and download the [dataset and relevant documentatio](https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=7878)n in the UK Data Service. If interested in finding out more about the substantive findings of the project, you can read the relevant [report](https://www.poverty.ac.uk/pse-research/what-do-we-think-we-need).
 
-The substantive questions that drive this workshop are:
+The substantive questions that motivate this unit analysis are :
 
-1.  to what extent do UK residents regard a range of goods and services as necessary or merely desirable?
+1.  to what extent do UK residents regard a range of goods and services as "necessary" or "merely desirable"?
 2.  to what extent do perceptions of necessities vary across relevant socio-demographic groups?
 
-To answer these questions we will learn about and use in practice the following analytical techniques:
+In pursuing answers to these questions, you will learn more about the practical aspects of the using the following analytical techniques:
 
--   Numerical Summaries
-    -   Univariate frequency tables
-    -   Bivariate contingency tables
--   Visualisation
-    -   Univariate bar plots
-    -   Bivariate clustered and Stacked bar plots
+- Numerical Summaries
+  - Univariate frequency tables
+  - Bivariate contingency tables
+- Visualisation
+  - Univariate bar plots
+  - Bivariate clustered and Stacked bar plots
 
-You will notice that these are the very same techniques you learnt about in the quantitative part of Level 2 Research Methods, so none of this material should be new to you. Having said this, we will be able to explore some aspects in a bit more detail to strengthen both your intuitive and statistical understanding of what the techniques are doing.
+You may have noticed that these are the very same techniques you learnt about in the quantitative semester of Research Methods module in Year 2, so none of this material should be new to you. Having said this, we will be able to explore some aspects in a bit more detail to strengthen both your intuitive and statistical understanding of what the techniques are doing.
 
 ## Data and libraries
 
-Assuming that you are already initialised RStudio in your computer and you have opened a project located in a folder containing the dataset file, the first steps is to load the dataset, call a number of packages that are necessary to run the code for this workshop:
+Assuming that you are already initialised RStudio in your computer and you have opened a project located in a folder containing the dataset file, the first step is call a number of **packages or libraries** that provide additional functions needed to run the code for this workshop:
 
 ```{r, message=FALSE, warning=FALSE}
-# load R packages
-library(tidyverse)
-library(knitr)
-library(janitor)
-library(scales)
-library(ggstats)
+library(tidyverse) # data wrangling, visualisation, etc
+library(scales) # formatting of scales
+library(ggstats) # additional visualisation functions
 
+```
+
+We then proceed to load the PSE data file, called `omni.Rdata,` into the computer's memory so we can work with it. In this case we are using a data file in a format that is **native** to R - i.e. extensions `.Rdata` and `.Rda`can be directly opened into R without any further processing - so you can use the function `load()`.
+
+```{r}
 # load data
 load("pse_omni.Rdata")
 ```
 
-If you want to have a quick look at the dataset to get a sense of what it is like, you can use the functions *glimpse() - list of variables and values -* or *view()* - the dataset in spreadsheet form - with the dataset called **omni** - this is not shown in the guide as it takes up multiple pages!
+We can now get started with the analysis, but before we do this, though, it is worth noting that in going through the unit and running the code you risk
 
-```{r, message=FALSE, warning=FALSE, eval=FALSE}
-glimpse(omni)
-```
+As a general rule, before you start running code take some time to:
 
-We will then move straight to the analysis.
+1.   think carefully about what it is that you are attempting to do,
+2.   spell out the steps that are required
+3.   develop a mental, physical or virtual image of the outcome that you expect to see at the end of the process.
 
-## Numerical description of categorical data:
+> REMEMBER: only if we have **clear sense of what we are after**, should we then ask the computer to do the counting for us. Only then can we be in a position to tell whether what the computer has done for us is what we (thought we) wanted.
 
-### Base R
+## Univariate categorical data
 
-To describe the univariate distribution of a categorical variable we use frequency tables. Frequency tables can be produced in R using the function **table()** which can report both raw counts and percentages depending on how we specify the code.
+Remember that to our objective in this unit is to learn to describe the **distribution** of categorical data.
+
+> Definition: The distribution of a variable is a description of all the values that a variable can take and how often each value occurs in your data.
+
+We can convey this same information in two main ways - numerically and graphically - and the following subsections shows you how to do this in R
+
+### Numerical description of univariate categorical data:
+
+For instance, when producing a frequency table
+
+1.  Select a categorical variable and figure out how many categories it has;
+
+2.  **Count** how many observations in your data are classified into each one of those categories;
+
+3.  Represent these counts (or a derived quantity) as numbers in a table where values for each category are clearly separated
+
+This process applied to our survey data on subjective perception of needs would be roughly like this:
+
+1.  In the codebook we learn that categorical variable TV has **two possible** responses: either having a TV is **Necessary** or is instead simply **Desirable**.
+2.  We then count how many respondents answered Necessary and how many answered Desirable. These will be the raw counts which can be transformed into proportions or percentages.
+3.  We can then create a table that represents and labels these quantities such that it is obvious which quantity corresponds to each category, which should look something like this
+
+|      Necessary       |                  Desirable                  |
+|:--------------------:|:-------------------------------------------:|
+| $$                   
+   P(TV = Necessary)   
+           $$          |             $$                              
+                                                P(TV = Desirable)    
+                                                        $$           |
+
+: Simulated structure of a frequency table for variable TV
+
+#### Base R
+
+Frequency tables can be produced in R using the function `table()` which can report both raw counts and percentages depending on how we specify the code.
 
 We begin by describing the univariate distribution as raw counts of respondents for each category of the variable tv.
 
@@ -76,13 +112,13 @@ tabtv <- table(omni$tv)
 tabtv
 ```
 
-The first thing we can do is to add margins to the tabtv table - i.e. the sum of all observations contained in your table - using the function *addmargins()*
+The first thing we can do is to add margins to the tabtv table - i.e. the sum of all observations contained in your table - using the function `addmargins()`
 
 ```{r}
 addmargins(tabtv)
 ```
 
-We can also express the numbers in the table as proportions or percentages
+We can also express the numbers in the table as proportions or percentages using the function `prop.table():`
 
 ```{r}
 # as proportion
@@ -92,71 +128,66 @@ prop.table(tabtv)
 prop.table(tabtv)*100
 ```
 
-### Tidyverse
+#### Tidyverse and the pipe operator
 
-You can produce the same results using tidyverse functions. The tidyverse is a family of packages that have consistent coding principles and data handling conventions. For a detailed treatment of the tidyverse see the book [R for Data Science (2nd Edition)](https://r4ds.hadley.nz) by Wickham, Çetinkaya-Rundel and Grolemund.
+You can produce the same results using *tidyverse* functions. The tidyverse is a family of packages that have consistent coding style and data handling conventions. For a detailed treatment of the tidyverse see the book [R for Data Science (2nd Edition)](https://r4ds.hadley.nz) by @wickham2023.
 
-A key element of the tidyverse is the use of the pipe operator **\|\>** *(hotkey: command/ctrl + shift + m*) which allow us to write sequences or chains of functions - a bit like a baking recipe as shown in figure 1.
+A key element of the tidyverse is the use of the pipe operator **`|>`** *(hotkey: command/ctrl + shift + m*) which allow us to write sequences or chains of functions. It's a bit like a baking recipe shown in figure 1 where an object (the cake ingredients) are processed or transformed by function or verb (techniques like mixing, baking or decorating) in a particular order:
 
-![Piping in R (\@ArthurWelle)](images/Screenshot%202024-10-01%20at%2017.44.34.png){width="353"}
+![Figure 1: Piping in R (\@ArthurWelle)](images/pipe_baking.gif){fig-alt="This diagram illustrates how the pipe operator in R works by showing a cake recipe as a sequence of baking techniques (functions) being applied to ingredients (objects))"}
 
-Here's an example of how we create a frequency table in R using tidyverse functions or verbs and the pipe operator:
-
-```{r}
-omni |> # dataset 
-  drop_na(tv) |> # drop missing values from variable tv
-  group_by(tv) |> # across the response categories
-  summarise(n = n()) |> # count the respondents
-  mutate(perc = n / sum(n) * 100) |> 
-  kable() # render nice looking table
-```
-
-or using the function *count()*
+Here's an example of how we create a frequency table in R using tidyverse functions or verbs and the pipe operator. As shown below, each line in the sequence can be read in natural language where the pipe operator `|>` can be taken to mean "and then":
 
 ```{r}
-omni |> # dataset
-  drop_na(tv) |> # drop missing values from variable tv
-  count(tv) |> # count the respondents in each category
-  mutate(perc = n / sum(n) * 100) |> 
-  kable() # render nice looking table
+omni |>  # <1>
+  drop_na(tv) |> # <2>
+  group_by(tv) |> # <3> 
+  summarise(n = n()) |> # <4>
+  mutate(perc = n / sum(n) * 100) # <5>
 ```
 
-To round percentages up to 2 digits you can use the *round()* function
+1.  Take the data `omni`, **and then...**
+2.  drop missing values (NAs) - i.e. exclude all respondents who did not provide a valid response for the questionnaire item `tv`, **and then...**
+3.  group respondents by their response categories, **and then...**
+4.  count the number of respondents grouped in each category, **and then...**
+5.  divide the number of respondents in each category by the total number (or sum) of respondents and multiply it all by 100 to get the percentages.
+
+This can also be achieved using the function `count()` instead of `n()`without the need for grouping the responses first with `group_by().`
 
 ```{r}
 omni |> # dataset
   drop_na(tv) |> # drop missing values from variable tv
   count(tv) |> # count the respondents in each category
-  mutate(perc = round(n / sum(n) * 100, 2)) |> # calculate percentage
-  kable() # render nice looking table
+  mutate(perc = n / sum(n) * 100) 
 ```
 
-Or you can use the function *percent* from the package **scales** which will also add the % sign
+Note however that the code will return a table that has the exact same values but is **printed** with different formatting conventions (check out the number of decimals) as a result of being objects of different classes (a dataframe instead of a tibble). To round percentages up to 2 digits you can use the `round()` function
 
 ```{r}
 omni |> # dataset
   drop_na(tv) |> # drop missing values from variable tv
   count(tv) |> # count the respondents in each category
-  mutate(perc = percent(n / sum(n), 0.01)) |> # calculate percentage
-  kable() # render nice looking table
-
+  mutate(perc = round(n / sum(n) * 100, 2)) # calculate percentage
 ```
 
-Finally, the *tabyl* function (from the **janitor** package) makes it quite easy to produce nice tables, which becomes particularly useful for contingency tables discussed further below.
+Or you can use the function `percent()` from the package **scales** which will also add the % sign
 
 ```{r}
-
-omni |> 
-  drop_na(tv) |> 
-  tabyl(tv) |> # create frequency table
-  adorn_pct_formatting(digits = 1) |> # choose number of decimals
-  kable()
-
+omni |> # dataset
+  drop_na(tv) |> # drop missing values from variable tv
+  count(tv) |> # count the respondents in each category
+  mutate(perc = percent(n / sum(n), 0.01)) # calculate percentage
 ```
 
-## Graphical representation of univariate categorical data:
+### Graphical representation of univariate categorical data:
 
-With ggplot we can create bar charts easily using the *geom_bar* option. The basic syntax is as follows:
+There are different ways in which we can generate plots of all sorts in R, using both base R as well as other packages. In this module we will primarily use the package `ggplot2`, part of the `tidyverse` family.
+
+This package is particularly useful for us because it allows us to produce different types of plots using a consistent and systematic coding style and because it is underpinned by an intuitive way of thinking about data visualisation, known as a 'layered grammar of graphics' [@wickham2010].
+
+A ggplot object is in this sense
+
+bar charts easily using the *geom_bar* option. The basic syntax is as follows:
 
 ```{r}
 # Basic barplot
@@ -189,7 +220,7 @@ ggplot(data = omni[complete.cases(omni$tv), ], aes(x=tv, y = after_stat(prop), g
 
 ```
 
-Since percentages are basically proportions multiplied by 100, we can have percentages on our plot by re-scaling (changing the scale) of the vertical axis using the option *scale_y_continuous(labels = scales::percent)*
+Since percentages are basically proportions multiplied by 100, we can have percentages on our plot by re-scaling (changing the scale) of the vertical axis using the option `+ scale_y_continuous(labels = scales::percent)`
 
 ```{r}
 
@@ -227,7 +258,7 @@ omni |>
 
 ```
 
-You can also use specify labels and title within the function **labs** and produce the exact same results:
+You can also use specify labels and title within the function `labs()` and produce the exact same results:
 
 ```{r}
 omni |> 
@@ -240,7 +271,7 @@ omni |>
        title = "A majority of respondents think a TV is necessary")  # main title
 ```
 
-## Exercise I
+### Exercise I
 
 Provide the code necessary to calculate and plot the univariate distribution (as counts and percentages) of respondents according to whether they think having a "a damp-free house" (variable *nodamp*) is necessary as opposed to just desirable. You should obtain the following results:
 
@@ -255,8 +286,7 @@ round(prop.table(damptab)*100,2)
 omni |> 
   drop_na(nodamp) |> 
   count(nodamp) |> 
-  mutate(percent = n / sum(n) * 100) |> 
-  kable()
+  mutate(percent = n / sum(n) * 100) 
 
 ggplot(omni[complete.cases(omni$nodamp), ], 
        aes(x=nodamp)) +
@@ -278,11 +308,13 @@ ggplot(omni[complete.cases(omni$nodamp), ],
 
 ## Working with bivariate categorical data
 
+### Numerical description of bivariate categorical data:
+
 After learning how to produce a frequency table, we move onto contingency tables or crosstabulations. Contingency tables help us represent the cross-classification of two or more categorical variables - i.e. how individuals are classified simultaneously in the categories of more than one variable.
 
 For instance, we may want to find out whether one's perception of TV as a necessity or a mere desire depends on past employment status. Not unlike the comparisons of pay between men and women (or levels of educational achievement) here we also compare the distribution of attitudes towards different goods between individuals classified in different socioeconomic categories.
 
-### Base R
+#### Base R
 
 We use again the function **table()** but this time we specify 2 variables as **table(var1, var2)**.
 
@@ -309,31 +341,41 @@ prop.table(tvpw_inv, 2)*100
 
 ```
 
-### Tidyverse
+#### Tidyverse
 
-We can achieve the same using tidyverse code, though it is decidedly more involved:
+We can achieve the same using tidyverse code, though it is decidedly more involved. This is because tidyverse, by default, presents data in long form. To see this run the following code which only varies from the one for frequency tables in that it specifies two variables rather than one - note that the order in which you introduce the variable names in the `group_by()` has consequences on how the data will appear:
+
+```{r}
+omni |> 
+  drop_na(paidwork, tv) |> # remove missing values on two vars
+  group_by(paidwork, tv) |> #arrange by the categories of two vars
+  summarise(n = n()) # count respondents in each combination
+```
+
+As you can see the raw counts for each combination of `tv` and `paidwork` are exactly the same as we got before using the `table()` function but they are presented in a very different way. Instead of a table with two rows and two columns - a.k.a. a 2 x 2 table - that represent each of the 2 variables' response categories, we instead get a 4 x 3 table where both the response categories for two variables AND the corresponding raw counts for each combination are shown as values in three separate columns. This is what we call a **long format dataset.**
+
+Although it provides **exactly the same information as the standard contingency table**, this particular formatting is perhaps less commonly used and less suitable to the kinds of analyses we conduct in the social sciences. Thus, in order to re-arrange this to a **wide format dataset** we will use the `pivot_wider()` function to get the more familiar layout:
 
 ```{r, message=FALSE}
 omni |> 
   drop_na(paidwork, tv) |> # remove missing values on two vars
   group_by(paidwork, tv) |> #arrange by the categories of two vars
   summarise(n = n()) |>  # count respondents in each combination
-  spread(tv, n) |> # organise them as contingency table
-  adorn_totals(c("row", "col")) |> #add margins from tabyl
-  kable()
+  pivot_wider(names_from = tv, 
+              values_from = n)  # this re-organises the table to appear as wide format
 ```
 
-For row percentages you would use:
+Now, if yould like like row percentages you would use:
 
 ```{r, message=FALSE}
 omni |> 
   drop_na(paidwork, tv) |> 
   group_by(paidwork, tv) |>
   summarise(n = n()) |> 
-  mutate(prop=n/sum(n)) |> 
+  mutate(perc=n/sum(n)*100) |> 
   select(-n) |> 
-  spread(tv, prop) |> 
-  kable()
+  pivot_wider(names_from = tv, 
+              values_from = perc)
 ```
 
 For column percentages you could use:
@@ -343,41 +385,13 @@ omni |>
   drop_na(paidwork, tv) |> 
   group_by(tv, paidwork) |> 
   summarise(n = n()) |> 
-  mutate(prop=n/sum(n)) |> 
+  mutate(perc = n / sum(n) * 100) |> 
   select(-n) |> 
-  spread(tv, prop) |> 
-  kable()
+  pivot_wider(names_from = tv, 
+              values_from = perc)
 ```
 
-Finally, you could use *tabyl()* for row percentages
-
-```{r}
-omni |> 
-  drop_na(paidwork, tv) |> 
-  tabyl(paidwork, tv) |> 
-  adorn_totals(c("row", "col")) |> 
-  adorn_percentages("row") |> 
-  adorn_pct_formatting(digits = 1) |> 
-  adorn_ns() |> 
-  adorn_title() |> 
-  kable()
-```
-
-Or column percentages
-
-```{r}
-omni |> 
-  drop_na(paidwork, tv) |> 
-  tabyl(paidwork, tv) |> 
-  adorn_totals(c("row", "col")) |> 
-  adorn_percentages("col") |> 
-  adorn_pct_formatting(digits = 1) |> 
-  adorn_ns() |> 
-  adorn_title() |> 
-  kable()
-```
-
-## Graphical representation of bivariate categorical data:
+### Graphical representation of bivariate categorical data:
 
 Contingency tables can also be represented graphically using bar plots, but the bars have to be plotted for each of the categories of the independent variable separately. This means we need to think carefully about what is the substantive nature of the relationship between both variables. Thus we may want to know:
 
@@ -390,9 +404,10 @@ The first bar plot we will create is a stacked bar chart.
 
 ```{r}
 #stacked bar chart
-ggplot(data = omni[complete.cases(omni$tv) & !is.na(omni$paidwork) ,] , 
-       aes(x=paidwork)) +
-  geom_bar(stat="count", aes(fill=tv)) 
+omni |> 
+  drop_na(tv, paidwork) |>
+  ggplot(aes(x = paidwork)) +
+  geom_bar(stat = "count", aes(fill = tv)) 
 ```
 
 If we are interested in comparing the proportions within each group, particularly if there are large differences in raw counts, we can also stack them to add to 100%:
@@ -401,26 +416,26 @@ If we are interested in comparing the proportions within each group, particularl
 #stacked bar chart up to 100%
 omni |> 
   drop_na(tv, paidwork) |> 
-  ggplot(aes(x=paidwork)) +
-  geom_bar(stat="count", aes(fill=tv), position="fill") +
+  ggplot(aes(x = paidwork)) +
+  geom_bar(stat = "count", aes(fill = tv), position = "fill") +
   scale_y_continuous(labels = scales::percent)
   
 ```
 
-We can also build a **clustered bar chart** which we can create in two different ways. The first is the classic clustered bar chart using the option **position="dodge" (position="dodge2" will leave a space between the bars)**
+We can also build a **clustered bar chart** which we can create in two different ways. The first is the classic clustered bar chart using the option `position="dodge"` **(`position="dodge2"`** will leave a space between the bars)
 
 ```{r}
 
 # clustered bar chart
 omni |> 
   drop_na(tv, paidwork) |> 
-  ggplot( aes(x=paidwork)) +
-  geom_bar(stat="count", aes(fill=tv), 
-           position="dodge") 
+  ggplot( aes(x = paidwork)) +
+  geom_bar(stat = "count", aes(fill = tv), 
+           position = "dodge") 
 
 ```
 
-To add percentages to a clustered bar chart is a bit cumbersome but here is a possible solution which basically involves calculating directly the proportions before plotting them. It requires an additional package called **ggstats** for geom_bar() to recognise proportions as the quantity to plot
+To add percentages to a clustered bar chart is a bit cumbersome but here is a possible solution which basically involves calculating directly the proportions before plotting them. It requires an additional package called **ggstats** for `geom_bar()` to recognise proportions as the quantity to plot
 
 ```{r}
 omni |> 
@@ -434,29 +449,42 @@ omni |>
   scale_y_continuous(labels = scales::percent)
 ```
 
-Rather than clustering within the same graph, an alternative is to use faceting:
+And we can obviously add labels and titles using the same functions as before.
+
+```{r}
+omni |> 
+  drop_na(tv, paidwork) |> 
+  group_by (paidwork, tv) |>
+  count() |> 
+  ggplot(aes(x=paidwork, fill = tv, weight = n, 
+             by = tv, y = after_stat(prop))) +
+  geom_bar(stat="prop", 
+           position="dodge") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(x = "Are you in Paid Work?", # specify x-axis lab
+       y = "Percentage of respondents", # specify y-axis lab
+       caption = "Poverty and Social Exclusion Survey 2012",
+       title = "Paid work and perception of necessities: TV sets")  # main title
+```
+
+Finally, an alternative is rather than clustering within the same graph, an alternative is to use faceting:
 
 ```{r}
 
 # "faceted" clustered bar chart
 omni |> 
   drop_na(tv, paidwork) |> 
-  ggplot(aes(x=tv)) +
-  geom_bar(stat="count") + 
+  ggplot(aes(x = tv)) +
+  geom_bar(stat = "count") + 
   facet_wrap(~paidwork)
 
 ```
 
-And we can obviously add labels and titles using the same functions as before.
-
-## Exercise II
+### Exercise II
 
 Write the code to produce the contingency table and clustered and stacked bar charts below. Describe the bivariate distribution of item "appropriate clothes for a job interview" (variable *jobfrock*) across the educational categories of variable *graduate*.
 
 ```{r, echo=FALSE}
-
-table(omni$graduate) 
-table(omni$jobfrock)
 
 gradjfrock<-table(omni$graduate, omni$jobfrock)
 gradjfrock_m<-addmargins(gradjfrock)
@@ -470,7 +498,7 @@ aes(x=graduate)) +
 geom_bar(stat="count", aes(fill=jobfrock), position="dodge") + 
   xlab("Are you a graduate?") +
   ylab("Number of respondents") + 
-  ggtitle("Perceptions of necessities: Having appropriate clothes for an interview")
+  ggtitle("Education and perceptions of necessities: job  interview clothes")
 
 # stacked bar chart
 ggplot(omni[complete.cases(omni$jobfrock,omni$graduate) , ], 
@@ -479,6 +507,14 @@ geom_bar(stat="count", aes(fill=jobfrock), position="fill") +
   scale_y_continuous(labels = scales::percent) +
   xlab("Are you a graduate?") +
   ylab("Percentage of respondents") + 
-  ggtitle("Perceptions of necessities: Having appropriate clothes for an interview")
+  ggtitle("Education and perceptions of necessities: job  interview clothes")
 
 ```
+
+## Key take home points
+
+1.  The distribution of a variable is a description of all the values that it can take and how often each value occurs in your data.
+2.  The quantities we use to describe categorical distributions are raw frequency counts and proportions or percentages. These quantitaties can be represented numerically and graphically and provide virtually the same information, even though they may be more appropriate depending on the intended purpose and target audience.
+3.  Univariate categorical data can be described using frequency tables and simple bar charts (amongst others) and bivariate categorical data are best described using contingency tables and stacked or clustered bar charts (among others).
+4.  The specification of tables and plots for univariate categorical data is fairly straightforward, but that for bivariate categorical data is much trickier because choices must reflect core questions about the underlying research design, including some idea of what is the postulated causal direction.
+5.  R code comes in a number of different flavours or styles: base R and tidyverse. Each has strengths and weaknesses and may involve considerably different ways of approaching the analysis of your data. Use one, the other or both depending on what feels easier or more intuitive to you in the moment.
