@@ -185,25 +185,67 @@ There are different ways in which we can generate plots of all sorts in R, using
 
 This package is particularly useful for us because it allows us to produce different types of plots using a consistent and systematic coding style and because it is underpinned by an intuitive way of thinking about data visualisation, known as a 'layered grammar of graphics' [@wickham2010].
 
-A ggplot object is in this sense composed of multiple components that are layered on top of each other to produce the final data visualisation.
+A ggplot object is in this sense composed of multiple components that are layered on top of each other to produce the final data visualisation that we use in our reports. Let's see how this works for producing a bar chart:
 
-bar charts easily using the *geom_bar* option. The basic syntax is as follows:
+We begin with the function `ggplot()` which tells `R` we want to create ggplot object and then specify the data we are working with:
 
 ```{r}
-# Basic barplot
+#| eval: false
+ggplot(data = omni)
+```
+
+This produces a blank (grey) canvas on which we will layer the visual components. In the aesthetics `aes()` we will specify which axis we want the category bars of `tv` to be plotted along. In this case we will ask for them to be plotted in the x or horizontal axis:
+
+```{r}
+#| eval: false
+ggplot(data = omni, aes(x = tv))
+```
+
+Note that the bars do not appear yet, but the category labels do. To include the bars representing the counts we need to specify a geometric shape, in this case `geom_bar()`:
+
+```{r}
+#| eval: false
 ggplot(data = omni, aes(x = tv)) +
   geom_bar(stat = "count")
 ```
 
-Notice that R ggplot creates a bar for the missing values (called NA). This NA bar draws away our attention from the Necessary and Desirable bars and could potentially distort the plot as a whole. We will remove the missing values by subsetting the data we input into the graph. To subset the data we use the following line when defining the data in ggplot: **omni\[!is.na(omni\$tv), \]**
+You can see how the plot evolves as a result of layering the different components:
 
 ```{r}
-# Eliminate missing value category from the chart with (omni[!is.na(omni$tv), ]
+#| include: false
+
+bar1 <- ggplot(data = omni) + ggtitle ("Create base")
+
+bar2 <- ggplot(data = omni, aes(x = tv)) + ggtitle("Define aesthetics")
+
+bar3 <- ggplot(data = omni, aes(x = tv)) +
+  geom_bar(stat = "count") + ggtitle("Add bars")
+
+```
+
+```{r}
+#| echo: false
+library(patchwork)
+bar1 + bar2 + bar3 
+```
+
+Now, we have our first recognisable bar chart, it is worth stopping to check that the plot R produced looks roughly similar to what we were hoping to obtain. Here we find that `ggplot2` has decided to include **by default** a third bar for the missing values (called `NA`).
+
+This `NA` bar includes important information about our variable - namely, how many invalid responses the survey collected - but it poses two problems:
+
+1.   it detracts our attention from the Necessary and Desirable bars which are the quantities that are of substantive interest to us;
+2.  it could potentially distort the plot as a whole if the volume of missingness was large.
+
+To remove or drop the missing values we have a number of options all of which involve **subsetting** the data we input into the graph by using the `[]` sign and a subsetting condition that basically keeps valid values in and leaves missing values out.
+
+The first and clunkier option is to tell R to only keep those respondents in the data that do NOT have missing values for a given variable using the function `is.na()` preceded by an exclamation mark that negates it:
+
+```{r}
 ggplot(omni[!is.na(omni$tv), ], aes(x=tv)) +
   geom_bar(stat="count")
 ```
 
-Alternatively we can use the function **complete.cases()** which is a bit more readable and produces the same result:
+Alternatively we can use the function `complete.cases()` which is a bit more readable and produces the same result by including only those respondents with valid responses in the named variables:
 
 ```{r}
 # Eliminate missing value category from the chart with (omni[complete.cases(omni$tv), ]
@@ -211,36 +253,33 @@ ggplot(omni[complete.cases(omni$tv), ], aes(x=tv)) +
   geom_bar(stat="count")
 ```
 
-Often you may want to plot proportions rather than counts, which can be achieved by changing the aesthetics' options. In this case, after declaring the variables write a **comma** and add **after_stat(prop), group = 1**:
-
-```{r}
-
-ggplot(data = omni[complete.cases(omni$tv), ], aes(x=tv, y = after_stat(prop), group = 1)) +
-  geom_bar(stat="count") 
-
-```
-
-Since percentages are basically proportions multiplied by 100, we can have percentages on our plot by re-scaling (changing the scale) of the vertical axis using the option `+ scale_y_continuous(labels = scales::percent)`
-
-```{r}
-
-# If you want proportions, you need to modify the aesthetics options for the y axis
-
-ggplot(data = omni[complete.cases(omni$tv), ], 
-       aes(x=tv, y = after_stat(prop), group = 1)) +
-  geom_bar(stat="count") + 
-  scale_y_continuous(labels = scales::percent)
-
-```
-
-Or using the **tidyverse** you can integrate the specification of the ggplot graphs as part of a wider sequence of functions applied to the same data:
+Finally, using the pipe `|>` you could write the code as a sequence contains the function `drop_na()` to get rid of the missing values. Since for many applications this is probably the most straightforward solution we will stick with this style from now on:
 
 ```{r}
 omni |> 
   drop_na(tv) |> 
-  ggplot() +
-  geom_bar(aes( x = tv, y = after_stat(prop), group = 1)) +
+  ggplot(aes(x = tv)) +
+  geom_bar(stat="count")
+```
+
+Often you may want to plot proportions rather than counts, which can be achieved by specifying how the values in the y-axis are calculated. In the aesthetics, we will add the following line `y = after_stat(prop), group = 1`:
+
+```{r}
+omni |> 
+  drop_na(tv) |> 
+  ggplot(aes(x = tv, y = after_stat(prop), group = 1)) +
+  geom_bar(stat="count") 
+```
+
+Since percentages are basically proportions multiplied by 100, we simply change the labels the vertical axis ticks using the option `+ scale_y_continuous(labels = scales::percent)`
+
+```{r}
+omni |> 
+  drop_na(tv) |> 
+  ggplot(aes(x = tv, y = after_stat(prop), group = 1)) +
+  geom_bar(stat="count") +
   scale_y_continuous(labels = scales::percent)
+
 ```
 
 Finally, we should change the labels in the plot and add a title to make it more informative
