@@ -332,8 +332,7 @@ window.Quarto = {
 </div>
 <p>We then proceed to load the PSE data file, called <code>omni.Rdata,</code> into the computer’s memory so we can work with it. In this case we are using a data file in a format that is <strong>native</strong> to R - i.e.&nbsp;extensions <code>.Rdata</code> and <code>.Rda</code>can be directly opened into R without any further processing - so you can use the function <code>load()</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"pse_omni.Rdata"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"pse_omni.Rdata"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can now get started with the analysis, but before we do this, though, it is worth noting that in going through the unit and running the code you risk</p>
 <p>As a general rule, before you start running code take some time to:</p>
@@ -449,7 +448,7 @@ Necessary Desirable
 <p>A key element of the tidyverse is the use of the pipe operator <strong><code>|&gt;</code></strong> <em>(hotkey: command/ctrl + shift + m</em>) which allow us to write sequences or chains of functions. It’s a bit like a baking recipe shown in figure 1 where an object (the cake ingredients) are processed or transformed by function or verb (techniques like mixing, baking or decorating) in a particular order:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/pipe_baking.gif" class="img-fluid figure-img" alt="This diagram illustrates how the pipe operator in R works by showing a cake recipe as a sequence of baking techniques (functions) being applied to ingredients (objects))"></p>
+<p><img src="images/pipe_baking.gif" class="img-fluid figure-img" alt="This diagram illustrates how the pipe operator in R works by showing a cake recipe as a sequence of baking techniques (functions) being applied to ingredients (objects))" width="513"></p>
 <figcaption>Figure 1: Piping in R (@ArthurWelle)</figcaption>
 </figure>
 </div>

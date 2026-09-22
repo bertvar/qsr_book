@@ -42,7 +42,6 @@ library(ggstats) # additional visualisation functions
 We then proceed to load the PSE data file, called `omni.Rdata,` into the computer's memory so we can work with it. In this case we are using a data file in a format that is **native** to R - i.e. extensions `.Rdata` and `.Rda`can be directly opened into R without any further processing - so you can use the function `load()`.
 
 ```{r}
-# load data
 load("pse_omni.Rdata")
 ```
 
@@ -134,7 +133,7 @@ You can produce the same results using *tidyverse* functions. The tidyverse is a
 
 A key element of the tidyverse is the use of the pipe operator **`|>`** *(hotkey: command/ctrl + shift + m*) which allow us to write sequences or chains of functions. It's a bit like a baking recipe shown in figure 1 where an object (the cake ingredients) are processed or transformed by function or verb (techniques like mixing, baking or decorating) in a particular order:
 
-![Figure 1: Piping in R (\@ArthurWelle)](images/pipe_baking.gif){fig-alt="This diagram illustrates how the pipe operator in R works by showing a cake recipe as a sequence of baking techniques (functions) being applied to ingredients (objects))"}
+![Figure 1: Piping in R (\@ArthurWelle)](images/pipe_baking.gif){fig-alt="This diagram illustrates how the pipe operator in R works by showing a cake recipe as a sequence of baking techniques (functions) being applied to ingredients (objects))" width="513"}
 
 Here's an example of how we create a frequency table in R using tidyverse functions or verbs and the pipe operator. As shown below, each line in the sequence can be read in natural language where the pipe operator `|>` can be taken to mean "and then":
 
