@@ -390,7 +390,7 @@ omni |>
   summarise(n = n()) # count respondents in each combination
 ```
 
-As you can see the raw counts for each combination of `tv` and `paidwork` are exactly the same as we got before using the `table()` function but they are presented in a very different way. Instead of a table with two rows and two columns - a.k.a. a 2 x 2 table - that represent each of the 2 variables' response categories, we instead get a 4 x 3 table where both the response categories for two variables AND the corresponding raw counts for each combination are shown as values in three separate columns. This is what we call a **long format dataset.**
+As you can see the raw counts for each combination of `tv` and `paidwork` are exactly the same as we got before using the `table()` function but they are presented in a very different way. Instead of a table with two rows and two columns - a.k.a. a 2 x 2 table - that represent each of the 2 variables' response categories, we instead get a 4 x 3 table where both the response categories for two variables AND the corresponding raw counts for each combination are shown as values in three separate columns. This is what we call a **long format table.**
 
 Although it provides **exactly the same information as the standard contingency table**, this particular formatting is perhaps less commonly used and less suitable to the kinds of analyses we conduct in the social sciences. Thus, in order to re-arrange this to a **wide format** we will use the `pivot_wider()` function to get the more familiar layout:
 
