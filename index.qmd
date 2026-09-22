@@ -1,13 +1,9 @@
-# Preface {.unnumbered}
+# Welcome! {.unnumbered}
 
 Welcome to the on-line textbook for SLSP3066 Quantitative Social Research.
 
 This website provides the written materials for the module workshops so you can access them via a standard web browser.
 
-Please bear in mind that this website is in its first iteration and will be updated throughout the semester. 
+Please bear in mind that this website is in its first iteration and will be updated throughout the semester.
 
-Remember that access to the datasets  will be provided through the VLE.
-
-
-
-
+Remember that access to the datasets will be provided through the VLE.
