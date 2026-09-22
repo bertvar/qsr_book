@@ -604,7 +604,7 @@ Necessary Desirable
 </div>
 </div>
 </div>
-<p>Often you may want to plot proportions rather than counts, which can be achieved by specifying how the values in the y-axis are calculated. In the aesthetics, we will add the following line <code>y = after_stat(prop), group = 1</code>:</p>
+<p>Often you may want to plot proportions rather than counts, which can be achieved by specifying in the aesthetics how the values in the y-axis are calculated using <code>y = after_stat(prop), group = 1</code>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>omni <span class="sc">|&gt;</span> </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(tv) <span class="sc">|&gt;</span> </span>

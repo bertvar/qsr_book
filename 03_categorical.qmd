@@ -262,7 +262,7 @@ omni |>
   geom_bar(stat="count")
 ```
 
-Often you may want to plot proportions rather than counts, which can be achieved by specifying how the values in the y-axis are calculated. In the aesthetics, we will add the following line `y = after_stat(prop), group = 1`:
+Often you may want to plot proportions rather than counts, which can be achieved by specifying in the aesthetics how the values in the y-axis are calculated using `y = after_stat(prop), group = 1`:
 
 ```{r}
 omni |> 
