@@ -53,9 +53,9 @@ We can now get started with the analysis, but before we do this, though, it is w
 
 As a general rule, before you start running code take some time to:
 
-1.   think carefully about what it is that you are attempting to do,
-2.   spell out the steps that are required
-3.   develop a mental, physical or virtual image of the outcome that you expect to see at the end of the process.
+1.  think carefully about what it is that you are attempting to do,
+2.  spell out the steps that are required
+3.  develop a mental, physical or virtual image of the outcome that you expect to see at the end of the process.
 
 > REMEMBER: only if we have **clear sense of what we are after**, should we then ask the computer to do the counting for us. Only then can we be in a position to tell whether what the computer has done for us is what we (thought we) wanted.
 
@@ -85,13 +85,13 @@ We now apply these steps to our survey data on subjective perception of needs th
 
 The resulting table should look similar to this:
 
-|      Necessary       |                  Desirable                  |
-|:--------------------:|:-------------------------------------------:|
+| Necessary | Desirable |
+|:--:|:--:|
 | $$                   
    P(TV = Necessary)   
-           $$          |             $$                              
+           $$ | $$                              
                                                 P(TV = Desirable)    
-                                                        $$           |
+                                                        $$ |
 
 : Simulated structure of a frequency table for variable TV
 
@@ -248,7 +248,7 @@ Now, we have our first recognisable bar chart, it is worth stopping to check tha
 
 This `NA` bar includes important information about our variable - namely, how many invalid responses the survey collected - but it poses two problems:
 
-1.   it detracts our attention from the Necessary and Desirable bars which are the quantities that are of substantive interest to us;
+1.  it detracts our attention from the Necessary and Desirable bars which are the quantities that are of substantive interest to us;
 2.  it could potentially distort the plot as a whole if the volume of missingness was large.
 
 To remove or drop the missing values we have a number of options all of which involve **subsetting** the data we input into the graph by using the `[]` sign and a subsetting condition that basically keeps valid values in and leaves missing values out. Note that the subsetting condition must be included **before** the comma to indicate that we are selecting rows and not columns.

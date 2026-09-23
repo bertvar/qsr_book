@@ -1,4 +1,4 @@
-# Welcome! {.unnumbered}
+# Welcome to Quantitative Social Research {.unnumbered}
 
 Welcome to the on-line textbook for SLSP3066 Quantitative Social Research.
 

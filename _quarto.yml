@@ -8,11 +8,11 @@ book:
   date: "2026/09/17"
   chapters:
     - index.qmd
-    - 01_intro.qmd
-    - 02_categorical.qmd
-    - 03_continuous.qmd
-    - 04_wrangling.qmd
-    - 05_inference.qmd
+    - 00_intro.qmd
+    - 01_categorical.qmd
+    - 02_continuous.qmd
+    - 03_wrangling.qmd
+    - 04_inference.qmd
     - summary.qmd
     - references.qmd
 
