@@ -9,8 +9,8 @@ book:
   chapters:
     - index.qmd
     - 01_intro.qmd
-    - 02_continuous.qmd
-    - 03_categorical.qmd
+    - 02_categorical.qmd
+    - 03_continuous.qmd
     - 04_wrangling.qmd
     - 05_inference.qmd
     - summary.qmd
