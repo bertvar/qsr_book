@@ -2,22 +2,9 @@
 title: "Describing Continuous Data"
 ---
 
-```{r}
-#| message: false
-#| warning: false
-
-library(tidyverse)
-library("gridExtra")
-library(tidyverse)
-library(knitr)
-library(psych)
-library(moments)
-load("lfs.rda")
-```
-
 ## Introduction
 
-In unit 2 we continue to explore the basics of data analysis using RStudio. While last unit we worked with categorical data (as you did last year in SLSP2010), in this unit we will focus the session on learning how to describe continuous data.
+In unit 2 we continue to explore the basics of data analysis using RStudio. While in the previous unit we worked with categorical data, in this unit we will focus the session on learning how to describe continuous data.
 
 We will be analysing the Labour Force Survey (LFS) to describe:
 
@@ -29,18 +16,39 @@ Analytically, we will concentrate on the following techniques
 - Numerical Summaries:
   - Mean, median and mode
   - Maximum, minimum and range
-  - Quartiles & Inter-quartile Range
+  - Quartiles & Inter-quartile range
   - Variance and Standard deviation
 - Visualisation
   - Boxplots
   - Histograms
   - Density Plots
 
-## Basics: Continuous variables
+As usual, we will load the data and libraries:
+
+```{r}
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(psych)
+library(moments)
+load("lfs.rda")
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+library(gridExtra)
+library(knitr)
+library(patchwork)
+```
+
+## The basics of continuous variables
 
 ### Definition
 
-A variable is **continuous** when it can take any value within a measurement scale (including decimals), and when the difference between each pair of adjacent values is constant and has **real meaning** - i.e. the difference between £4 and £5 is the same as between £1,954,327 and £1,954,328.
+A variable is **continuous** when it can take any value within a measurement scale (including decimals), and when the difference between each pair of adjacent values is constant and has **real meaning** - i.e. the difference between income values £4 and £5 is the same as between £1,954,327 and £1,954,328.
 
 - With "Years in education" we can say that a person with 10 years of schooling has been in education 4 more years than someone with 6 years and 3 years less than someone with 13 years.
 
@@ -48,7 +56,7 @@ A variable is **continuous** when it can take any value within a measurement sca
 
 ### Types of continuous variables
 
-We will normally consider to types of continuous variables: interval and ratio.
+We will normally consider two types of continuous variables: interval and ratio.
 
 *Interval* variables **do NOT have an absolute zero with substantive meaning** (0°C is not absence of temperature - only the temperature at which water freezes). This means that it makes sense *to estimate averages* (average minimum temperature in October is 7° in Leeds and 14° in Barcelona) **but not ratios** (we cannot say that Barcelona has an average minimum temperature that's twice as high as Leeds).
 
@@ -134,15 +142,19 @@ qsrplot2<-ggplot(data=marks, aes(x=student, y=qsr)) +
 qsrplot2
 ```
 
-A key feature of the median is that, unlike the mean, it is insensitive - i.e. it does not vary - as a result of the presence of **extreme values** or **outliers**, which are data points that are unusually far from the centre of the distribution. As a result, the mean and the median for any given variable may or may not be the same (or more or less close) depending how symmetrical the shape of its distribution is. A perfectly symmetrical variable will have exactly the same median and mean. An asymmetrical or skewed distribution (where there is a greater number of observations on one side of the mean than on the other) then the median and mean will be different. This occurs because the extreme values that skew the data to the right or the left pull the mean towards themselves and away from the median. You can see this more clearly in the following table and plot that displays three distributions:
+A key feature of the median is that, unlike the mean, it is insensitive to the presence of **extreme values** or **outliers**, which are data points that are unusually far from the centre of the distribution. As a result, the mean and the median for any given variable may or may not be the same (or more or less close) depending how symmetrical the shape of its distribution is. A perfectly symmetrical variable will have exactly the same median and mean. An asymmetrical or skewed distribution (where there is a greater number of observations on one side of the mean than on the other) then the median and mean will be different. This occurs because the extreme values that skew the data to the right or the left pull the mean towards themselves and away from the median. You can see this more clearly in the following table and plot that displays three distributions:
 
-- A left-skewed distribution with a concentration of cases in the higher values and a long left tail along the lower values of the variable (mean \< median)
+- A left- or negatively-skewed distribution with a concentration of cases in the higher values and a long left tail along the lower values of the variable (mean \< median)
 
 - A symmetrical or bell-shaped distribution that has exactly half of the observations on each side of the average (mean = median)
 
-- A right-skewed distribution with a large concentration of cases in the lower values and a long right tail along the higher values of the variable (mean \> median)
+- A right- or positively-skewed or distribution with a large concentration of cases in the lower values and a long right tail along the higher values of the variable (mean \> median)
 
-```{r, echo = FALSE, message=FALSE}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
 set.seed(666)
 N <- 100000
 
@@ -192,21 +204,13 @@ In terms of spread we will rely on a number of measures:
 - Interquartile range or IQR (75% percentile - 25% percentile)
 - Standard deviation and Variance
 
-#### Range and interquartile range
-
-The **range** of a variable indicates the distance between the minimum value and the maximum value the variable takes and is easily calculated as follows:
-
-$$\text{Range}  =  \text{Maximum value} - \text{Minimum Value}$$
-
-Notice how the range tells us virtually nothing about the actual distribution of values - i.e. where the observations are concentrated along that range - only how far the highest and lowest value are from each other.
-
-Unlike the range, the **Inter-Quartile Range** or IQR tells us something much more interesting about the distribution of a variable: namely, the difference between the two values that delimit the interval containing the central 50% of the observations - i.e. the range between the value that has 25% of observations below (called the 25th or 1st quartile) and the value that has 25% of observations above (called the 75th or 3rd quartile),
-
-$$\text{IQR}  =  \text{75th percentile} - \text{25th percentile}$$
-
-To understand the IQR, it is useful to visualise how it relates to an actual distribution. In the graph below, you can see three roughly symmetrical distributions with the same number of observations (n = 100,000) and lines that represent the 25th percentile (dashed) and the 75th percentile (dotted) for each. Notice how the greater the concentration of observations at the centre of the distribution (in other worsds, the relative height of the peak) the narrower the IQR or the difference between 25th and 75th percentiles will be:
+To understand these measures of dispersion, it is useful to visualise how it relates to an actual distribution. In the graph below, you can see three roughly symmetrical distributions with the same number of observations (n = 100,000) and lines that represent the 25th percentile (dashed) and the 75th percentile (dotted) for each. Notice how the greater the concentration of observations at the centre of the distribution (in other worsds, the relative height of the peak)
 
 ```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
 set.seed(666)
 N <- 100000
 
@@ -221,9 +225,11 @@ pct_sum <-
   pivot_longer(cols = norm1:norm3,
                names_to = "distr") |>
   group_by(distr) |> 
-  summarise(pct25 = quantile(value, .25),
+  summarise(range = max(value) - min (value),
+            pct25 = quantile(value, .25),
             pct75 = quantile(value, .75),
-            iqr = IQR(value))
+            iqr = IQR(value),
+            std_dev = sd(value))
 
 pct_sum |> 
   kable()
@@ -241,13 +247,20 @@ dist |>
               linetype="dotted", linewidth=1) +
   scale_fill_viridis_d() +
   theme_bw() +
-  theme(legend.position = "none") +
   labs( x = "", y = "", 
-        title = "Understanding the IQR", 
-        subtitle = "A measure of how concentrated observations are in the middle")
+        title = "Understanding spread", 
+        subtitle = "Range, IQR and Standard Deviation")
 ```
 
-#### Standard deviation (via the variance)
+The **range** of a variable indicates the distance between the minimum value and the maximum value the variable takes and is easily calculated as follows:
+
+$$\text{Range}  =  \text{Maximum value} - \text{Minimum Value}$$
+
+Notice how the range tells us virtually nothing about the actual distribution of values - i.e. where the observations are concentrated along that range - only how far the highest and lowest value are from each other.
+
+Unlike the range, the **Inter-Quartile Range** or IQR tells us something much more interesting about the distribution of a variable: namely, the difference between the two values that delimit the interval containing the central 50% of the observations - i.e. the range between the value that has 25% of observations below (called the 25th or 1st quartile) and the value that has 25% of observations above (called the 75th or 3rd quartile),
+
+$$\text{IQR}  =  \text{75th percentile} - \text{25th percentile}$$
 
 In addition of measuring the overall spread of the data, we often want to how much do individual observations vary from the average or centre of the distribution. The **variance**, which we denote with $s^2$ captures precisely that quantity and is measured with the following equation:
 
@@ -259,7 +272,11 @@ So what does this mean? It is basically saying:
 
 - $(x_i - \bar{x})$: Take away the mean $\bar{x}$ from each individual observation $x_i$ to obtain the errors or residuals. Graphically this is:
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
 qsrplot3<-ggplot(data=marks, aes(x=student, y=qsr)) + 
   geom_point(color="red") + geom_hline(yintercept = mean(qsr), color="red") +
   geom_segment(aes(x=student, y=qsr, xend = student, yend = mean(qsr))) +
@@ -289,8 +306,6 @@ The standard deviation indicates **the average distance between the data points 
 
 Let's do this manually with the QSR data:
 
-## 
-
 | Marks | Mean  | Error | Squared error |                    |
 |-------|-------|-------|---------------|--------------------|
 | 58.00 | 65.44 | -7.44 | 55.35         | Total error        |
@@ -303,9 +318,10 @@ Let's do this manually with the QSR data:
 | 72.00 | 65.44 | 6.56  | 43.03         | 5.57               |
 | 74.00 | 65.44 | 8.56  | 73.27         |                    |
 
-#### Comparing dispersion: QSR vs FS
+From this we conclude that on average, the student marks in QSR are somewhere between 5 and 6 points away from the mean. We can apply what we have learnt to comparing the distributions of marks across two modules: QSR and Foucauldian Studies
 
 ```{r}
+#| echo: false
 qsrplot3<-ggplot(data=marks, aes(x=student, y=qsr)) + 
   geom_point(color="red") + geom_hline(yintercept = mean(qsr), color="red") +
   geom_segment(aes(x=student, y=qsr, xend = student, yend = mean(qsr))) +
@@ -322,6 +338,8 @@ foucplot3<-ggplot(data=marks, aes(x=student, y=fouc)) +
   xlab("Student Number") +
   ylab("Essay Marks in  Foucauldian Studies") +
   ggtitle("FS - (65.44, 10.09)")
+
+qsrplot3 + foucplot3
 
 grid.arrange(qsrplot3, foucplot3, ncol=2)
 ```

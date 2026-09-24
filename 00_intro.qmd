@@ -1,6 +1,4 @@
----
-title: "Getting Ready"
----
+# Getting Ready {.unnumbered}
 
 Unlike most modules you may have taken so far, the regular learning activities and tasks involved in completing **Quantitative Social Research** require intensive use of computers, scientific software and data.
 
@@ -12,15 +10,15 @@ Thus, and to make sure we are all in the same page as far as computing is concer
 
 In this module we will conduct data analysis using R, which is is a free and open-source programming language for statistical analysis and data visualisation that works across most computer operative systems (Windows/Mac/Linux).
 
-R is now an extremely popular language for statistics and data science in academia, industry, data journalism and increasingly in government. You can think of it as an extremely sophisticated calculator or engine that will process and analyse your data by means of its own core functions - e.g. `mean()` will calculate the average of a variable - and those in **packages** programmed by other contributors that you will need to install - e.g. `geom_bar()` from the `ggplot2` package will draw the bars in bar chart based.
+R is now an extremely popular language for statistics and data science in academia, industry, data journalism and increasingly in government. You can think of it as an extremely sophisticated calculator or engine that will process and analyse your data by means of its own core functions - e.g. `mean()` will calculate the average of a variable - and those in **packages** programmed by other contributors that you will need to install - e.g. `geom_bar()` from the `ggplot2` package will draw the bars in bar chart.
 
 This is what the R terminal looks like:
 
-![Screenshot of the R Terminal Window (Source: \[Wikipedia\](https://commons.wikimedia.org/w/index.php?curid=90393195))](images/rterminal.png){alt="Screenshot of the R Terminal Window (Source: [Wikipedia](https://commons.wikimedia.org/w/index.php?curid=90393195))" fig-alt="Screenshot of the R Terminal Window"}
+![Screenshot of the R Terminal Window (Source: \[Wikipedia\](https://commons.wikimedia.org/w/index.php?curid=90393195))](images/rterminal.png){fig-alt="Screenshot of the R Terminal Window"}
 
 In practice, you will probably never use the R terminal to conduct your research. Instead you will use **RStudio** which is an extremely popular Integrated Development Environment (IDE). RStudio essentially acts as an intermediate layer between the researcher and R that helps make R much easier to use by providing a more structured and user-friendly interface as well as a large number of additional features, for example, [Quarto](https://quarto.org) which allows us to produce documents with code and output (such as this electronic book). It looks like this:
 
-![Screenshot of RStudio IDE window (Source: [Wikipedia](https://commons.wikimedia.org/w/index.php?curid=101293607))](images/rstudio.png){alt="Screenshot of RStudio IDE window (Source: Wikipedia)" fig-alt="Screenshot of RStudio IDE window"}
+![Screenshot of RStudio IDE window (Source: Wikipedia)](images/rstudio.png){fig-alt="Screenshot of RStudio IDE window"}
 
 #### Step 1: Install R
 
@@ -46,20 +44,8 @@ Although, strictly speaking, only R and R-Studio are needed, there is other soft
 
 In this module we will exclusively work with **secondary datasets**. These are computer files that contain data previously collected from human participants by researchers other than ourselves and research agencies other than those we may work for or on behalf of (in our case, the University). These datasets have in turn been made publicly available in data repositories for other researchers to use for purposes that may or may not be the same as those originally intended by the data holders. Sometimes, such as for general surveys, questionnaires are designed to include a long list of items such that the resulting datasets enable researchers across different disciplines (sociology, criminology, social policy, economics, political science, geography, etc) to conduct analysis on very different topics.
 
-In this module we will primarily work with datasets from the [UK Data Service](https://ukdataservice.ac.uk), but to make things easier the files will be made available to you via Minerva. Before accessing the data files, you need **to sign the declaration in the section \[SPECIFY SECTION\] on Minerva**.
+In this module we will primarily work with datasets from the [UK Data Service](https://ukdataservice.ac.uk). [Finding an accessing data for your project](https://ukdataservice.ac.uk/learning-hub/students/resources/data-for-your-project/){.uri} is straightforward, but there are some access conditions and use restrictions that researchers need to agree to comply with before they can get access to such datasets by means of registration and the signing of a declaration.
 
-To do this, follow this procedure
+To make things easier the workshop data files will be made available to you via Minerva. Before accessing the data files, you need **to AGREE to the declaration in the section Accessing the workshop dataset on Minerva** for each unit. Once you agree to the conditions, a link will be revealed allowing you to download the data.
 
-### Access to project (and dissertation?) data
-
-Beyond the datasets we use in the workshops, you are likely to draw from either the UK Data Service or other repositories (GESIS, ESS) to choose a dataset for your assessment project.
-
-There are however some access conditions and use restrictions that researchers need to agree to comply with before they can get access to such datasets. This is why you are expected to register your use of the datasets and sign a declaration.
-
-<https://ukdataservice.ac.uk/learning-hub/students/resources/data-for-your-project/>
-
-and with the [European Social Survey](https://www.europeansocialsurvey.org)
-
-t\.
-
-<https://ukdataservice.ac.uk/learning-hub/students/resources/data-for-your-project/>
+Note however that **for your own research projects** such as the module's report assessment or the dissertation you will need to find datasets that we may not have used in the workshops. This means you will need to register in and agree to the conditions of the relevant data repository that holds and maintains the data you want to use, be that the UK Data Service or other repositories such as GESIS \[NEED LINK\] or the [European Social Survey](https://www.europeansocialsurvey.org) portal.
