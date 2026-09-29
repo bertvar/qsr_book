@@ -4,4 +4,6 @@ title: "Inference"
 
 ## 
 
-## whatveer wq
+## Introduce CIS
+
+show CI in bar charts and dot plots to illustrate variation - possibly overlayed histograms to show sampling variation

@@ -26,7 +26,9 @@ The latter point is crucial. While the practical aspects of subsetting or recodi
 As always, we begin by loading the BSA dataset and the tidyverse libraries, only one of which is strictly speaking not necessary to do any of the recoding work.
 
 ```{r, message=FALSE}
-load("bsaw5.RData")
+library(haven)
+# bsa <- read_dta("bsa13ukds.dta")
+load("bsaw5.Rdata")
 library(tidyverse)
 ```
 
@@ -55,6 +57,8 @@ If you prefer the `tidyverse` approach you may want to use the following functio
 - `filter()` is similar to the `[,]` in that it will return those cases that meet the condition specified between brackets and exclude the rest
 
 - `between()` will return those cases that are between the first and second values for a particular variable
+
+## Haven Importing
 
 ### Subsetting on a continuous variable: Selecting respondents 18-25
 
@@ -113,7 +117,7 @@ bsa1825b <- bsa |>
 table(bsa1825b$RAge)
 ```
 
-## Subsetting on a categorical or factor variable: Selecting females only
+### Subsetting on a categorical or factor variable: Selecting females only
 
 Suppose you want to conduct analysis only on female respondents. Since sex is nominal it does not make much sense to use larger than or smaller than. Instead we will select the cases that have values *equal* to some specified word or string of characters.
 
@@ -138,7 +142,7 @@ bsafem <- bsa |>
 table(bsafem$RSex)
 ```
 
-## Subsetting on multiple variables: Selecting young females
+### Subsetting on multiple variables: Selecting young females
 
 Suppose you want to conduct analysis only on young female respondents - respondents that are young AND female. All you need to do is to specify both conditions simultaneously:
 
@@ -165,7 +169,7 @@ table(bsafem1825b$RAge)
 
 There will be more complex scenarios that may involve very long chains of subsetting conditions. To handle those, you may prefer to recode variables first to ease the process. You will find out whether you need more complex code as you decide on your assignment project.
 
-## Subsetting on multiple non-consecutive values of the same categorical variable:
+### Subsetting on multiple non-consecutive values of the same categorical variable:
 
 Suppose you want to conduct analysis only with some specific educational categories in your sample, for instance only those cases that are either A-level, Degree or GCSE holders. This is straightforward to do using base R by just subsetting on three conditions (A-level OR Degree) as follows
 
@@ -223,7 +227,7 @@ Knowing in advance the distribution of the variable (i.e. the raw counts or freq
 
 If by the end of the recoding you have got these frequencies then you've done things correctly. Otherwise, check your code!
 
-## Option 1: Recoding categories from original variable into a new variable
+### Option 1: Recoding categories from original variable into a new variable
 
 We will start by creating a new variable with missing values for all observations:
 

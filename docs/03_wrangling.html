@@ -236,20 +236,23 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">3.1</span> Introduction</a></li>
-  <li><a href="#scenario-1-subsetting-a-dataset" id="toc-scenario-1-subsetting-a-dataset" class="nav-link" data-scroll-target="#scenario-1-subsetting-a-dataset"><span class="header-section-number">3.2</span> Scenario 1: Subsetting a dataset</a>
+  <li><a href="#scenario-1-subsetting-a-dataset" id="toc-scenario-1-subsetting-a-dataset" class="nav-link" data-scroll-target="#scenario-1-subsetting-a-dataset"><span class="header-section-number">3.2</span> Scenario 1: Subsetting a dataset</a></li>
+  <li><a href="#haven-importing" id="toc-haven-importing" class="nav-link" data-scroll-target="#haven-importing"><span class="header-section-number">3.3</span> Haven Importing</a>
   <ul class="collapse">
-  <li><a href="#subsetting-on-a-continuous-variable-selecting-respondents-18-25" id="toc-subsetting-on-a-continuous-variable-selecting-respondents-18-25" class="nav-link" data-scroll-target="#subsetting-on-a-continuous-variable-selecting-respondents-18-25"><span class="header-section-number">3.2.1</span> Subsetting on a continuous variable: Selecting respondents 18-25</a></li>
+  <li><a href="#subsetting-on-a-continuous-variable-selecting-respondents-18-25" id="toc-subsetting-on-a-continuous-variable-selecting-respondents-18-25" class="nav-link" data-scroll-target="#subsetting-on-a-continuous-variable-selecting-respondents-18-25"><span class="header-section-number">3.3.1</span> Subsetting on a continuous variable: Selecting respondents 18-25</a></li>
+  <li><a href="#subsetting-on-a-categorical-or-factor-variable-selecting-females-only" id="toc-subsetting-on-a-categorical-or-factor-variable-selecting-females-only" class="nav-link" data-scroll-target="#subsetting-on-a-categorical-or-factor-variable-selecting-females-only"><span class="header-section-number">3.3.2</span> Subsetting on a categorical or factor variable: Selecting females only</a></li>
+  <li><a href="#subsetting-on-multiple-variables-selecting-young-females" id="toc-subsetting-on-multiple-variables-selecting-young-females" class="nav-link" data-scroll-target="#subsetting-on-multiple-variables-selecting-young-females"><span class="header-section-number">3.3.3</span> Subsetting on multiple variables: Selecting young females</a></li>
+  <li><a href="#subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable" id="toc-subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable" class="nav-link" data-scroll-target="#subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable"><span class="header-section-number">3.3.4</span> Subsetting on multiple non-consecutive values of the same categorical variable:</a></li>
   </ul></li>
-  <li><a href="#subsetting-on-a-categorical-or-factor-variable-selecting-females-only" id="toc-subsetting-on-a-categorical-or-factor-variable-selecting-females-only" class="nav-link" data-scroll-target="#subsetting-on-a-categorical-or-factor-variable-selecting-females-only"><span class="header-section-number">3.3</span> Subsetting on a categorical or factor variable: Selecting females only</a></li>
-  <li><a href="#subsetting-on-multiple-variables-selecting-young-females" id="toc-subsetting-on-multiple-variables-selecting-young-females" class="nav-link" data-scroll-target="#subsetting-on-multiple-variables-selecting-young-females"><span class="header-section-number">3.4</span> Subsetting on multiple variables: Selecting young females</a></li>
-  <li><a href="#subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable" id="toc-subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable" class="nav-link" data-scroll-target="#subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable"><span class="header-section-number">3.5</span> Subsetting on multiple non-consecutive values of the same categorical variable:</a></li>
-  <li><a href="#scenario-ii-recoding-a-categorical-variable" id="toc-scenario-ii-recoding-a-categorical-variable" class="nav-link" data-scroll-target="#scenario-ii-recoding-a-categorical-variable"><span class="header-section-number">3.6</span> SCENARIO II: Recoding a categorical variable</a></li>
-  <li><a href="#option-1-recoding-categories-from-original-variable-into-a-new-variable" id="toc-option-1-recoding-categories-from-original-variable-into-a-new-variable" class="nav-link" data-scroll-target="#option-1-recoding-categories-from-original-variable-into-a-new-variable"><span class="header-section-number">3.7</span> Option 1: Recoding categories from original variable into a new variable</a></li>
-  <li><a href="#option-2-recode-by-copying-and-recoding-original-variable" id="toc-option-2-recode-by-copying-and-recoding-original-variable" class="nav-link" data-scroll-target="#option-2-recode-by-copying-and-recoding-original-variable"><span class="header-section-number">3.8</span> Option 2: Recode by copying and recoding original variable</a></li>
-  <li><a href="#option-3-tidyverse-using-mutate-and-recode" id="toc-option-3-tidyverse-using-mutate-and-recode" class="nav-link" data-scroll-target="#option-3-tidyverse-using-mutate-and-recode"><span class="header-section-number">3.9</span> Option 3: Tidyverse: Using <strong>mutate</strong> and <strong>recode</strong>:</a></li>
-  <li><a href="#scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor" id="toc-scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor" class="nav-link" data-scroll-target="#scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor"><span class="header-section-number">3.10</span> SCENARIO II: Recoding a continuous variable (numeric) into a categorical variable (factor)</a></li>
-  <li><a href="#option-2-tidyverse-using-mutate-and-cut" id="toc-option-2-tidyverse-using-mutate-and-cut" class="nav-link" data-scroll-target="#option-2-tidyverse-using-mutate-and-cut"><span class="header-section-number">3.11</span> Option 2: Tidyverse using <strong>mutate</strong> and <strong>cut</strong></a></li>
-  <li><a href="#scenario-iii-combining-2-categorical-variables-into-1" id="toc-scenario-iii-combining-2-categorical-variables-into-1" class="nav-link" data-scroll-target="#scenario-iii-combining-2-categorical-variables-into-1"><span class="header-section-number">3.12</span> SCENARIO III: Combining 2 categorical variables into 1</a></li>
+  <li><a href="#scenario-ii-recoding-a-categorical-variable" id="toc-scenario-ii-recoding-a-categorical-variable" class="nav-link" data-scroll-target="#scenario-ii-recoding-a-categorical-variable"><span class="header-section-number">3.4</span> SCENARIO II: Recoding a categorical variable</a>
+  <ul class="collapse">
+  <li><a href="#option-1-recoding-categories-from-original-variable-into-a-new-variable" id="toc-option-1-recoding-categories-from-original-variable-into-a-new-variable" class="nav-link" data-scroll-target="#option-1-recoding-categories-from-original-variable-into-a-new-variable"><span class="header-section-number">3.4.1</span> Option 1: Recoding categories from original variable into a new variable</a></li>
+  </ul></li>
+  <li><a href="#option-2-recode-by-copying-and-recoding-original-variable" id="toc-option-2-recode-by-copying-and-recoding-original-variable" class="nav-link" data-scroll-target="#option-2-recode-by-copying-and-recoding-original-variable"><span class="header-section-number">3.5</span> Option 2: Recode by copying and recoding original variable</a></li>
+  <li><a href="#option-3-tidyverse-using-mutate-and-recode" id="toc-option-3-tidyverse-using-mutate-and-recode" class="nav-link" data-scroll-target="#option-3-tidyverse-using-mutate-and-recode"><span class="header-section-number">3.6</span> Option 3: Tidyverse: Using <strong>mutate</strong> and <strong>recode</strong>:</a></li>
+  <li><a href="#scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor" id="toc-scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor" class="nav-link" data-scroll-target="#scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor"><span class="header-section-number">3.7</span> SCENARIO II: Recoding a continuous variable (numeric) into a categorical variable (factor)</a></li>
+  <li><a href="#option-2-tidyverse-using-mutate-and-cut" id="toc-option-2-tidyverse-using-mutate-and-cut" class="nav-link" data-scroll-target="#option-2-tidyverse-using-mutate-and-cut"><span class="header-section-number">3.8</span> Option 2: Tidyverse using <strong>mutate</strong> and <strong>cut</strong></a></li>
+  <li><a href="#scenario-iii-combining-2-categorical-variables-into-1" id="toc-scenario-iii-combining-2-categorical-variables-into-1" class="nav-link" data-scroll-target="#scenario-iii-combining-2-categorical-variables-into-1"><span class="header-section-number">3.9</span> SCENARIO III: Combining 2 categorical variables into 1</a></li>
   </ul>
 </nav>
     </div>
@@ -296,8 +299,10 @@ window.Quarto = {
 <p>The latter point is crucial. While the practical aspects of subsetting or recoding may feel like data engineering problems, <strong>the choices you make must be consistent with your substantive research goals and questions</strong>. This means you need to think quite hard about issues such as measurement (e.g.&nbsp;should age be treated continuosly or categorically?) or the target population (e.g.&nbsp;should the sample include employees only or also the self-employed). These are primarily substantive and research design issues, not merely computing or statistical problems, so remember <strong>to keep your sociological, criminological, etc hat on at all times.</strong></p>
 <p>As always, we begin by loading the BSA dataset and the tidyverse libraries, only one of which is strictly speaking not necessary to do any of the recoding work.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"bsaw5.RData"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(haven)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># bsa &lt;- read_dta("bsa13ukds.dta")</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"bsaw5.Rdata"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="scenario-1-subsetting-a-dataset" class="level2" data-number="3.2">
@@ -323,8 +328,11 @@ window.Quarto = {
 <li><p><code>filter()</code> is similar to the <code>[,]</code> in that it will return those cases that meet the condition specified between brackets and exclude the rest</p></li>
 <li><p><code>between()</code> will return those cases that are between the first and second values for a particular variable</p></li>
 </ul>
-<section id="subsetting-on-a-continuous-variable-selecting-respondents-18-25" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="subsetting-on-a-continuous-variable-selecting-respondents-18-25"><span class="header-section-number">3.2.1</span> Subsetting on a continuous variable: Selecting respondents 18-25</h3>
+</section>
+<section id="haven-importing" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="haven-importing"><span class="header-section-number">3.3</span> Haven Importing</h2>
+<section id="subsetting-on-a-continuous-variable-selecting-respondents-18-25" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="subsetting-on-a-continuous-variable-selecting-respondents-18-25"><span class="header-section-number">3.3.1</span> Subsetting on a continuous variable: Selecting respondents 18-25</h3>
 <p>Suppose you want to conduct research on the social attitudes of young people and that you, as the researcher, <strong>define</strong> young people to be those who are between 18 and 25 years old. This <strong>decision</strong> you have made then needs to be translated into the analysis such that:</p>
 <ul>
 <li><p>those who are between 18 and 25 are included</p></li>
@@ -395,9 +403,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-</section>
-<section id="subsetting-on-a-categorical-or-factor-variable-selecting-females-only" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="subsetting-on-a-categorical-or-factor-variable-selecting-females-only"><span class="header-section-number">3.3</span> Subsetting on a categorical or factor variable: Selecting females only</h2>
+<section id="subsetting-on-a-categorical-or-factor-variable-selecting-females-only" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="subsetting-on-a-categorical-or-factor-variable-selecting-females-only"><span class="header-section-number">3.3.2</span> Subsetting on a categorical or factor variable: Selecting females only</h3>
 <p>Suppose you want to conduct analysis only on female respondents. Since sex is nominal it does not make much sense to use larger than or smaller than. Instead we will select the cases that have values <em>equal</em> to some specified word or string of characters.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first check the distribution of sex categories</span></span>
@@ -432,8 +439,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="subsetting-on-multiple-variables-selecting-young-females" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="subsetting-on-multiple-variables-selecting-young-females"><span class="header-section-number">3.4</span> Subsetting on multiple variables: Selecting young females</h2>
+<section id="subsetting-on-multiple-variables-selecting-young-females" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="subsetting-on-multiple-variables-selecting-young-females"><span class="header-section-number">3.3.3</span> Subsetting on multiple variables: Selecting young females</h3>
 <p>Suppose you want to conduct analysis only on young female respondents - respondents that are young AND female. All you need to do is to specify both conditions simultaneously:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset the data according to the specified condition</span></span>
@@ -475,8 +482,8 @@ window.Quarto = {
 </div>
 <p>There will be more complex scenarios that may involve very long chains of subsetting conditions. To handle those, you may prefer to recode variables first to ease the process. You will find out whether you need more complex code as you decide on your assignment project.</p>
 </section>
-<section id="subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable"><span class="header-section-number">3.5</span> Subsetting on multiple non-consecutive values of the same categorical variable:</h2>
+<section id="subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="subsetting-on-multiple-non-consecutive-values-of-the-same-categorical-variable"><span class="header-section-number">3.3.4</span> Subsetting on multiple non-consecutive values of the same categorical variable:</h3>
 <p>Suppose you want to conduct analysis only with some specific educational categories in your sample, for instance only those cases that are either A-level, Degree or GCSE holders. This is straightforward to do using base R by just subsetting on three conditions (A-level OR Degree) as follows</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>bsa_edu_sel <span class="ot">&lt;-</span> bsa[bsa<span class="sc">$</span>HEdQual <span class="sc">==</span> <span class="st">"A level or equiv"</span><span class="sc">|</span> </span>
@@ -513,8 +520,9 @@ window.Quarto = {
 </div>
 <p>What this will do is to match all cases that have a response in variable HEdQual that is equal to EITHER of the three categories specified in-between brackets.</p>
 </section>
-<section id="scenario-ii-recoding-a-categorical-variable" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="scenario-ii-recoding-a-categorical-variable"><span class="header-section-number">3.6</span> SCENARIO II: Recoding a categorical variable</h2>
+</section>
+<section id="scenario-ii-recoding-a-categorical-variable" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="scenario-ii-recoding-a-categorical-variable"><span class="header-section-number">3.4</span> SCENARIO II: Recoding a categorical variable</h2>
 <p>In this second scenario you may come across when preparing your data, we will recode or recategorise a categorical variable. In this case we will recode variable education because it has too many categories (too much detail) that we do not need in our analysis. There are two main ways in which we can recode this variable and end up with the same result. Below you will get an explanation of both.</p>
 <p>Before we start recoding this variable, check out the codebook or data dictionary. Here is what it says about our variable:</p>
 <pre><code>Value label information for HEdQual
@@ -548,9 +556,8 @@ Value = 8.0 Label = DK/Refusal/NA</code></pre>
 <li>Category “DK/Refusal/NA” as missing values (NA = 265)</li>
 </ol>
 <p>If by the end of the recoding you have got these frequencies then you’ve done things correctly. Otherwise, check your code!</p>
-</section>
-<section id="option-1-recoding-categories-from-original-variable-into-a-new-variable" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="option-1-recoding-categories-from-original-variable-into-a-new-variable"><span class="header-section-number">3.7</span> Option 1: Recoding categories from original variable into a new variable</h2>
+<section id="option-1-recoding-categories-from-original-variable-into-a-new-variable" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="option-1-recoding-categories-from-original-variable-into-a-new-variable"><span class="header-section-number">3.4.1</span> Option 1: Recoding categories from original variable into a new variable</h3>
 <p>We will start by creating a new variable with missing values for all observations:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign missing values (NA) to new variable educ4 in dataset bsa</span></span>
@@ -632,8 +639,9 @@ Value = 8.0 Label = DK/Refusal/NA</code></pre>
 </div>
 </div>
 </section>
-<section id="option-2-recode-by-copying-and-recoding-original-variable" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="option-2-recode-by-copying-and-recoding-original-variable"><span class="header-section-number">3.8</span> Option 2: Recode by copying and recoding original variable</h2>
+</section>
+<section id="option-2-recode-by-copying-and-recoding-original-variable" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="option-2-recode-by-copying-and-recoding-original-variable"><span class="header-section-number">3.5</span> Option 2: Recode by copying and recoding original variable</h2>
 <p>An alternative to obtain the same result without as much code, but where there is more margin of error, involves the following steps:</p>
 <ol type="1">
 <li>Duplicated the original variable into a new one which we will call “educ4_v2”</li>
@@ -697,8 +705,8 @@ Value = 8.0 Label = DK/Refusal/NA</code></pre>
 </div>
 </div>
 </section>
-<section id="option-3-tidyverse-using-mutate-and-recode" class="level2" data-number="3.9">
-<h2 data-number="3.9" class="anchored" data-anchor-id="option-3-tidyverse-using-mutate-and-recode"><span class="header-section-number">3.9</span> Option 3: Tidyverse: Using <strong>mutate</strong> and <strong>recode</strong>:</h2>
+<section id="option-3-tidyverse-using-mutate-and-recode" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="option-3-tidyverse-using-mutate-and-recode"><span class="header-section-number">3.6</span> Option 3: Tidyverse: Using <strong>mutate</strong> and <strong>recode</strong>:</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>bsa <span class="ot">&lt;-</span> </span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>  bsa <span class="sc">|&gt;</span></span>
@@ -720,8 +728,8 @@ Value = 8.0 Label = DK/Refusal/NA</code></pre>
 </div>
 </div>
 </section>
-<section id="scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor" class="level2" data-number="3.10">
-<h2 data-number="3.10" class="anchored" data-anchor-id="scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor"><span class="header-section-number">3.10</span> SCENARIO II: Recoding a continuous variable (numeric) into a categorical variable (factor)</h2>
+<section id="scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="scenario-ii-recoding-a-continuous-variable-numeric-into-a-categorical-variable-factor"><span class="header-section-number">3.7</span> SCENARIO II: Recoding a continuous variable (numeric) into a categorical variable (factor)</h2>
 <p>Next we will turn a continuous variable into a categorical variable. We will use a typical example in survey analysis: recoding a continuous variable “RAge” into a categorical variable made up of age bands, which we will call “age4cat”. Again, the principles applied earlier will be of use. A key difference is that we will use the ampersand sign <strong>&amp;</strong> to indicate that two conditions must occur simultaneously. Thus [eyes==blue <strong>&amp;</strong> hair==blond] would be specifying all those individuals who have BOTH blue eyes AND who have blond hair. Typically, this will be used to identify observations that are larger or equal (&gt;=) AND smaller or equal (&lt;=) than the extremes in a range of values - e.g.&nbsp;people who are taller or equal to 1.70m (height&gt;=1.70) and shorter or equal to 1.80m (heigh&lt;=1.80).</p>
 <p>To break down the variable “RAge” we use the following code. Notice how many of the steps used here applied to the earlier example.</p>
 <p>The first step would be to look at the codebook or data dictionary:</p>
@@ -918,8 +926,8 @@ Value = 99.0    Label = Refusal</code></pre>
 </div>
 </div>
 </section>
-<section id="option-2-tidyverse-using-mutate-and-cut" class="level2" data-number="3.11">
-<h2 data-number="3.11" class="anchored" data-anchor-id="option-2-tidyverse-using-mutate-and-cut"><span class="header-section-number">3.11</span> Option 2: Tidyverse using <strong>mutate</strong> and <strong>cut</strong></h2>
+<section id="option-2-tidyverse-using-mutate-and-cut" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="option-2-tidyverse-using-mutate-and-cut"><span class="header-section-number">3.8</span> Option 2: Tidyverse using <strong>mutate</strong> and <strong>cut</strong></h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>bsa <span class="ot">&lt;-</span> </span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  bsa <span class="sc">|&gt;</span> </span>
@@ -933,8 +941,8 @@ Value = 99.0    Label = Refusal</code></pre>
 </div>
 </div>
 </section>
-<section id="scenario-iii-combining-2-categorical-variables-into-1" class="level2" data-number="3.12">
-<h2 data-number="3.12" class="anchored" data-anchor-id="scenario-iii-combining-2-categorical-variables-into-1"><span class="header-section-number">3.12</span> SCENARIO III: Combining 2 categorical variables into 1</h2>
+<section id="scenario-iii-combining-2-categorical-variables-into-1" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="scenario-iii-combining-2-categorical-variables-into-1"><span class="header-section-number">3.9</span> SCENARIO III: Combining 2 categorical variables into 1</h2>
 <p>This third scenario occurs when you want have two categorical variables that you would like to combine. Imagine for instance that you want to look at whether some feature or phenomena (experience of poverty, drug taking, travel, … ) varies both across sex and the country in the UK where the respondent resides. While you could run a three-way table (the outcome variable by the other two variables), it may be useful to instead create a variable that combines both “RSex” and “Country” and then run a two-way table with the outcome variable.</p>
 <p>Before we do any recoding let us have a look at the original coding of the variable from the data dictionary.</p>
 <p>For variable <strong>Country</strong> this is:</p>

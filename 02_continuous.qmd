@@ -6,7 +6,7 @@ title: "Describing Continuous Data"
 
 In unit 2 we continue to explore the basics of data analysis using RStudio. While in the previous unit we worked with categorical data, in this unit we will focus the session on learning how to describe continuous data.
 
-We will be analysing the Labour Force Survey (LFS) to describe:
+We will be analysing the Labour Force Survey (LFS) YEAR!!! to describe:
 
 1.  how earnings are *distributed* in the British Labour Market,
 2.  the extent of *raw differences* in average pay between men and women - a.k.a. the gender pay gap.
