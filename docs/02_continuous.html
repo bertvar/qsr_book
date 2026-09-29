@@ -284,7 +284,7 @@ window.Quarto = {
 <section id="introduction" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">2.1</span> Introduction</h2>
 <p>In unit 2 we continue to explore the basics of data analysis using RStudio. While in the previous unit we worked with categorical data, in this unit we will focus the session on learning how to describe continuous data.</p>
-<p>We will be analysing the Labour Force Survey (LFS) to describe:</p>
+<p>We will be analysing the Labour Force Survey (LFS) YEAR!!! to describe:</p>
 <ol type="1">
 <li>how earnings are <em>distributed</em> in the British Labour Market,</li>
 <li>the extent of <em>raw differences</em> in average pay between men and women - a.k.a. the gender pay gap.</li>
@@ -433,6 +433,56 @@ window.Quarto = {
 <li>Interquartile range or IQR (75% percentile - 25% percentile)</li>
 <li>Standard deviation and Variance</li>
 </ul>
+<p>To understand these measures of dispersion, it is useful to visualise how it relates to an actual distribution. In the graph below, you can see three roughly symmetrical distributions with the same number of observations (n = 100,000) and lines that represent the 25th percentile (dashed) and the 75th percentile (dotted) for each. Notice how the greater the concentration of observations at the centre of the distribution (in other worsds, the relative height of the peak)</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">distr</th>
+<th style="text-align: right;">range</th>
+<th style="text-align: right;">pct25</th>
+<th style="text-align: right;">pct75</th>
+<th style="text-align: right;">iqr</th>
+<th style="text-align: right;">std_dev</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">norm1</td>
+<td style="text-align: right;">8.907025</td>
+<td style="text-align: right;">-0.663445</td>
+<td style="text-align: right;">0.678242</td>
+<td style="text-align: right;">1.341687</td>
+<td style="text-align: right;">0.997737</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">norm2</td>
+<td style="text-align: right;">17.496614</td>
+<td style="text-align: right;">-5.348653</td>
+<td style="text-align: right;">-2.663841</td>
+<td style="text-align: right;">2.684813</td>
+<td style="text-align: right;">1.996478</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">norm3</td>
+<td style="text-align: right;">26.640286</td>
+<td style="text-align: right;">1.975112</td>
+<td style="text-align: right;">6.013470</td>
+<td style="text-align: right;">4.038358</td>
+<td style="text-align: right;">2.997597</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p>The <strong>range</strong> of a variable indicates the distance between the minimum value and the maximum value the variable takes and is easily calculated as follows:</p>
 <p><span class="math display">\[\text{Range}  =  \text{Maximum value} - \text{Minimum Value}\]</span></p>
 <p>Notice how the range tells us virtually nothing about the actual distribution of values - i.e.&nbsp;where the observations are concentrated along that range - only how far the highest and lowest value are from each other.</p>
@@ -449,7 +499,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -461,7 +511,8 @@ window.Quarto = {
 </ul>
 <p>The variance is therefore <strong>an average of the squared errors</strong> - in other words, the variance is <strong>the average squared distance of the data points from the mean</strong>. The problem is that by being measured in squared units, it is not straightforward to interpret!</p>
 <p>To make the variance easier to interpret - basically, to transform it into the same units in which the mean is originally measured - we take its square root to calculate the <strong>standard deviation</strong> <span class="math inline">\(s\)</span>: <span class="math display">\[s = \sqrt{s^2} = \sqrt{\frac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}} \]</span></p>
-<p>The standard deviation indicates <strong>the average distance between the data points and the mean in the natural units of our variable.</strong> Let’s apply this to the QSR marks data:</p>
+<p>The standard deviation indicates <strong>the average distance between the data points and the mean in the natural units of our variable.</strong></p>
+<p>Let’s do this manually with the QSR data:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -538,12 +589,19 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>From this we conclude that on average, the student marks in QSR are somewhere between 5 and 6 points away from the mean. This could be helpful in understanding differences in the marking across modules. Let’s not compare QSR and Foucauldian Studies</p>
+<p>From this we conclude that on average, the student marks in QSR are somewhere between 5 and 6 points away from the mean. We can apply what we have learnt to comparing the distributions of marks across two modules: QSR and Foucauldian Studies</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-9-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -742,7 +800,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -758,7 +816,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -775,7 +833,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -788,7 +846,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -808,7 +866,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -827,7 +885,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -839,7 +897,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -851,7 +909,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="02_continuous_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="02_continuous_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
