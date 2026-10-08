@@ -1,6 +1,9 @@
 project:
   type: book
   output-dir: docs
+  
+resources:
+  - slides/**
 
 book:
   title: "Quantitative Social Research: On-line textbook"
@@ -13,6 +16,7 @@ book:
     - 02_continuous.qmd
     - 03_wrangling.qmd
     - 04_inference.qmd
+    - 12_slides.qmd
     - summary.qmd
     - references.qmd
 
