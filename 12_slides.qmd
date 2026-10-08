@@ -2,4 +2,4 @@
 
 Here you can find the slides
 
-[Intro ](https://github.com/bertvar/qsr_book/blob/2af95439c55f1d6436ba4e9ec2cbdf7d32b9578c/docs/slides/2026_qsr_book_unit0_slides.html)[slides](https://bertvar.github.io/qsr_book/slides/2026_qsr_book_unit0_slides.html)
+[Intro ](https://github.com/bertvar/qsr_book/blob/2af95439c55f1d6436ba4e9ec2cbdf7d32b9578c/docs/slides/2026_qsr_book_unit0_slides.html)[slides](https://bertvar.github.io/qsr_book/slides/2026_qsr_book_unit0_slides.html){target="_blank"}
