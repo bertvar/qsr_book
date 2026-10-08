@@ -8,7 +8,8 @@ resources:
 book:
   title: "Quantitative Social Research: On-line textbook"
   author: "Albert Varela"
-  date: "2026/09/17"
+  date: last-modified
+  date-format: "D MMMM YYYY"
   chapters:
     - index.qmd
     - 00_intro.qmd
