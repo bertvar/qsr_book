@@ -16,8 +16,8 @@ book:
     - 02_continuous.qmd
     - 03_wrangling.qmd
     - 04_inference.qmd
-    - 12_slides.qmd
     - summary.qmd
+    - 12_slides.qmd
     - references.qmd
 
 bibliography: references.bib

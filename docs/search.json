@@ -832,11 +832,31 @@
   {
     "objectID": "12_slides.html",
     "href": "12_slides.html",
-    "title": "Slides here",
+    "title": "Resources",
     "section": "",
-    "text": "Here you can find the slides\nUnit 1 - Introduction to the module",
+    "text": "Slides",
     "crumbs": [
-      "Slides here"
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "12_slides.html#slides",
+    "href": "12_slides.html#slides",
+    "title": "Resources",
+    "section": "",
+    "text": "Unit\nSlides\n\n\n\n\n0\nIntroduction to the module\n\n\n1\nDescribing Categorical Data\n\n\n2\n\n\n\n3\n\n\n\n4\n\n\n\n5\n\n\n\n6\n\n\n\n7",
+    "crumbs": [
+      "Resources"
+    ]
+  },
+  {
+    "objectID": "12_slides.html#assessment-guidance",
+    "href": "12_slides.html#assessment-guidance",
+    "title": "Resources",
+    "section": "Assessment Guidance",
+    "text": "Assessment Guidance",
+    "crumbs": [
+      "Resources"
     ]
   }
 ]
