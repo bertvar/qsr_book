@@ -348,7 +348,7 @@ grid.arrange(qsrplot3, foucplot3, ncol=2)
 
 Recall that the objective of this workshop is to learn how to describe a continuous variable, in this case the hourly pay of British workers. This variable in the LFS is called *HOURPAY*.
 
-To get the measures of central tendency in R we use the functions **mean()** and **median()**. A function is essentially a set of instructions that is applied to an object (e.g. a variable) to produce something else (e.g. another variable, a summary of that variable, etc). In this case we will ask R to produce the mean and the median of a variable in a dataset. This is the syntax:
+To get the measures of central tendency in R we use the functions `mean()` and `median()`. Remember that a function is essentially a set of instructions that is applied to an object (e.g. a variable) to produce something else (e.g. another variable, a summary of that variable, etc). In this case we will ask R to produce the mean and the median of a variable in a dataset. This is the syntax:
 
 ```{r, echo=TRUE}
 # calculates the mean of variable HOURPAY in the dataset lfs
@@ -357,7 +357,7 @@ mean(lfs$HOURPAY)
 median(lfs$HOURPAY) 
 ```
 
-There are also a number of commands to calculate several basic descriptive statistics in RStudio at once - *summary()* (base package), and *describe()* (psych package):
+There are also a number of functions to calculate several basic descriptive statistics in RStudio at once - `summary()` from base R and `describe()` from the `psych` package:
 
 ```{r, echo=TRUE}
 summary(lfs$HOURPAY)
@@ -419,19 +419,19 @@ quantile(lfs$HOURPAY, c(.25, .75), na.rm = TRUE)
 IQR(lfs$HOURPAY, na.rm = TRUE)
 ```
 
-The describe function produces other indicators of interest: the standard deviation, the range, and measure of skewness (tail of the distribution) and kurtosis (the height of the curve)
+The `describe()` function produces other indicators of interest: the standard deviation, the range, and measure of skewness (tail of the distribution) and kurtosis (the height of the curve)
 
 ```{r, echo=TRUE}
 describe(lfs$HOURPAY)
 ```
 
-We can also get a sense of the shape of the distribution by measuring the skewness (lack of overall simmetry). A positive skewness value indicates a right skewed (long right tailed) distribution, a negative skewness value indicates a left skewed (long left tailed)
+We can also get a sense of the shape of the distribution by measuring the skewness (lack of overall symmetry). A positive skewness value indicates a right skewed (long right tailed) distribution, a negative skewness value indicates a left skewed (long left tailed)
 
 ```{r, echo=TRUE}
 skewness(lfs$HOURPAY, na.rm = TRUE)
 ```
 
-Many of these measures can also be calculated using tidyverse code, in particular by employing the summarise() function from the dplyr package:
+Many of these measures can also be calculated using tidyverse code, in particular by employing the `summarise()` function from the dplyr package:
 
 ```{r, echo=TRUE}
 lfs |> 
@@ -519,7 +519,7 @@ ggplot(data=lfs, aes(x=HOURPAY)) + geom_histogram() +
 
 ```
 
-A density plot is similar to a histogram, but instead of plotting frequencies it plots probability densities. In practice, you could think of a density plot as a smoothed histogram whose shape does not depend on the choice of interval width. To produce it use the **geom_density()** option.
+A density plot is similar to a histogram, but instead of plotting frequencies it plots probability densities. In practice, you could think of a density plot as a smoothed histogram whose shape does not depend on the choice of interval width. To produce it use the **`geom_density()`** option.
 
 ```{r, echo=TRUE, warning=FALSE}
 ggplot(data=lfs, aes(x=HOURPAY)) + geom_density() +

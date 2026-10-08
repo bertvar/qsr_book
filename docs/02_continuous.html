@@ -611,7 +611,7 @@ window.Quarto = {
 <section id="analysing-the-distribution-of-a-continuous-variable" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="analysing-the-distribution-of-a-continuous-variable"><span class="header-section-number">2.4</span> Analysing the distribution of a continuous variable:</h2>
 <p>Recall that the objective of this workshop is to learn how to describe a continuous variable, in this case the hourly pay of British workers. This variable in the LFS is called <em>HOURPAY</em>.</p>
-<p>To get the measures of central tendency in R we use the functions <strong>mean()</strong> and <strong>median()</strong>. A function is essentially a set of instructions that is applied to an object (e.g.&nbsp;a variable) to produce something else (e.g.&nbsp;another variable, a summary of that variable, etc). In this case we will ask R to produce the mean and the median of a variable in a dataset. This is the syntax:</p>
+<p>To get the measures of central tendency in R we use the functions <code>mean()</code> and <code>median()</code>. Remember that a function is essentially a set of instructions that is applied to an object (e.g.&nbsp;a variable) to produce something else (e.g.&nbsp;another variable, a summary of that variable, etc). In this case we will ask R to produce the mean and the median of a variable in a dataset. This is the syntax:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculates the mean of variable HOURPAY in the dataset lfs</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(lfs<span class="sc">$</span>HOURPAY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -624,7 +624,7 @@ window.Quarto = {
 <pre><code>[1] -9</code></pre>
 </div>
 </div>
-<p>There are also a number of commands to calculate several basic descriptive statistics in RStudio at once - <em>summary()</em> (base package), and <em>describe()</em> (psych package):</p>
+<p>There are also a number of functions to calculate several basic descriptive statistics in RStudio at once - <code>summary()</code> from base R and <code>describe()</code> from the <code>psych</code> package:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lfs<span class="sc">$</span>HOURPAY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -703,7 +703,7 @@ X1    1 102059 -6.5 8.39     -9   -8.76   0  -9 1058  1067 24.53   2646.1 0.03</
 <pre><code>[1] 8.69</code></pre>
 </div>
 </div>
-<p>The describe function produces other indicators of interest: the standard deviation, the range, and measure of skewness (tail of the distribution) and kurtosis (the height of the curve)</p>
+<p>The <code>describe()</code> function produces other indicators of interest: the standard deviation, the range, and measure of skewness (tail of the distribution) and kurtosis (the height of the curve)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">describe</span>(lfs<span class="sc">$</span>HOURPAY)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -711,14 +711,14 @@ X1    1 102059 -6.5 8.39     -9   -8.76   0  -9 1058  1067 24.53   2646.1 0.03</
 X1    1 11635 12.82 8.54  10.38   11.45 5.63 0.15  90 89.85 2.63    12.41 0.08</code></pre>
 </div>
 </div>
-<p>We can also get a sense of the shape of the distribution by measuring the skewness (lack of overall simmetry). A positive skewness value indicates a right skewed (long right tailed) distribution, a negative skewness value indicates a left skewed (long left tailed)</p>
+<p>We can also get a sense of the shape of the distribution by measuring the skewness (lack of overall symmetry). A positive skewness value indicates a right skewed (long right tailed) distribution, a negative skewness value indicates a left skewed (long left tailed)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">skewness</span>(lfs<span class="sc">$</span>HOURPAY, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2.630888</code></pre>
 </div>
 </div>
-<p>Many of these measures can also be calculated using tidyverse code, in particular by employing the summarise() function from the dplyr package:</p>
+<p>Many of these measures can also be calculated using tidyverse code, in particular by employing the <code>summarise()</code> function from the dplyr package:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>lfs <span class="sc">|&gt;</span> </span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(HOURPAY) <span class="sc">|&gt;</span> <span class="co"># removes all missing values </span></span>
@@ -838,7 +838,7 @@ X1    1 6110 11.53 7.27    9.4   10.43 4.67 0.15  90 89.85 2.75    14.91 0.09</c
 </div>
 </div>
 </div>
-<p>A density plot is similar to a histogram, but instead of plotting frequencies it plots probability densities. In practice, you could think of a density plot as a smoothed histogram whose shape does not depend on the choice of interval width. To produce it use the <strong>geom_density()</strong> option.</p>
+<p>A density plot is similar to a histogram, but instead of plotting frequencies it plots probability densities. In practice, you could think of a density plot as a smoothed histogram whose shape does not depend on the choice of interval width. To produce it use the <strong><code>geom_density()</code></strong> option.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>lfs, <span class="fu">aes</span>(<span class="at">x=</span>HOURPAY)) <span class="sc">+</span> <span class="fu">geom_density</span>() <span class="sc">+</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">"Pay per hour"</span>) <span class="sc">+</span></span>
