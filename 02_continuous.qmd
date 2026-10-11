@@ -4,9 +4,9 @@ title: "Describing Continuous Data"
 
 ## Introduction
 
-In unit 2 we continue to explore the basics of data analysis using RStudio. While in the previous unit we worked with categorical data, in this unit we will focus the session on learning how to describe continuous data.
+In unit 2 we continue to explore the basics of data analysis using RStudio. While in the previous unit we worked with categorical data, in this unit we will focus on learning how to describe continuous data.
 
-We will be analysing the Labour Force Survey (LFS) YEAR!!! to describe:
+We will be analysing the Labour Force Survey (LFS) to describe:
 
 1.  how earnings are *distributed* in the British Labour Market,
 2.  the extent of *raw differences* in average pay between men and women - a.k.a. the gender pay gap.
@@ -39,7 +39,6 @@ load("lfs.rda")
 #| message: false
 #| warning: false
 #| include: false
-library(gridExtra)
 library(knitr)
 library(patchwork)
 ```
@@ -50,9 +49,9 @@ library(patchwork)
 
 A variable is **continuous** when it can take any value within a measurement scale (including decimals), and when the difference between each pair of adjacent values is constant and has **real meaning** - i.e. the difference between income values £4 and £5 is the same as between £1,954,327 and £1,954,328.
 
-- With "Years in education" we can say that a person with 10 years of schooling has been in education 4 more years than someone with 6 years and 3 years less than someone with 13 years.
+- For "Years in education" we can say that a person with 10 years of schooling has been in education 4 more years than someone with 6 and 3 years less than someone with 13.
 
-- With "How many hours of housework do you undertake per week" we could have answers that range from 0 to potentially 168 hours - i.e. from someone who doesn't lift a finger (realistic) to someone who does not sleep or eat because they feel compelled to dust doorframes with a toothbrush and painstakingly fold bed linen in origami-like shapes (implausible?). Notice this could include values with decimals, as in "I spend 4.5 hours cleaning every week"
+- For "How many hours of housework do you undertake per week" we could have answers that range from 0 to potentially 168 hours - i.e. from someone who doesn't lift a finger (realistic) to someone who does not sleep or eat because they feel compelled to dust doorframes with a toothbrush and painstakingly fold bed linen in origami-like shapes. Note this could include values with decimals, as in "I spend 4.5 hours cleaning every week"
 
 ### Types of continuous variables
 
@@ -64,17 +63,17 @@ We will normally consider two types of continuous variables: interval and ratio.
 
 ## Describing a continuous distribution:
 
-Describing the distribution of a continuous variable involves identifying its **average or centre** and its **dispersion or spread**. Additionally, we may also want to want to evaluate its *shape*.
+Describing the distribution of a continuous variable involves identifying its **average or centre** and its **dispersion or spread**. Additionally, we may also want to want to evaluate its **shape**.
 
 ### The Mean:
 
 The main measures of central tendency or average are the **mean** and the **median**.
 
-For a variable called $x$ with $n$ number of observations the **mean** is calculated as follows:
+For a variable we call $x$ with $n$ number of observations the **mean** is calculated as follows:
 
 $$\bar{x} = \sum_{i=1}^{n}\left( \frac{x_i}{n} \right)$$
 
-In English, this formula means that the sample mean $\bar{x}$ (pronounced x bar) is equal to the sum $\sum_{i=1}^{n}$ of all individual values $x_i$ of the variable $x$ divided by the total number of observations or sample size $n$.
+In English, this formula means that for variable $x$, the mean $\bar{x}$ (pronounced x-bar) is equal to the sum $\sum_{i=1}^{n}$ of all individual values $x_i$ divided by the total number of observations $n$.
 
 Let's see this graphically. Suppose we have recorded the marks for QSR:
 
@@ -142,7 +141,7 @@ qsrplot2<-ggplot(data=marks, aes(x=student, y=qsr)) +
 qsrplot2
 ```
 
-A key feature of the median is that, unlike the mean, it is insensitive to the presence of **extreme values** or **outliers**, which are data points that are unusually far from the centre of the distribution. As a result, the mean and the median for any given variable may or may not be the same (or more or less close) depending how symmetrical the shape of its distribution is. A perfectly symmetrical variable will have exactly the same median and mean. An asymmetrical or skewed distribution (where there is a greater number of observations on one side of the mean than on the other) then the median and mean will be different. This occurs because the extreme values that skew the data to the right or the left pull the mean towards themselves and away from the median. You can see this more clearly in the following table and plot that displays three distributions:
+A key feature of the median is that, unlike the mean, it is insensitive to the presence of **extreme values** or **outliers**, which are data points that are unusually far from the centre of the distribution. As a result, the mean and the median for any given variable may or may not be the same (or more or less close) depending how symmetrical the shape of its distribution is. **A perfectly symmetrically distributed variable will have exactly the same median and mean.** An asymmetrical or skewed distribution (where there is a greater number of observations on one side of the mean than on the other) then the median and mean will be different. This occurs because the extreme values that skew the data to the right or the left pull the mean towards themselves and away from the median. You can see this more clearly in the following table and plot that displays three distributions:
 
 - A left- or negatively-skewed distribution with a concentration of cases in the higher values and a long left tail along the lower values of the variable (mean \< median)
 
@@ -204,53 +203,7 @@ In terms of spread we will rely on a number of measures:
 - Interquartile range or IQR (75% percentile - 25% percentile)
 - Standard deviation and Variance
 
-To understand these measures of dispersion, it is useful to visualise how it relates to an actual distribution. In the graph below, you can see three roughly symmetrical distributions with the same number of observations (n = 100,000) and lines that represent the 25th percentile (dashed) and the 75th percentile (dotted) for each. Notice how the greater the concentration of observations at the centre of the distribution (in other worsds, the relative height of the peak)
-
-```{r}
-#| echo: false
-#| message: false
-#| warning: false
-
-set.seed(666)
-N <- 100000
-
-norm1 <- rnorm(N,0,1)
-norm2 <- rnorm(N,-4, 2)
-norm3 <- rnorm(N,4,3)
-
-dist <- as_tibble(cbind(norm1, norm2, norm3))
-
-pct_sum <- 
-  dist |> 
-  pivot_longer(cols = norm1:norm3,
-               names_to = "distr") |>
-  group_by(distr) |> 
-  summarise(range = max(value) - min (value),
-            pct25 = quantile(value, .25),
-            pct75 = quantile(value, .75),
-            iqr = IQR(value),
-            std_dev = sd(value))
-
-pct_sum |> 
-  kable()
-
-dist |> 
-  pivot_longer(cols = norm1:norm3,
-               names_to = "distr") |>
-  ggplot(aes(x = value, fill = distr)) +
-  geom_density(alpha = 0.5) +
-  geom_vline( data = pct_sum , 
-              aes(xintercept = pct25, color = distr),
-              linetype="dashed", linewidth=1) +
-  geom_vline( data = pct_sum , 
-              aes(xintercept = pct75, color = distr),
-              linetype="dotted", linewidth=1) +
-  scale_fill_viridis_d() +
-  theme_bw() +
-  labs( x = "", y = "", 
-        title = "Understanding spread", 
-        subtitle = "Range, IQR and Standard Deviation")
-```
+#### Range
 
 The **range** of a variable indicates the distance between the minimum value and the maximum value the variable takes and is easily calculated as follows:
 
@@ -258,9 +211,15 @@ $$\text{Range}  =  \text{Maximum value} - \text{Minimum Value}$$
 
 Notice how the range tells us virtually nothing about the actual distribution of values - i.e. where the observations are concentrated along that range - only how far the highest and lowest value are from each other.
 
+#### Inter-quartile range
+
 Unlike the range, the **Inter-Quartile Range** or IQR tells us something much more interesting about the distribution of a variable: namely, the difference between the two values that delimit the interval containing the central 50% of the observations - i.e. the range between the value that has 25% of observations below (called the 25th or 1st quartile) and the value that has 25% of observations above (called the 75th or 3rd quartile),
 
 $$\text{IQR}  =  \text{75th percentile} - \text{25th percentile}$$
+
+What the IQR shows us is how narrowly or widely concentrated the observation are in the middle of the distribution. A low (or high) IQR indicates the observations in the middle of the distribution are concentrated in a narrow (or wide) range of values. For instance, a low IQR value for earnings, would indicate that the half of workers located around the center (the median!) of the income distribution have fairly similar pay.
+
+#### Standard deviation
 
 In addition of measuring the overall spread of the data, we often want to how much do individual observations vary from the average or centre of the distribution. The **variance**, which we denote with $s^2$ captures precisely that quantity and is measured with the following equation:
 
@@ -341,12 +300,61 @@ foucplot3<-ggplot(data=marks, aes(x=student, y=fouc)) +
 
 qsrplot3 + foucplot3
 
-grid.arrange(qsrplot3, foucplot3, ncol=2)
+```
+
+To bring it all together and understand these measures of dispersion, it is useful to visualise how it relates to simulated distributions. In the graph below, you can see three roughly symmetrical distributions with the same number of observations (n = 100,000) but different spred. Vertical lines represent the 25th percentile or 1st quartile (dashed) and the 75th percentile or third quartile (dotted) for each. The table provides also the range, iqr and standard deviation.
+
+Note how the greater the concentration of observations at the centre of the distribution (or equivalently, the higher the peak) the narrower the gap between the first and third quartiles and the lower the standard deviation.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+set.seed(666)
+N <- 100000
+
+norm1 <- rnorm(N,0,1)
+norm2 <- rnorm(N,-4, 2)
+norm3 <- rnorm(N,4,3)
+
+dist <- as_tibble(cbind(norm1, norm2, norm3))
+
+pct_sum <- 
+  dist |> 
+  pivot_longer(cols = norm1:norm3,
+               names_to = "distr") |>
+  group_by(distr) |> 
+  summarise(range = max(value) - min (value),
+            pct25 = quantile(value, .25),
+            pct75 = quantile(value, .75),
+            iqr = IQR(value),
+            std_dev = sd(value))
+
+pct_sum |> 
+  kable()
+
+dist |> 
+  pivot_longer(cols = norm1:norm3,
+               names_to = "distr") |>
+  ggplot(aes(x = value, fill = distr)) +
+  geom_density(alpha = 0.5) +
+  geom_vline( data = pct_sum , 
+              aes(xintercept = pct25, color = distr),
+              linetype="dashed", linewidth=1) +
+  geom_vline( data = pct_sum , 
+              aes(xintercept = pct75, color = distr),
+              linetype="dotted", linewidth=1) +
+  scale_fill_viridis_d() +
+  theme_bw() +
+  labs( x = "", y = "", 
+        title = "Understanding spread", 
+        subtitle = "Range, IQR and Standard Deviation")
 ```
 
 ## Analysing the distribution of a continuous variable:
 
-Recall that the objective of this workshop is to learn how to describe a continuous variable, in this case the hourly pay of British workers. This variable in the LFS is called *HOURPAY*.
+Recall that the objective of this workshop is to learn how to describe a continuous variable, in this case the hourly pay of British workers. This variable in the LFS is called `HOURPAY`.
 
 To get the measures of central tendency in R we use the functions `mean()` and `median()`. Remember that a function is essentially a set of instructions that is applied to an object (e.g. a variable) to produce something else (e.g. another variable, a summary of that variable, etc). In this case we will ask R to produce the mean and the median of a variable in a dataset. This is the syntax:
 
@@ -366,9 +374,9 @@ describe(lfs$HOURPAY)
 
 Notice the following:
 
-a.  Variable lfs\$HOURPAY has negative values - what do these mean?
+a.  Variable `lfs$HOURPAY` has negative values - what do these mean?
 
-b.  Variable lfs\$HOURPAY has also very high values - £1058 per hour
+b.  Variable `lfs$HOURPAY` has also very high values - £1058 per hour
 
 What are the consequences of analysing the data as is?
 
@@ -490,7 +498,9 @@ While numeric statistics are informative and precise, it may be difficult to ima
 
 ```{r, echo=TRUE, warning = FALSE}
 # draw a boxplot with HOURPAY on the Y-axis
-ggplot(data=lfs, aes(y=HOURPAY, x="")) + geom_boxplot() +
+lfs |> 
+  ggplot(aes(y=HOURPAY, x="")) + 
+  geom_boxplot() +
   ylab("Pay per hour")
 ```
 
@@ -512,8 +522,9 @@ lfs |>
 A histogram plots the frequency of observations within a given interval of a continuous variable - how many people fall within two given income levels. We use the **geom_histogram()** in the ggplot2 framework to produce them. Notice that different interval widths (in this case, income brackets) will produce different shapes. R will automatically choose the width of the intervals, but you can customise it if you wish.
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
-
-ggplot(data=lfs, aes(x=HOURPAY)) + geom_histogram() + 
+lfs |> 
+  ggplot(aes(x=HOURPAY)) + 
+  geom_histogram() + 
   xlab("Pay per hour") + 
   ylab("Number of observations") 
 
@@ -522,13 +533,15 @@ ggplot(data=lfs, aes(x=HOURPAY)) + geom_histogram() +
 A density plot is similar to a histogram, but instead of plotting frequencies it plots probability densities. In practice, you could think of a density plot as a smoothed histogram whose shape does not depend on the choice of interval width. To produce it use the **`geom_density()`** option.
 
 ```{r, echo=TRUE, warning=FALSE}
-ggplot(data=lfs, aes(x=HOURPAY)) + geom_density() +
+lfs |> 
+  ggplot(aes(x=HOURPAY)) + 
+  geom_density() +
   xlab("Pay per hour") +
   ylab("Probability density")
 
 ```
 
-We can add extra layers to our plots to display additional information. It may be interesting to add referencing lines
+We can add extra layers to our plots to display additional information. It may be interesting to add referencing lines using `geom_vline()`:
 
 ```{r, echo=TRUE, warning=FALSE}
 #define the mean of hourly pay
@@ -536,9 +549,11 @@ meanpay <- mean(lfs$HOURPAY, na.rm = T)
 #define the median of hourly pay
 medianpay <- median(lfs$HOURPAY, na.rm = T) 
 
-ggplot(data=lfs, aes(x=HOURPAY)) + geom_density() + 
-  geom_vline(xintercept=meanpay, colour="blue") + # vertical line for the mean in blue
-  geom_vline(xintercept=medianpay, colour="red") + # vertical line for the median in red
+lfs |> 
+  ggplot(aes(x=HOURPAY)) + 
+  geom_density() + 
+  geom_vline(xintercept=meanpay, colour="blue") + 
+  geom_vline(xintercept=medianpay, colour="red") + 
   xlab("Pay per hour") +
   ylab("Probability density")
 ```
@@ -551,7 +566,8 @@ We again use boxplots, histograms and density plots but we use different strateg
 
 ```{r, echo=TRUE, warning=FALSE}
 # straightforward, include SEX as the variable that goes on the horizontal axis
-ggplot(data=lfs, aes(y=HOURPAY, x=SEX)) +
+lfs |> 
+  ggplot(aes(y=HOURPAY, x=SEX)) +
   geom_jitter(alpha = .1) +
   geom_boxplot(colour = "orange", alpha = 0.3)
 ```
@@ -559,8 +575,11 @@ ggplot(data=lfs, aes(y=HOURPAY, x=SEX)) +
 Here we will plot the histograms in separate panes side by side to avoid overlaying them (which means we would not be able to view the whole distribution for both groups). We do this using the **facet_wrap()** option:
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
-# introduce sex as a facetting device, i.e. ask R to produce one graph per each sex
-ggplot(data=lfs, aes(x=HOURPAY)) + geom_histogram() + facet_wrap(~SEX)
+# introduce sex as a facetting variable, i.e. ask R to produce one graph per each sex
+lfs |> 
+  ggplot(aes(x=HOURPAY)) + 
+  geom_histogram() + 
+  facet_wrap(~SEX)
 ```
 
 With density plots we can overlay them without losing information simply by specifying the colour of the lines according to the variable SEX:
@@ -568,7 +587,9 @@ With density plots we can overlay them without losing information simply by spec
 ```{r, echo=TRUE, warning=FALSE}
 
 # introduce sex as a factor to distinguish the male pay line and the female pay line.
-ggplot(data=lfs, aes(x=HOURPAY, color=SEX)) + geom_density()
+lfs |> 
+  ggplot(aes(x=HOURPAY, color=SEX)) + 
+  geom_density()
 
 ```
 
