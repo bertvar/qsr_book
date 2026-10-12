@@ -86,7 +86,7 @@ We now apply these steps to our survey data on subjective perception of needs th
 The resulting table should look similar to this:
 
 | Necessary | Desirable |
-|:--:|:--:|
+|:----------------------------------:|:----------------------------------:|
 | $$                   
    P(TV = Necessary)   
            $$ | $$                              
@@ -129,6 +129,12 @@ prop.table(tabtv)
 
 #as percentage
 prop.table(tabtv)*100
+```
+
+You can round the number of decimals using the `round()` function to whatever number you prefer (in this case 2 decimal points):
+
+```{r}
+round(prop.table(tabtv)*100, 2)
 ```
 
 #### Tidyverse and the pipe operator
