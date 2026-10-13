@@ -13,7 +13,7 @@ We will be using continuous and categorical data from the **British Social Attit
 3.  how to recode a categorical variable into another categorical variable;
 4.  how to recode a continuous variable into categorical variable;
 5.  how to combine two categorical variables
-6.   how to recode multiple variables at a time NEW!
+6.  how to recode multiple variables at a time NEW!
 
 Before getting started, it is worth emphasising that, in any given project, you should expect data wrangling to constitute the main bulk of the work. This is because it involves:
 
@@ -25,18 +25,21 @@ The latter point is crucial. While the practical aspects of subsetting or recodi
 
 As always, we begin by loading the BSA dataset and the tidyverse libraries, only one of which is strictly speaking not necessary to do any of the recoding work.
 
+Note that today we will be using a new function to load the data. Instead of `load()` we will use `read_dta()` from the `haven` package which allows us to **import** datasets
+
 ```{r, message=FALSE}
 library(haven)
-# bsa <- read_dta("bsa13ukds.dta")
-load("bsaw5.Rdata")
 library(tidyverse)
+library(labelled)
+
+bsa <- read_dta("bsa13ukds.dta")
 ```
 
 ## Scenario 1: Subsetting a dataset
 
 In this first scenario we will subset a dataset to contain only certain types of observations defined according to one or more criteria. We will have a look at three examples: (a) subsetting on a continuous variable, (b) subsetting on a categorical variable; and (c) subsetting on two variables.
 
-The general syntax to subset is `newdata <- data[condition ,]` where `newdata` is the subsetted dataset, `data` stands for the original dataset and `condition` is the criterion or criteria by which you want to select cases - any case that meets that condition will be included in the new dataset.
+The general syntax to subset is `newdata <- data[condition ,]` where `newdata` is the subset dataset, `data` stands for the original dataset and `condition` is the criterion or criteria by which you want to select cases - any case that meets that condition will be included in the new dataset.
 
 Conditions are specified within square brackets and involve a variable name, a logical operator and a value, **followed by a comma** (don't forget the comma!). The logical operators are:
 
@@ -58,7 +61,7 @@ If you prefer the `tidyverse` approach you may want to use the following functio
 
 - `between()` will return those cases that are between the first and second values for a particular variable
 
-## Haven Importing
+Both base `R` and `tidyverse` approaches will be demonstrated.
 
 ### Subsetting on a continuous variable: Selecting respondents 18-25
 
@@ -66,11 +69,11 @@ Suppose you want to conduct research on the social attitudes of young people and
 
 - those who are between 18 and 25 are included
 
-- those who are younger or older than 18 to 25 are excluded
+- those who are younger than 18 or older than 25 are excluded
 
 To do so, you need to ask R to subset those respondents that have a value in the BSA variable measuring age - called `RAge` for respondent age - **equal or greater than 18** AND **equal or smaller than 25**.
 
-Let's first look at the distribution of `Rage` to:
+Let's first look at the distribution of `Rage`:
 
 ```{r}
 table(bsa$RAge)
@@ -80,7 +83,8 @@ From this respondents we are only interested in the following:
 
 ```{r}
 #| echo: false
-bsa1825<-bsa[bsa$RAge>=18 & bsa$RAge<=25,]
+bsa1825 <- bsa[bsa$RAge >= 18 & bsa$RAge <= 25,]
+
 # check you got the new data correctly
 table(bsa1825$RAge)
 ```
@@ -89,7 +93,7 @@ In R this is achieved as follows:
 
 ```{r}
 # subset the data based on the specified condition
-bsa1825<-bsa[bsa$RAge>=18 & bsa$RAge<=25,]
+bsa1825<-bsa[bsa$RAge >= 18 & bsa$RAge <= 25,]
 # check you got the new data correctly
 table(bsa1825$RAge)
 ```
@@ -117,15 +121,41 @@ bsa1825b <- bsa |>
 table(bsa1825b$RAge)
 ```
 
-### Subsetting on a categorical or factor variable: Selecting females only
+### Subsetting on a categorical or factor variable: Selecting female respondents only
 
-Suppose you want to conduct analysis only on female respondents. Since sex is nominal it does not make much sense to use larger than or smaller than. Instead we will select the cases that have values *equal* to some specified word or string of characters.
+Suppose you want to conduct an analysis on **female respondents only**. To do this you will need a dataset that includes those respondents who replied "Female" to the question "Sex" and exclude those respondents who replied "Male" from the original dataset.
+
+There are basically two variants of this scenario: a) the categories are represented as numbers with their corresponding labels; and b) the categories are represented as text.
+
+#### Categories as numerical values with labels 
+
+The function `read_dta()`, which we have used earlier to import the Stata data file, makes some decisions to how the data will be organised. In particular, it treats categorical variables in a similar way to how Stata and SPSS, among others, by using **values** and **labels.**
+
+Note that the values are part of your data while the labels are part of the file's **metadata** - e.g. data about the data. These metadata contain all sorts of information (value labels, variable labels, dates, times, etc.) that we will not analyse as such but which we need to be aware of when working with datasets.
+
+Let's look at the variable Rsex looks like:
 
 ```{r}
 # first check the distribution of sex categories
 table(bsa$RSex)
+```
+
+As you can see there are only numbers `1` and `2`, but what do these numbers mean? One option is to look at the [codebook](https://doc.ukdataservice.ac.uk/doc/7500/mrdoc/allissue/bsa13ukds_ukda_data_dictionary.rtf) to figure out the labels:
+
+![](images/bsa_codebook.png)
+
+The other is to use the function `val_labels()` from the `labelled` package:
+
+```{r}
+val_labels(bsa$RSex)
+```
+
+Now that we know that value 1 indicates "Male" respondents and value 2 indicates "Female" respondents we can proceed to subset the data:
+
+```{r}
+
 # then subset the data according to the specified condition
-bsafem<-bsa[bsa$RSex=="Female",]
+bsafem <- bsa[bsa$RSex == 2,]
 # check you got the new data correctly
 table(bsafem$RSex)
 ```
@@ -136,10 +166,40 @@ You can achieve the same using the function **filter** from *dplyr*
 
 # then subset the data according to the specified condition
 bsafem <- bsa |> 
-  filter(RSex=="Female")
+  filter(RSex == 2)
 
 # check you got the new data correctly
 table(bsafem$RSex)
+```
+
+#### Categories as text
+
+In some datasets, categorical variables will appear as factors or a string variables. In such situations, the categories will appear as text rather than as numerical values. To show this we will create a new variable called `sexf` that will contain the same observations as `RSex` but is forced to become a factor variable:
+
+```{r}
+bsa$sexf <- as_factor(bsa$RSex)
+table(bsa$sexf)
+```
+
+Since "Male" and "Female" are now the categories we need to adapt our code accordingly.
+
+```{r}
+# then subset the data according to the specified condition
+bsafem <- bsa[bsa$sexf=="Female",]
+# check you got the new data correctly
+table(bsafem$sexf)
+```
+
+You can achieve the same using the function **filter** from *dplyr*
+
+```{r}
+
+# then subset the data according to the specified condition
+bsafem <- bsa |> 
+  filter(sexf=="Female")
+
+# check you got the new data correctly
+table(bsafem$sexf)
 ```
 
 ### Subsetting on multiple variables: Selecting young females
@@ -148,7 +208,7 @@ Suppose you want to conduct analysis only on young female respondents - responde
 
 ```{r}
 # subset the data according to the specified condition
-bsafem1825<-bsa[bsa$RAge>=18 & bsa$RAge<=25 & bsa$RSex=="Female",]
+bsafem1825<-bsa[bsa$RAge >= 18 & bsa$RAge <= 25 & bsa$RSex== 2,]
 # check you got the new data correctly
 table(bsafem1825$RSex)
 table(bsafem1825$RAge)
@@ -160,7 +220,7 @@ Or using **filter** we can achieve the same result
 # subset the data according to the specified condition
 bsafem1825b <-
   bsa |> 
-  filter(between(RAge, 18, 25) & RSex=="Female")
+  filter(between(RAge, 18, 25) & RSex == 2)
 
 # check you got the new data correctly
 table(bsafem1825b$RSex)
@@ -174,26 +234,26 @@ There will be more complex scenarios that may involve very long chains of subset
 Suppose you want to conduct analysis only with some specific educational categories in your sample, for instance only those cases that are either A-level, Degree or GCSE holders. This is straightforward to do using base R by just subsetting on three conditions (A-level OR Degree) as follows
 
 ```{r}
-bsa_edu_sel <- bsa[bsa$HEdQual == "A level or equiv"| 
-                     bsa$HEdQual == "Degree" | 
-                     bsa$HEdQual == "O level or equiv",] 
+bsa_edu_sel <- bsa[bsa$HEdQual == 3 | 
+                     bsa$HEdQual == 1 | 
+                     bsa$HEdQual == 4,] 
 
 table(bsa_edu_sel$HEdQual)
 ```
 
-If you want to follow tidyverse syntax you can simplify things by using the expression **%in%** inside of the filter function as follows:
+If you want to follow tidyverse syntax you can simplify things by using the expression **`%in%`** inside of the filter function as follows:
 
 ```{r}
 bsa_edu_sel2 <- bsa |> 
-  filter(bsa$HEdQual %in% c("A level or equiv", 
-                            "Degree", 
-                            "O level or equiv"))  
+  filter(bsa$HEdQual %in% c(1, 3, 4))  
 table(bsa_edu_sel2$HEdQual)
 ```
 
-What this will do is to match all cases that have a response in variable HEdQual that is equal to EITHER of the three categories specified in-between brackets.
+What this will do is to match all cases that have a response in variable HEdQual that is equal to EITHER of the three categories specified in the code.
 
-## SCENARIO II: Recoding a categorical variable
+> Make sure that you are using the right values, or you risk ending up with the wrong subsample.
+
+## Scenario II: Recoding a categorical variable
 
 In this second scenario you may come across when preparing your data, we will recode or recategorise a categorical variable. In this case we will recode variable education because it has too many categories (too much detail) that we do not need in our analysis. There are two main ways in which we can recode this variable and end up with the same result. Below you will get an explanation of both.
 
@@ -211,7 +271,7 @@ Value = 7.0 Label = No qualification
 Value = 8.0 Label = DK/Refusal/NA
 ```
 
-Next step is to look at how the variable is distributed to get a sense of how many respodents fall into each category. Since we are dealing with a categorical variable we can use the function **table()** to get a frequency table:
+Next step is to look at how the variable is distributed to get a sense of how many respodents fall into each category. Since we are dealing with a categorical variable we can use the function `table()` to get a frequency table:
 
 ```{r}
 table(bsa$HEdQual)
@@ -227,7 +287,7 @@ Knowing in advance the distribution of the variable (i.e. the raw counts or freq
 
 If by the end of the recoding you have got these frequencies then you've done things correctly. Otherwise, check your code!
 
-### Option 1: Recoding categories from original variable into a new variable
+### Base R
 
 We will start by creating a new variable with missing values for all observations:
 
@@ -240,34 +300,21 @@ The next step is to assign values to the new variable based on the categories in
 
 ```{r}
 
-# Assign value 1 to new variable "educ4" in dataset bsa to all those respondents
-# that answered "Degree" to old variable "HEdQual"
-bsa$educ4[bsa$HEdQual=="Degree"] <- 1
+# Assign value 1 to new variable "educ4" in dataset bsa to all those respondents that answered "Degree" to old variable "HEdQual"
+bsa$educ4[bsa$HEdQual == 1] <- 1
 
-# Assign value 2 to new variable "educ4" in dataset bsa to all those respondents
-# that answered "Higher educ below degree" OR "A level or equiv" in old variable "HEdQual"
-bsa$educ4[bsa$HEdQual=="Higher educ below degree" |
-            bsa$HEdQual=="A level or equiv"
+# Assign value 2 to new variable "educ4" in dataset bsa to all those respondents that answered "Higher educ below degree" OR "A level or equiv" in old variable "HEdQual"
+bsa$educ4[bsa$HEdQual == 2 |
+            bsa$HEdQual == 3
             ] <- 2
-# Assign value 3 to new variable "educ4" in dataset bsa to all those respondents
-# that answered "CSE or equiv" OR "Foreign or other" OR "O level or equiv" 
-# in old variable "HEdQual"
-bsa$educ4[bsa$HEdQual=="CSE or equiv" |
-            bsa$HEdQual=="Foreign or other" |
-            bsa$HEdQual=="O level or equiv" 
+# Assign value 3 to new variable "educ4" in dataset bsa to all those respondents that answered "CSE or equiv" OR "Foreign or other" OR "O level or equiv" in old variable "HEdQual"
+bsa$educ4[bsa$HEdQual == 4 |
+            bsa$HEdQual == 5 |
+            bsa$HEdQual == 6 
           ] <- 3
-# Assign value 4 to new variable "educ4" in dataset bsa to all those respondents
-# that answered "No qualification" to old variable "HEdQual"
-bsa$educ4[bsa$HEdQual=="No qualification"
+# Assign value 4 to new variable "educ4" in dataset bsa to all those respondents that answered "No qualification" to old variable "HEdQual"
+bsa$educ4[bsa$HEdQual == 7
           ] <- 4
-
-# Finally, assign missing values NA to new variable "educ4" in dataset bsa to all those 
-# respondents that answered ""DK/Refusal/NA" to old variable "HEdQual"
-bsa$educ4[bsa$HEdQual=="DK/Refusal/NA"] <- NA
-
-#NOTICE that we could have skipped that last step and we would still get exactly the 
-#the same results. The reason is that we defined new variable to have missing values
-#for  all respondents in the first place.
 ```
 
 Once recoded, there are a couple of steps we need to perform to make sure that R treats the new variable as a categorical variable or factor (R name for categorical variables). This includes defining the levels of a variable - i.e. what the values 1, 2, 3, 4 actually mean in terms of educational attainment.
@@ -276,9 +323,11 @@ Once recoded, there are a couple of steps we need to perform to make sure that R
 # first we define variable educ4 as a factor variable with the function as.factor()
 bsa$educ4 <- as.factor(bsa$educ4)
 
-# then we define the variable levels. Make sure you get the order right so that 
-# the values you defined earlier (1, 2, 3, 4) correspond to the levels 
-levels(bsa$educ4)<-c("Degree", "Higher secondary", "Lower secondary", "No qualification")
+# then we define the variable levels. Make sure you get the order right so that the values you defined earlier (1, 2, 3, 4) correspond to the levels 
+levels(bsa$educ4) <- c("Degree", 
+                       "Higher secondary", 
+                       "Lower secondary", 
+                       "No qualification")
 
 ```
 
@@ -293,59 +342,29 @@ table(bsa$educ4)
 table(bsa$HEdQual, bsa$educ4) 
 ```
 
-## Option 2: Recode by copying and recoding original variable
-
-An alternative to obtain the same result without as much code, but where there is more margin of error, involves the following steps:
-
-1.  Duplicated the original variable into a new one which we will call "educ4_v2"
-2.  Specify missing values and drop all unused levels - with function **droplevels()**
-3.  Specify the new levels for each of the values - here again getting the order right is crucial and here's where things can go wrong.
-
-```{r}
-#duplicate the original variable - literally assign the values of the original variable to
-#the new one
-bsa$educ4_v2 <- bsa$HEdQual
-
-# identify factor levels of the variable
-levels(bsa$educ4_v2)
-
-#Assign missing values NA to new variable "educ4_v2" in dataset bsa to all those 
-#respondents that answered ""DK/Refusal/NA" to old variable "HEdQual"
-bsa$educ4_v2[bsa$HEdQual=="DK/Refusal/NA"] <- NA
-
-#force R to delete unused levels - i.e. all of those levels (names of categories) that
-#have no respondents using function droplevels
-bsa$educ4_v2<-droplevels(bsa$educ4_v2)
-
-# now change the levels (we do not need to do anything about Degree or No qualification)
-levels(bsa$educ4_v2) <-c("Degree", "Higher secondary", "Higher secondary", "Lower secondary",
-                         "Lower secondary", "Lower secondary", "No qualification")
-
-#Check it worked by running a frequency table and contingency table:
-table(bsa$educ4_v2)
-table(bsa$HEdQual, bsa$educ4_v2)
-
-```
-
-## Option 3: Tidyverse: Using **mutate** and **recode**:
+### Tidyverse approach: Using **mutate** and **case_when**:
 
 ```{r}
 bsa <- 
   bsa |>
-  mutate(educ4t = recode(HEdQual,
-                "Degree" = "Degree",                 
-                "Higher educ below degree" = "Higher Secondary Education",
-                "A level or equiv" = "Higher Secondary Education",       
-                "O level or equiv" = "Lower Secondary Education",        
-                "CSE or equiv" = "Lower Secondary Education",            
-                "Foreign or other" = "Lower Secondary Education",        
-                        "No qualification" = "No qualification")) |> 
-  mutate(educ4t = na_if(educ4t, "DK/Refusal/NA")) |> 
-  mutate(educ4t = droplevels(educ4t))
-table(bsa$educ4)
+  mutate(
+    educ4t = case_when(
+      HEdQual == 1 ~ 1,  
+      HEdQual %in% c(2, 3) ~ 2,  
+      HEdQual %in% c(4, 5, 6) ~ 3, 
+      HEdQual == 7 ~ 4, 
+      TRUE ~ NA_real_
+    ))
+
+bsa$educ4t <- as.factor(bsa$educ4)
+levels(bsa$educ4t) <- c("Degree",
+                       "Upper Sec. Educ",
+                       "Lower Sec. Educ",
+                       "No qual")
+table(bsa$educ4t)
 ```
 
-## SCENARIO II: Recoding a continuous variable (numeric) into a categorical variable (factor)
+## Scenario III: Recoding a continuous variable (numeric) into a categorical variable (factor)
 
 Next we will turn a continuous variable into a categorical variable. We will use a typical example in survey analysis: recoding a continuous variable "RAge" into a categorical variable made up of age bands, which we will call "age4cat". Again, the principles applied earlier will be of use. A key difference is that we will use the ampersand sign **&** to indicate that two conditions must occur simultaneously. Thus \[eyes==blue **&** hair==blond\] would be specifying all those individuals who have BOTH blue eyes AND who have blond hair. Typically, this will be used to identify observations that are larger or equal (\>=) AND smaller or equal (\<=) than the extremes in a range of values - e.g. people who are taller or equal to 1.70m (height\>=1.70) and shorter or equal to 1.80m (heigh\<=1.80).
 
@@ -379,13 +398,11 @@ bsa |>
             min = min(RAge),
             max = max(RAge))
 
-# or run a histogram or boxplot
-
-ggplot(data=bsa, aes(x=bsa$RAge)) + geom_histogram()
-ggplot(data=bsa, aes(y=bsa$RAge, x="")) + geom_boxplot()
 ```
 
 Notice the 5 respondents with values 99 in RAge! These people are not 99 years old, but were assigned a value of 99 because they did not respond (a bit unfortunate because it can be easily mistaken by a real number!)
+
+### Base R
 
 Here are the steps to recode the variable. We begin by defining a new variable called "age4cat" with only missing values:
 
@@ -397,23 +414,16 @@ bsa$age4cat <- NA
 Now assign values to the new variable based on the original variable:
 
 ```{r}
-#Assign missing values 1 to new variable "age4cat" in dataset bsa to all those 
-#respondents with ages equal or smaller than 24 in old variable "RAge"
+#Assign missing values 1 to new variable "age4cat" in dataset bsa to all those respondents with ages equal or smaller than 24 in old variable "RAge"
 bsa$age4cat[bsa$RAge <= 24] <- 1
 
-#Assign missing values 2 to new variable "age4cat" in dataset bsa to all those 
-#respondents with ages equal or larger than 25 AND equal or smaller than 39 
-#in old variable "RAge"
+#Assign missing values 2 to new variable "age4cat" in dataset bsa to all those respondents with ages equal or larger than 25 AND equal or smaller than 39 in old variable "RAge"
 bsa$age4cat[bsa$RAge >= 25 & bsa$RAge <= 39] <- 2
 
-#Assign missing values 3 to new variable "age4cat" in dataset bsa to all those 
-#respondents with ages equal or larger than 40 AND equal or smaller than 64 
-#in old variable "RAge"
+#Assign missing values 3 to new variable "age4cat" in dataset bsa to all those respondents with ages equal or larger than 40 AND equal or smaller than 64 in old variable "RAge"
 bsa$age4cat[bsa$RAge >= 40 & bsa$RAge <= 64] <- 3
 
-#Assign missing values 3 to new variable "age4cat" in dataset bsa to all those 
-#respondents with ages equal or larger than 65 AND equal or smaller than 97 
-#in old variable "RAge"
+#Assign missing values 3 to new variable "age4cat" in dataset bsa to all those respondents with ages equal or larger than 65 AND equal or smaller than 97 in old variable "RAge"
 bsa$age4cat[bsa$RAge >= 65 & bsa$RAge <= 97] <- 4
 
 ```
@@ -439,7 +449,7 @@ table(bsa$age4cat)
 table(bsa$RAge, bsa$age4cat)
 ```
 
-## Option 2: Tidyverse using **mutate** and **cut**
+### Tidyverse approach using **mutate** and **cut**
 
 ```{r}
 bsa <- 
@@ -449,7 +459,7 @@ bsa <-
 table(bsa$age4cat2)  
 ```
 
-## SCENARIO III: Combining 2 categorical variables into 1
+## Scenario III: Combining 2 categorical variables into 1
 
 This third scenario occurs when you want have two categorical variables that you would like to combine. Imagine for instance that you want to look at whether some feature or phenomena (experience of poverty, drug taking, travel, ... ) varies both across sex and the country in the UK where the respondent resides. While you could run a three-way table (the outcome variable by the other two variables), it may be useful to instead create a variable that combines both "RSex" and "Country" and then run a two-way table with the outcome variable.
 
@@ -478,13 +488,17 @@ Now, let us explore the original variables:
 
 ```{r}
 table(bsa$Country)
+val_labels(bsa$Country) # check labels
+
 table(bsa$RSex)
+
 table(bsa$Country, bsa$RSex)
-#drop unused levels for variable RSex
-bsa$RSex<-droplevels(bsa$RSex) 
+
 ```
 
-First, we create the new variable with missing values:
+### Base R
+
+First, we create the new variable `sexctry` with missing values:
 
 ```{r}
 bsa$sexctry <- NA
@@ -494,22 +508,24 @@ And now we recode this variables according to the combination of categories of t
 
 ```{r}
 #Assign value 1 to individuals who are both Male and English
-bsa$sexctry[bsa$RSex=="Male" & bsa$Country=="England"] <- 1
+bsa$sexctry[bsa$RSex == 1 & bsa$Country == 1] <- 1
 
 #Assign value 2 to individuals who are both Female and English
-bsa$sexctry[bsa$RSex=="Female" & bsa$Country=="England"] <- 2
-
-#Assign value 3 to individuals who are both Male and Welsh
-bsa$sexctry[bsa$RSex=="Male" & bsa$Country=="Wales"] <- 3
-
-#Assign value 4 to individuals who are both Female and Welsh
-bsa$sexctry[bsa$RSex=="Female" & bsa$Country=="Wales"] <- 4
+bsa$sexctry[bsa$RSex == 2 & bsa$Country == 1] <- 2
 
 #Assign value 5 to individuals who are both Male and Scottish
-bsa$sexctry[bsa$RSex=="Male" & bsa$Country=="Scotland"] <- 5
+bsa$sexctry[bsa$RSex == 1 & bsa$Country == 2] <- 3
 
 #Assign value 6 to individuals who are both Female and Scottish
-bsa$sexctry[bsa$RSex=="Female" & bsa$Country=="Scotland"] <- 6
+bsa$sexctry[bsa$RSex == 2 & bsa$Country == 2] <- 4
+
+#Assign value 3 to individuals who are both Male and Welsh
+bsa$sexctry[bsa$RSex == 1 & bsa$Country == 3] <- 5
+
+#Assign value 4 to individuals who are both Female and Welsh
+bsa$sexctry[bsa$RSex == 2 & bsa$Country == 3] <- 6
+
+
 ```
 
 Finally, we define the new variable sexctry as a factor or categorical variable and specify the levels for each of the values:
@@ -518,12 +534,74 @@ Finally, we define the new variable sexctry as a factor or categorical variable 
 bsa$sexctry<-as.factor(bsa$sexctry)
 
 levels(bsa$sexctry) <- c("English Male", "English Female", 
-                         "Welsh Male", "Welsh Female",
-                         "Scottish Male", "Scottish Female" )
+                         "Scottish Male", "Scottish Female",
+                         "Welsh Male", "Welsh Female")
 ```
 
 Run a frequency table to check the recoding was completed without errors:
 
 ```{r}
 table(bsa$sexctry)
+```
+
+### Tidyverse approach
+
+```{r}
+bsa <- bsa |>
+  unite(col = "cntrysex2", Country, RSex, sep = "_", remove = FALSE)
+table(bsa$cntrysex2)  
+
+bsa$cntrysex2<-as.factor(bsa$sexctry)
+
+levels(bsa$cntrysex2) <- c("English Male", "English Female", 
+                         "Scottish Male", "Scottish Female",
+                         "Welsh Male", "Welsh Female")
+table(bsa$cntrysex2)  
+```
+
+## Scenario IV: Recoding multiple variables that share the same categories
+
+The final scenario occurs when you are working with a number of variables that have the exact same categories, for instance, Likert-style items where respondents are invited to express the extent of their agreement or disagreement with a statement. In this case, it makes a lot of sense to recode these variables at the exact same time rather than individually.
+
+Consider the following variables that capture respondent views about the effects of "strong patriotic feelings in Britain"
+
+```{r}
+var_label(bsa$PatFeel1)
+val_labels(bsa$PatFeel1)
+
+var_label(bsa$PatFeel2)
+val_labels(bsa$PatFeel2)
+
+var_label(bsa$PatFeel3)
+val_labels(bsa$PatFeel3)
+
+var_label(bsa$PatFeel4)
+val_labels(bsa$PatFeel4)
+```
+
+Suppose now, that you want to group some of those categories such that "Agree strongly" and "Agree", on the one hand, and "Disagree Strongly" and "Disagree", on the other, are merged. To do this for every single one of the variables would be quite inefficient, so instead we use the function `across()` to apply the same recoding scheme to multiple variables at a time.
+
+```{r}
+bsa <- bsa |>
+  mutate(
+    across(
+      c(
+        PatFeel1,
+        PatFeel2,
+        PatFeel3,
+        PatFeel4
+      ),
+      \(x) case_when(
+        x %in% c(1, 2) ~ 1,
+        x %in% c(3) ~ 2,
+        x %in% c(4, 5) ~ 3,
+        TRUE ~ NA_real_
+      ),
+      .names = "{.col}_3cat"
+    )
+  )
+
+
+table(bsa$PatFeel1, bsa$PatFeel1_3cat, useNA = "ifany")
+
 ```
