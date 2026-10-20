@@ -122,7 +122,7 @@ slices |>
   theme_bw()
 ```
 
-In fact, we can go further than this and say that over multiple repeated samples the average of sample estimates will converge closer and closer to the population parameter:
+Indeed, as the sample size increases the average of sample estimates will converge closer and closer to the population parameter. It does not even take particularly large sample sizes, for the estimate to get pretty close as shown below:
 
 ```{r}
 #| echo: false
@@ -428,7 +428,7 @@ Typically, our questions about the uncertainty of our sample estimates refer to 
 
 In this case we will compare the sample estimate of the proportion of leave voters against the proportion of leave voters in an imaginary world where the referendum was a tie.
 
-## Bootstrapping
+### Bootstrapping
 
 The bootstrap is a technique that involves drawing sub-samples (with replacement) from your data to generate the sampling distribution of your estimate:
 
@@ -457,7 +457,7 @@ null_dist <-
 
 ```
 
-## Where does the sample estimate fit?
+Where does the sample estimate fit?
 
 ```{r}
 obs_prop_big <-
@@ -474,7 +474,7 @@ null_dist |>
 
 ```
 
-## Central Limit Theorem
+### Central Limit Theorem
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Generate data for a standard normal distribution and 1/2 SD range
@@ -530,7 +530,7 @@ ggplot() +
 
 ## Bivariate inferences
 
-## Differences in means
+### Differences in means
 
 In standard quant methods courses, students are often taught a number of bivariate hypothesis tests prior to regression. In most of the social sciences, most of those tests are rarely used in the stand-alone form in applied work in part because they impose very restrictive assumptions about the data. Some of them, however, are worth covering because they help us understand the difference between description and inference as well as to provide a foundation for regression modelling.
 
@@ -684,7 +684,7 @@ Notice that the p-value is very small, which indicates that the difference betwe
 
 This is the 95% confidence interval for the difference in means, i.e. the plausible values for the population difference in means. We are 95% confident that the population difference in log pay between men and women is between 0.166 and 0.207. Since the CI does not contain 0, we are highly confident this is a significant difference.
 
-## Correlation
+## Correlation between 2 continuous variables
 
 Why does inequality vary cross-nationally?
 
@@ -774,8 +774,6 @@ ggplot(data=welfare, aes(x=socx_pub, y=postginioecd)) + geom_point() +
   geom_segment(aes(x=socx_pub, y=postginioecd, xend = mean(socx_pub), yend = postginioecd), color="red") 
 ```
 
-## Correlation
-
 The **correlation coefficient** is basically a standardised covariance so that it takes values **between -1 and +1** so that the association can be measured regardless on the metric of the variable (kg, m, number of years, salary in pounds, etc).
 
 The Pearson's correlation coefficient (r) is calculated by dividing the covariance of x and y ($s_{xy}$) by the product of the standard deviations of x and y ($s_x \times s_x$):
@@ -787,8 +785,6 @@ The regression coefficient indicates two fundamental properties of an associatio
 1.  Strength of the relationship: based on how closely aligned the data points are and indicated by how close the number is to 0 or 1. The closer to 0 the weaker the relationship, the closer to 1 the stronger the relationship between X and Y.
 
 2.  Sign of the relationship: based on direction of the cloud of data points (upwards, downwards, flat) and indicated by the sign of the correlation coefficient.
-
-## Understanding the Correlation coefficient:
 
 Graphically, this is:
 
@@ -802,19 +798,19 @@ R will do this for you (including a t-test with Ho that the correlation coeffici
 cor.test(variable1, variable2, use="complete.obs")
 ```
 
-## Corr(inequality, socx)
+Corr(inequality, socx)
 
 ```{r, fig.align="center"}
 cor.test(welfare$postginioecd, welfare$socx_pub, use="complete.obs")
 ```
 
-## Corr(inequality, union density)
+Corr(inequality, union density)
 
 ```{r, fig.align="center"}
 cor.test(welfare$postginioecd, welfare$ud, use="complete.obs")
 ```
 
-## Corr(socx_pub, union density)
+Corr(socx_pub, union density)
 
 ```{r, fig.align="center"}
 cor.test(welfare$socx_pub, welfare$ud, use="complete.obs")
@@ -868,7 +864,7 @@ Findings:
 
 - 57% of tenants said they voted in the last general election, while 43% said they didn't.
 
-## Bivariate inference with the chi-squared test
+Bivariate inference with the chi-squared test
 
 These differences in the electoral behaviour of homeowners and tenants seem quite large, so the next step would be to ask ourselves whether they are not just the result of sampling error? To test this we
 

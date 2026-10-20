@@ -266,20 +266,17 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#what-if-we-do-not-have-a-population" id="toc-what-if-we-do-not-have-a-population" class="nav-link" data-scroll-target="#what-if-we-do-not-have-a-population"><span class="header-section-number">4.1.1</span> WHAT IF WE DO NOT HAVE A POPULATION?</a></li>
   </ul></li>
-  <li><a href="#representing-uncertainty" id="toc-representing-uncertainty" class="nav-link" data-scroll-target="#representing-uncertainty"><span class="header-section-number">4.2</span> Representing uncertainty</a></li>
-  <li><a href="#bootstrapping" id="toc-bootstrapping" class="nav-link" data-scroll-target="#bootstrapping"><span class="header-section-number">4.3</span> Bootstrapping</a></li>
-  <li><a href="#where-does-the-sample-estimate-fit" id="toc-where-does-the-sample-estimate-fit" class="nav-link" data-scroll-target="#where-does-the-sample-estimate-fit"><span class="header-section-number">4.4</span> Where does the sample estimate fit?</a></li>
-  <li><a href="#central-limit-theorem" id="toc-central-limit-theorem" class="nav-link" data-scroll-target="#central-limit-theorem"><span class="header-section-number">4.5</span> Central Limit Theorem</a></li>
-  <li><a href="#bivariate-inferences" id="toc-bivariate-inferences" class="nav-link" data-scroll-target="#bivariate-inferences"><span class="header-section-number">4.6</span> Bivariate inferences</a></li>
-  <li><a href="#differences-in-means" id="toc-differences-in-means" class="nav-link" data-scroll-target="#differences-in-means"><span class="header-section-number">4.7</span> Differences in means</a></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">4.8</span> Correlation</a></li>
-  <li><a href="#correlation-1" id="toc-correlation-1" class="nav-link" data-scroll-target="#correlation-1"><span class="header-section-number">4.9</span> Correlation</a></li>
-  <li><a href="#understanding-the-correlation-coefficient" id="toc-understanding-the-correlation-coefficient" class="nav-link" data-scroll-target="#understanding-the-correlation-coefficient"><span class="header-section-number">4.10</span> Understanding the Correlation coefficient:</a></li>
-  <li><a href="#corrinequality-socx" id="toc-corrinequality-socx" class="nav-link" data-scroll-target="#corrinequality-socx"><span class="header-section-number">4.11</span> Corr(inequality, socx)</a></li>
-  <li><a href="#corrinequality-union-density" id="toc-corrinequality-union-density" class="nav-link" data-scroll-target="#corrinequality-union-density"><span class="header-section-number">4.12</span> Corr(inequality, union density)</a></li>
-  <li><a href="#corrsocx_pub-union-density" id="toc-corrsocx_pub-union-density" class="nav-link" data-scroll-target="#corrsocx_pub-union-density"><span class="header-section-number">4.13</span> Corr(socx_pub, union density)</a></li>
-  <li><a href="#hypothesis-tests-for-contingency-tables" id="toc-hypothesis-tests-for-contingency-tables" class="nav-link" data-scroll-target="#hypothesis-tests-for-contingency-tables"><span class="header-section-number">4.14</span> Hypothesis tests for contingency tables</a></li>
-  <li><a href="#bivariate-inference-with-the-chi-squared-test" id="toc-bivariate-inference-with-the-chi-squared-test" class="nav-link" data-scroll-target="#bivariate-inference-with-the-chi-squared-test"><span class="header-section-number">4.15</span> Bivariate inference with the chi-squared test</a></li>
+  <li><a href="#representing-uncertainty" id="toc-representing-uncertainty" class="nav-link" data-scroll-target="#representing-uncertainty"><span class="header-section-number">4.2</span> Representing uncertainty</a>
+  <ul class="collapse">
+  <li><a href="#bootstrapping" id="toc-bootstrapping" class="nav-link" data-scroll-target="#bootstrapping"><span class="header-section-number">4.2.1</span> Bootstrapping</a></li>
+  <li><a href="#central-limit-theorem" id="toc-central-limit-theorem" class="nav-link" data-scroll-target="#central-limit-theorem"><span class="header-section-number">4.2.2</span> Central Limit Theorem</a></li>
+  </ul></li>
+  <li><a href="#bivariate-inferences" id="toc-bivariate-inferences" class="nav-link" data-scroll-target="#bivariate-inferences"><span class="header-section-number">4.3</span> Bivariate inferences</a>
+  <ul class="collapse">
+  <li><a href="#differences-in-means" id="toc-differences-in-means" class="nav-link" data-scroll-target="#differences-in-means"><span class="header-section-number">4.3.1</span> Differences in means</a></li>
+  </ul></li>
+  <li><a href="#correlation-between-2-continuous-variables" id="toc-correlation-between-2-continuous-variables" class="nav-link" data-scroll-target="#correlation-between-2-continuous-variables"><span class="header-section-number">4.4</span> Correlation between 2 continuous variables</a></li>
+  <li><a href="#hypothesis-tests-for-contingency-tables" id="toc-hypothesis-tests-for-contingency-tables" class="nav-link" data-scroll-target="#hypothesis-tests-for-contingency-tables"><span class="header-section-number">4.5</span> Hypothesis tests for contingency tables</a></li>
   </ul>
 </nav>
     </div>
@@ -440,7 +437,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>In fact, we can go further than this and say that over multiple repeated samples the average of sample estimates will converge closer and closer to the population parameter:</p>
+<p>Indeed, as the sample size increases the average of sample estimates will converge closer and closer to the population parameter. It does not even take particularly large sample sizes, for the estimate to get pretty close as shown below:</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -483,18 +480,15 @@ window.Quarto = {
 <p>Measuring uncertainty is inherently relative - i.e.&nbsp;we are making a judgment about our sample relative to some benchmark.</p>
 <p>Typically, our questions about the uncertainty of our sample estimates refer to whether they are more or less close to what we would expect under some value that summarises a hypothetical distribution.</p>
 <p>In this case we will compare the sample estimate of the proportion of leave voters against the proportion of leave voters in an imaginary world where the referendum was a tie.</p>
-</section>
-<section id="bootstrapping" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="bootstrapping"><span class="header-section-number">4.3</span> Bootstrapping</h2>
+<section id="bootstrapping" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="bootstrapping"><span class="header-section-number">4.2.1</span> Bootstrapping</h3>
 <p>The bootstrap is a technique that involves drawing sub-samples (with replacement) from your data to generate the sampling distribution of your estimate:</p>
 <ul>
 <li><p>Draw one observation from your sample, record its value and put it back in the sample</p></li>
 <li><p>Repeat the same sampling with replacement until you have a sample of equal size as the original data and then calculate quantity of interest</p></li>
 <li><p>Repeat the process until you have a very large number of bootstrapped samples and estimates</p></li>
 </ul>
-</section>
-<section id="where-does-the-sample-estimate-fit" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="where-does-the-sample-estimate-fit"><span class="header-section-number">4.4</span> Where does the sample estimate fit?</h2>
+<p>Where does the sample estimate fit?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>obs_prop_big <span class="ot">&lt;-</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  ref_big <span class="sc">|&gt;</span> </span>
@@ -522,8 +516,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="central-limit-theorem" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="central-limit-theorem"><span class="header-section-number">4.5</span> Central Limit Theorem</h2>
+<section id="central-limit-theorem" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="central-limit-theorem"><span class="header-section-number">4.2.2</span> Central Limit Theorem</h3>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -534,11 +528,11 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="bivariate-inferences" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="bivariate-inferences"><span class="header-section-number">4.6</span> Bivariate inferences</h2>
 </section>
-<section id="differences-in-means" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="differences-in-means"><span class="header-section-number">4.7</span> Differences in means</h2>
+<section id="bivariate-inferences" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="bivariate-inferences"><span class="header-section-number">4.3</span> Bivariate inferences</h2>
+<section id="differences-in-means" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="differences-in-means"><span class="header-section-number">4.3.1</span> Differences in means</h3>
 <p>In standard quant methods courses, students are often taught a number of bivariate hypothesis tests prior to regression. In most of the social sciences, most of those tests are rarely used in the stand-alone form in applied work in part because they impose very restrictive assumptions about the data. Some of them, however, are worth covering because they help us understand the difference between description and inference as well as to provide a foundation for regression modelling.</p>
 <p>Today, we will pay attention to the t-test for independent samples, which is useful to make inferences about hypothetical differences in the group means on a continuous dependent variable.</p>
 <p>We return to the classic example of the gender pay gap using the lfs dataset</p>
@@ -606,8 +600,9 @@ sample estimates:
 </ul>
 <p>This is the 95% confidence interval for the difference in means, i.e.&nbsp;the plausible values for the population difference in means. We are 95% confident that the population difference in log pay between men and women is between 0.166 and 0.207. Since the CI does not contain 0, we are highly confident this is a significant difference.</p>
 </section>
-<section id="correlation" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="correlation"><span class="header-section-number">4.8</span> Correlation</h2>
+</section>
+<section id="correlation-between-2-continuous-variables" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="correlation-between-2-continuous-variables"><span class="header-section-number">4.4</span> Correlation between 2 continuous variables</h2>
 <p>Why does inequality vary cross-nationally?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -693,9 +688,6 @@ sample estimates:
 </div>
 </div>
 </div>
-</section>
-<section id="correlation-1" class="level2" data-number="4.9">
-<h2 data-number="4.9" class="anchored" data-anchor-id="correlation-1"><span class="header-section-number">4.9</span> Correlation</h2>
 <p>The <strong>correlation coefficient</strong> is basically a standardised covariance so that it takes values <strong>between -1 and +1</strong> so that the association can be measured regardless on the metric of the variable (kg, m, number of years, salary in pounds, etc).</p>
 <p>The Pearson’s correlation coefficient (r) is calculated by dividing the covariance of x and y (<span class="math inline">\(s_{xy}\)</span>) by the product of the standard deviations of x and y (<span class="math inline">\(s_x \times s_x\)</span>):</p>
 <p><span class="math display">\[corr(x,y)=\frac{s_{xy}}{s_x \times s_y}\]</span></p>
@@ -704,9 +696,6 @@ sample estimates:
 <li><p>Strength of the relationship: based on how closely aligned the data points are and indicated by how close the number is to 0 or 1. The closer to 0 the weaker the relationship, the closer to 1 the stronger the relationship between X and Y.</p></li>
 <li><p>Sign of the relationship: based on direction of the cloud of data points (upwards, downwards, flat) and indicated by the sign of the correlation coefficient.</p></li>
 </ol>
-</section>
-<section id="understanding-the-correlation-coefficient" class="level2" data-number="4.10">
-<h2 data-number="4.10" class="anchored" data-anchor-id="understanding-the-correlation-coefficient"><span class="header-section-number">4.10</span> Understanding the Correlation coefficient:</h2>
 <p>Graphically, this is:</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -719,9 +708,7 @@ sample estimates:
 </div>
 <p>R will do this for you (including a t-test with Ho that the correlation coefficient is 0) with this simple line:</p>
 <pre><code>cor.test(variable1, variable2, use="complete.obs")</code></pre>
-</section>
-<section id="corrinequality-socx" class="level2" data-number="4.11">
-<h2 data-number="4.11" class="anchored" data-anchor-id="corrinequality-socx"><span class="header-section-number">4.11</span> Corr(inequality, socx)</h2>
+<p>Corr(inequality, socx)</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(welfare<span class="sc">$</span>postginioecd, welfare<span class="sc">$</span>socx_pub, <span class="at">use=</span><span class="st">"complete.obs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -738,9 +725,7 @@ sample estimates:
 -0.5172631 </code></pre>
 </div>
 </div>
-</section>
-<section id="corrinequality-union-density" class="level2" data-number="4.12">
-<h2 data-number="4.12" class="anchored" data-anchor-id="corrinequality-union-density"><span class="header-section-number">4.12</span> Corr(inequality, union density)</h2>
+<p>Corr(inequality, union density)</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(welfare<span class="sc">$</span>postginioecd, welfare<span class="sc">$</span>ud, <span class="at">use=</span><span class="st">"complete.obs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -757,9 +742,7 @@ sample estimates:
 -0.7241929 </code></pre>
 </div>
 </div>
-</section>
-<section id="corrsocx_pub-union-density" class="level2" data-number="4.13">
-<h2 data-number="4.13" class="anchored" data-anchor-id="corrsocx_pub-union-density"><span class="header-section-number">4.13</span> Corr(socx_pub, union density)</h2>
+<p>Corr(socx_pub, union density)</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(welfare<span class="sc">$</span>socx_pub, welfare<span class="sc">$</span>ud, <span class="at">use=</span><span class="st">"complete.obs"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -777,8 +760,8 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="hypothesis-tests-for-contingency-tables" class="level2" data-number="4.14">
-<h2 data-number="4.14" class="anchored" data-anchor-id="hypothesis-tests-for-contingency-tables"><span class="header-section-number">4.14</span> Hypothesis tests for contingency tables</h2>
+<section id="hypothesis-tests-for-contingency-tables" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="hypothesis-tests-for-contingency-tables"><span class="header-section-number">4.5</span> Hypothesis tests for contingency tables</h2>
 <p>The main purpose of a <strong>contingency table</strong> is to display numerically the <strong>cross-classification of two or more categorical variables</strong>. In plain English, all a contingency table does is to show the number of individual observations that belong to each combination of values of two categorical variables.</p>
 <p>The main substantive purpose of a contingency table is to describe the <strong>patterns of association between two or more categorical variables</strong>.</p>
 <p>In this case, we will examine the association between housing tenure</p>
@@ -787,9 +770,7 @@ sample estimates:
 <li><p>80% of homeowners said they voted in the last general election, while 20% said they didn’t.</p></li>
 <li><p>57% of tenants said they voted in the last general election, while 43% said they didn’t.</p></li>
 </ul>
-</section>
-<section id="bivariate-inference-with-the-chi-squared-test" class="level2" data-number="4.15">
-<h2 data-number="4.15" class="anchored" data-anchor-id="bivariate-inference-with-the-chi-squared-test"><span class="header-section-number">4.15</span> Bivariate inference with the chi-squared test</h2>
+<p>Bivariate inference with the chi-squared test</p>
 <p>These differences in the electoral behaviour of homeowners and tenants seem quite large, so the next step would be to ask ourselves whether they are not just the result of sampling error? To test this we</p>
 <p>Remember that the Null Hypothesis states that there is no association between two categorical variables or, in other words, that the distribution of one variable is the same regardless of the category of the other variables. In our case, the null hypothesis is as follows:</p>
 <ul>
