@@ -1,9 +1,9 @@
 # Resources {.unnumbered}
 
-## Slides 
+## Slides
 
 | Unit | Slides |
-|:--------:|--------------------------------------------------------------|
+|:--:|----|
 | 0 | [Introduction to the module](https://bertvar.github.io/qsr_book/slides/2026_qsr_book_unit0_slides.html){target="_blank"} |
 | 1 | Describing Categorical Data |
 | 2 |  |

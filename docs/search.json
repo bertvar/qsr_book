@@ -272,21 +272,161 @@
   {
     "objectID": "04_inference.html",
     "href": "04_inference.html",
-    "title": "4  Inference",
+    "title": "4  Uncertainty and Inference",
     "section": "",
-    "text": "4.1",
+    "text": "4.1 Sampling and uncertainty\nThe previous chapters have focused on calculating statistics (mean, median, proportions, etc) to describe data collected from samples drawn from larger populations of individuals.\nStrictly speaking, any substantive conclusions about such statistics can only describe with any certainty the features of the sample itself rather than to the population from which it had been drawn. In practice, however, the objective of conducting quantitative social research is to understand features of the wider population. Drawing conclusions about about populations based on sample data - a process we will call inference - is not straightforward and requires thinking clearly and systematically about uncertainty.\nThis unit offers an applied introduction to statistical inference. It will explain what uncertainty is, where it comes from and what shapes it, what role it plays in quantitative social research and how to factor it in our analysis.\nIn this chapter, we move on to examine how a sample statistic (means, proportions, etc) calculated from our data can be used to learn about features of the population. These features of the population we will call the population parameters.\nTo estimate is to make an informed guess about the approximate value of a population parameter, which is generally assumed to be fixed and unknown, based on a sample.\nMaking this guess is a crucial part of a broader process called inference which is defined as\nStatistical inference about a population is hard precisely because the population parameters are not known or unknowable. This is because it is unfeasible to collect data about every single unit of a population. For instance, if we would like to figure out what percentage of the population of the UK has been a victim of crime in the past 12 months we would not collect data of the roughly 69.5 million that live in it, but from a much smaller sample, perhaps a few thousand.\nThus, we will rely often on a single sample to make that informed guess of the population parameter. The problem, however, is that multiple samples from the same population will yield different point estimates for those statistics. This is known as sampling variation.\nIf every time we sample from a population we potentially get different answers to the same question, how can we be sure that any individual sample is giving us a sufficiently good approximation of the population parameter?\nTo understand the problem of inference from sample to population, it’s very useful to imagine a situation where the population is known - that is, we have collected data on every single unit - and then apply what we have learnt to the much more common situation where the population parameters are either unknown or unknowable.\nLet’s approach it by simulating a population, in this case, the full electorate of the 2016 EU Membership Referendum which contains the number of eligible voters who voted to Remain (16,141,241 or 48.11%) and those who voted to Leave (17,410,742 or 51.89%).\nNow we will draw multiple random samples of 1,000 voters each from that population and calculate the proportion of Leave voters for each sample - the latter will be our point estimates. Let’s have a look at the first 15:\nreplicate\nprop_leave\ndiff\n\n\n\n\n1\n51.4\n-0.49\n\n\n2\n51.0\n-0.89\n\n\n3\n51.7\n-0.19\n\n\n4\n51.4\n-0.49\n\n\n5\n50.4\n-1.49\n\n\n6\n53.7\n1.81\n\n\n7\n53.7\n1.81\n\n\n8\n49.9\n-1.99\n\n\n9\n54.8\n2.91\n\n\n10\n49.1\n-2.79\n\n\n11\n52.7\n0.81\n\n\n12\n51.8\n-0.09\n\n\n13\n54.1\n2.21\n\n\n14\n51.1\n-0.79\nAs you can see, some of point estimates are greater (over-estimates) and some are smaller (under-estimates) than the population proportion for the whole electorate on that day 51.89%. This is a demonstration of sampling variation at work - to restate, each sample will produce a different estimate of whatever it is we want to know about the population.\nNote though that these different estimates are not terribly far from the population proportion, the lowest estimate is 49.1 or 2.21% points under and the highest estimate is 54.1% or 2.21% points over. In other words they provide a reasonably good guess of the outcome - e.g. only in two of the first fifteen samples did Remain win.\nThese early observations reflect two important properties of random sampling:\nThese properties are pointing to the idea of sampling distribution (not to be mistaken by sample distribution), that is, the idea that the estimates of repeated samples from the same population will tend to take a particular shape, that of a Normal distribution.\nLet’s see what this means in practice:\nIn fact, we can go further than this and say that over multiple repeated samples the average of sample estimates will converge closer and closer to the population parameter:\nAnd finally, observe what happens as we increase the sample size of these samples:\nWhich brings us to an important aspect in how we think about sampling and estimates. Estimates from random samples will tend to approximate the population parameter fairly well over the long run, i.e. they tend to be unbiased. Yet the shape of their sampling distribution will be wider or narrower (more or less precise) depending on the amount of data you are drawing from the population. What’s critical here is that after a certain number of observations the amount of data will make very little difference to whether your estimate captures the quantity of interest!",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Inference</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
     ]
   },
   {
-    "objectID": "04_inference.html#introduce-cis",
-    "href": "04_inference.html#introduce-cis",
-    "title": "4  Inference",
-    "section": "4.2 Introduce CIS",
-    "text": "4.2 Introduce CIS\nshow CI in bar charts and dot plots to illustrate variation - possibly overlayed histograms to show sampling variation",
+    "objectID": "04_inference.html#sampling-and-uncertainty",
+    "href": "04_inference.html#sampling-and-uncertainty",
+    "title": "4  Uncertainty and Inference",
+    "section": "",
+    "text": "the process of using the facts we know to learn about facts we do not know. The facts we do not know are the subjects of our research questions, theories or hypotheses. The facts we know form our data or observations”. (King et al. 1994, 46)\n\n\n\n\n\nThe bad news is we cannot be 100% sure, the good news is that we can quantify our uncertainty about our estimates thanks to well known properties of random sampling.\n\n\n\n\n\n\n\n\n\n\nMultiple random samples will produce different estimates, but…\nestimates based on random samples will tend to cluster around the population parameter\n\n\n\n\n\n\n\n\n\n\n\n4.1.1 WHAT IF WE DO NOT HAVE A POPULATION?\nTrue population parameters are assumed to be unknown because we cannot calculate them directly. We can however take an informed guess as to what their likely values are based on our data. This process is called estimation.\nFaced with this fact, how confident can we be that estimated sample quantities are a good approximation to the true but unknown/unknowable population values?",
     "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Inference</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#representing-uncertainty",
+    "href": "04_inference.html#representing-uncertainty",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.2 Representing uncertainty",
+    "text": "4.2 Representing uncertainty\nSampling variability means that every time we sample from a population we will get different samples and therefore different estimates of the population parameter. Thus, the key to doing inference is to understand how such estimates vary across multiple repeated samples from the same population. This is known as the sampling distribution.\nThe problem is, however,that more often than not we can only get one sample, so we need to attempt to describe the sampling distribution of our estimate drawing from our sample data alone via simulation (bootstrapping) or via probability theory (the CLT)\nMeasuring uncertainty is inherently relative - i.e. we are making a judgment about our sample relative to some benchmark.\nTypically, our questions about the uncertainty of our sample estimates refer to whether they are more or less close to what we would expect under some value that summarises a hypothetical distribution.\nIn this case we will compare the sample estimate of the proportion of leave voters against the proportion of leave voters in an imaginary world where the referendum was a tie.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#bootstrapping",
+    "href": "04_inference.html#bootstrapping",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.3 Bootstrapping",
+    "text": "4.3 Bootstrapping\nThe bootstrap is a technique that involves drawing sub-samples (with replacement) from your data to generate the sampling distribution of your estimate:\n\nDraw one observation from your sample, record its value and put it back in the sample\nRepeat the same sampling with replacement until you have a sample of equal size as the original data and then calculate quantity of interest\nRepeat the process until you have a very large number of bootstrapped samples and estimates",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#where-does-the-sample-estimate-fit",
+    "href": "04_inference.html#where-does-the-sample-estimate-fit",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.4 Where does the sample estimate fit?",
+    "text": "4.4 Where does the sample estimate fit?\n\nobs_prop_big &lt;-\n  ref_big |&gt; \n  specify(response = leave, success = \"Leave\") |&gt;\n  calculate(stat = \"prop\")\n\nobs_prop_big\n\nResponse: leave (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 0.528\n\nnull_dist |&gt; \n  visualise()  +\n  labs(title = \"Null distribution with sample proportion\") +\n  shade_p_value(obs_stat = obs_prop_big, direction = \"two-sided\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#central-limit-theorem",
+    "href": "04_inference.html#central-limit-theorem",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.5 Central Limit Theorem",
+    "text": "4.5 Central Limit Theorem",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#bivariate-inferences",
+    "href": "04_inference.html#bivariate-inferences",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.6 Bivariate inferences",
+    "text": "4.6 Bivariate inferences",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#differences-in-means",
+    "href": "04_inference.html#differences-in-means",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.7 Differences in means",
+    "text": "4.7 Differences in means\nIn standard quant methods courses, students are often taught a number of bivariate hypothesis tests prior to regression. In most of the social sciences, most of those tests are rarely used in the stand-alone form in applied work in part because they impose very restrictive assumptions about the data. Some of them, however, are worth covering because they help us understand the difference between description and inference as well as to provide a foundation for regression modelling.\nToday, we will pay attention to the t-test for independent samples, which is useful to make inferences about hypothetical differences in the group means on a continuous dependent variable.\nWe return to the classic example of the gender pay gap using the lfs dataset\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe can formalise this comparison using the t-test. A t-test is a hypothesis test so let’s specify those hypotheses first:\n\nNull or Ho: There is no difference in hourly pay between men and women - i.e. the difference between means is 0.\nAlternative or Ha: There is a significant difference in hourly pay between men and women - i.e. the difference between means is different from 0.\n\nThe t-test will calculate a t-statistic that measures the difference between:\n\nObserved difference: the difference in mean earnings between men and women in our data (mean of men earnings - mean of women earnings)\nExpected or Null difference: the difference that we would expect there to be between men and women’s mean earnings ifthe null hypothesis were true - i.e. that there is no relationship between sex and earnings and therefore that the difference is 0.\n\nThe formula is as follows:\n\\[t=\\frac{\\hat{y}_{male}-\\hat{y}_{female} - 0}{\\sqrt{\\frac{s^2_{male}}{n_{male}}+\\frac{s^2_{female}}{n_{female}}}}\\]\nAnd is better understood as:\n\\[t=\\frac{\\text{difference in means} - \\text{null value}}{\\text{standard error of the difference}}\\]\nWe can derive a p-value that estimates the probability that a sample would produce differences in mean earnings as large as those observed if the null hypothesis were true. In other words, how likely it is that we observe such differences in earnings if it is true that women and men earn the same amount per hour.\nThis series of steps only take one single line of code in R.\n\nt.test(lfs$loghrpay~lfs$SEX)\n\n\n    Welch Two Sample t-test\n\ndata:  lfs$loghrpay by lfs$SEX\nt = 17.801, df = 11207, p-value &lt; 2.2e-16\nalternative hypothesis: true difference in means between group Male and group Female is not equal to 0\n95 percent confidence interval:\n 0.1662716 0.2074206\nsample estimates:\n  mean in group Male mean in group Female \n            2.482940             2.296094 \n\n\nThe output includes quite a bit of information. Let’s break it down.. First we get the group means for men and women.\n\nmen’s mean log pay: 2.482940 & women’s mean log pay: 2.296094\n\nThen the value of the t-statistic, the degrees of freedom and associated p-value.\n\nt = 17.801, df = 11207, p-value &lt; 2.2e-16\n\nNotice that the p-value is very small, which indicates that the difference between men and women’s earnings is statistically significant and therefore we reject the null hypothesis. Notice also that the p-value is expressed in scientific notation as 2.2e-16 which is approximately 0.00000000000000022\n\n[0.1662716, 0.2074206]\n\nThis is the 95% confidence interval for the difference in means, i.e. the plausible values for the population difference in means. We are 95% confident that the population difference in log pay between men and women is between 0.166 and 0.207. Since the CI does not contain 0, we are highly confident this is a significant difference.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#correlation",
+    "href": "04_inference.html#correlation",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.8 Correlation",
+    "text": "4.8 Correlation\nWhy does inequality vary cross-nationally?\n\n\n\n\n\n\n\n\n\nSuppose we want to explain why some countries are more equal or less unequal than others. Here are two possible explanations:\n\nWelfare states can contribute to lower inequalities because they redistribute incomes across different groups in the population via taxation and cash transfers. While some welfare states are more progressive than others in that a larger share of the redistribution goes from rich to poor, we hypothesize that on average the larger the size of the welfare state, measured as social expenditure, the less unequal a country will be.\nStrong trade unions can contribute to lower pre-distribution inequalities, and consequently to lower post-distribution inequalities, because they have the capacity to negotiate up the wages of ordinary workers. The share of workers that are members of a trade union, or union density, is one of the key determinants of union’s power to push employers and governments to lift wages before welfare state redistribution even occurs. Thus, we hypothesize that on average the higher the union density the less unequal the country will be.\nALSO: we suspect that social expenditure and union density are positively associated!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTo measure the strength and direction of association between 2 continuous variables we use the correlation coefficient.\nTo calculate it we first need to measure the covariance, which is essentially the joint variance of the two variables simultaneously. In other words, how do these variables vary together which is calculated by averaging the multiplication of the errors each observation’s values for x and y relative to their means - i.e. the distance between each data point and the means of each variable x and y. Notice how similar the formula for the covariance is to that of the variance discussed in unit 3.\nThe formula is as follows:\n\\[cov(x,y)=s_{xy}=\\frac{\\Sigma^n_{i=1}(x_i-\\bar{x})\\times(y_i - \\bar{y})}{n-1}\\]\nGraphically, we already know what variances capture\n\n\n\n\n\n\n\n\n\nBut now for the covariance we consider both variances simultaneously:",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#correlation-1",
+    "href": "04_inference.html#correlation-1",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.9 Correlation",
+    "text": "4.9 Correlation\nThe correlation coefficient is basically a standardised covariance so that it takes values between -1 and +1 so that the association can be measured regardless on the metric of the variable (kg, m, number of years, salary in pounds, etc).\nThe Pearson’s correlation coefficient (r) is calculated by dividing the covariance of x and y (\\(s_{xy}\\)) by the product of the standard deviations of x and y (\\(s_x \\times s_x\\)):\n\\[corr(x,y)=\\frac{s_{xy}}{s_x \\times s_y}\\]\nThe regression coefficient indicates two fundamental properties of an association:\n\nStrength of the relationship: based on how closely aligned the data points are and indicated by how close the number is to 0 or 1. The closer to 0 the weaker the relationship, the closer to 1 the stronger the relationship between X and Y.\nSign of the relationship: based on direction of the cloud of data points (upwards, downwards, flat) and indicated by the sign of the correlation coefficient.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#understanding-the-correlation-coefficient",
+    "href": "04_inference.html#understanding-the-correlation-coefficient",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.10 Understanding the Correlation coefficient:",
+    "text": "4.10 Understanding the Correlation coefficient:\nGraphically, this is:\n\n\n\n\n\n\n\n\n\nR will do this for you (including a t-test with Ho that the correlation coefficient is 0) with this simple line:\ncor.test(variable1, variable2, use=\"complete.obs\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#corrinequality-socx",
+    "href": "04_inference.html#corrinequality-socx",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.11 Corr(inequality, socx)",
+    "text": "4.11 Corr(inequality, socx)\n\ncor.test(welfare$postginioecd, welfare$socx_pub, use=\"complete.obs\")\n\n\n    Pearson's product-moment correlation\n\ndata:  welfare$postginioecd and welfare$socx_pub\nt = -2.6345, df = 19, p-value = 0.01633\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.7757323 -0.1101788\nsample estimates:\n       cor \n-0.5172631",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#corrinequality-union-density",
+    "href": "04_inference.html#corrinequality-union-density",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.12 Corr(inequality, union density)",
+    "text": "4.12 Corr(inequality, union density)\n\ncor.test(welfare$postginioecd, welfare$ud, use=\"complete.obs\")\n\n\n    Pearson's product-moment correlation\n\ndata:  welfare$postginioecd and welfare$ud\nt = -4.5776, df = 19, p-value = 0.0002056\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.8805867 -0.4255404\nsample estimates:\n       cor \n-0.7241929",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#corrsocx_pub-union-density",
+    "href": "04_inference.html#corrsocx_pub-union-density",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.13 Corr(socx_pub, union density)",
+    "text": "4.13 Corr(socx_pub, union density)\n\ncor.test(welfare$socx_pub, welfare$ud, use=\"complete.obs\")\n\n\n    Pearson's product-moment correlation\n\ndata:  welfare$socx_pub and welfare$ud\nt = 1.8635, df = 19, p-value = 0.07792\nalternative hypothesis: true correlation is not equal to 0\n95 percent confidence interval:\n -0.04646716  0.70513211\nsample estimates:\n     cor \n0.393105",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#hypothesis-tests-for-contingency-tables",
+    "href": "04_inference.html#hypothesis-tests-for-contingency-tables",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.14 Hypothesis tests for contingency tables",
+    "text": "4.14 Hypothesis tests for contingency tables\nThe main purpose of a contingency table is to display numerically the cross-classification of two or more categorical variables. In plain English, all a contingency table does is to show the number of individual observations that belong to each combination of values of two categorical variables.\nThe main substantive purpose of a contingency table is to describe the patterns of association between two or more categorical variables.\nIn this case, we will examine the association between housing tenure\nFindings:\n\n80% of homeowners said they voted in the last general election, while 20% said they didn’t.\n57% of tenants said they voted in the last general election, while 43% said they didn’t.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#bivariate-inference-with-the-chi-squared-test",
+    "href": "04_inference.html#bivariate-inference-with-the-chi-squared-test",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.15 Bivariate inference with the chi-squared test",
+    "text": "4.15 Bivariate inference with the chi-squared test\nThese differences in the electoral behaviour of homeowners and tenants seem quite large, so the next step would be to ask ourselves whether they are not just the result of sampling error? To test this we\nRemember that the Null Hypothesis states that there is no association between two categorical variables or, in other words, that the distribution of one variable is the same regardless of the category of the other variables. In our case, the null hypothesis is as follows:\n\nThere is no association between voting and housing tenure\nThe distribution of voters and non-voters will be (broadly) the same across owners and non-owners.\n\nWe can use the expected and observed values to calculate the chi-squared statistic (\\(\\chi^2\\)). Remember that the formula is as follows:\n\\[\\chi^2 = \\sum_{i=1}^{k}\\frac{(O_i - E_i)^2}{E_i} \\]\nThis means that the chi-squared statistic is equal to the sum of the squared differences between observed counts (data) and expected counts (null hypothesis) divided by the expected counts.\nThe larger the value of \\(\\chi^2\\) the greater the difference between your data and what we should expect to see if there were no relationship between the two variables of interest. The second step in the chi-squared tests addresses the following question: What is the probability that the difference between observed and expected is at least as large as that captured by chi^2 if the null hypothesis were true?\nTo calculate what the expected values for our table under the assumption that the null hypothesis is true - i.e. that voting is independent of tenure - we draw on a fundamental notion in probability theory that says that if two events are independent, the probability of them occurring at the same time (their joint probability) is equal to the product of the probability of each event occurring separately (their marginal probabilities).\nFor two independent events A and B, this is formally:\n\\[P(\\text{A} \\cap \\text{B}) = P(\\text{A})\\times P(\\text{B})\\]\nWhich can be applied as follows:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether voted in 2005 GE by Tenure Status\n\n\n\n\nDid you vote in the 2005 GE?\n\nTotal\n\n\nNot Voted\nVoted\n\n\n\n\nTenure\n\n\n\n\n\n\n\n\n    Owner\n583\n2,404\n2,987\n\n\n    Rental\n481\n636\n1,117\n\n\nTotal\n1,064\n3,040\n4,104\n\n\n\nSource: British Election Study 2006\n\n\n\n\n\n\n\n\n\\[P(\\text{Not Voting}\\cap\\text{Owner}) = P(\\text{Not Voting})\\times P(\\text{Owner}) = \\\\ \\frac{1064 \\times 2987}{4104} = 774.4074  \\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether voted in 2005 GE by Tenure Status\n\n\n\n\nDid you vote in the 2005 GE?\n\nTotal\n\n\nNot Voted\nVoted\n\n\n\n\nTenure\n\n\n\n\n\n\n\n\n    Owner\n583\n2,404\n2,987\n\n\n    Rental\n481\n636\n1,117\n\n\nTotal\n1,064\n3,040\n4,104\n\n\n\nSource: British Election Study 2006\n\n\n\n\n\n\n\n\n\\[P(\\text{Not Voting}\\cap\\text{Tenant}) = P(\\text{Not Voting})\\times P(\\text{Tenant}) = \\\\ \\frac{1064 \\times 1117}{4104} = 289.5926  \\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether voted in 2005 GE by Tenure Status\n\n\n\n\nDid you vote in the 2005 GE?\n\nTotal\n\n\nNot Voted\nVoted\n\n\n\n\nTenure\n\n\n\n\n\n\n\n\n    Owner\n583\n2,404\n2,987\n\n\n    Rental\n481\n636\n1,117\n\n\nTotal\n1,064\n3,040\n4,104\n\n\n\nSource: British Election Study 2006\n\n\n\n\n\n\n\n\n\\[P(\\text{Voting}\\cap\\text{Owner}) = P(\\text{Voting})\\times P(\\text{Owner}) = \\\\ \\frac{3040 \\times 2987}{4104} = 2212.5926  \\]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether voted in 2005 GE by Tenure Status\n\n\n\n\nDid you vote in the 2005 GE?\n\nTotal\n\n\nNot Voted\nVoted\n\n\n\n\nTenure\n\n\n\n\n\n\n\n\n    Owner\n583\n2,404\n2,987\n\n\n    Rental\n481\n636\n1,117\n\n\nTotal\n1,064\n3,040\n4,104\n\n\n\nSource: British Election Study 2006\n\n\n\n\n\n\n\n\n\\[P(\\text{Voting}\\cap\\text{Tenant}) = P(\\text{Voting})\\times P(\\text{Tenant}) = \\\\ \\frac{3040 \\times 1117}{4104} = 827.4074  \\]\nThis is the table of observed values (your actual data):\n\n\n        \n         Not Voted Voted\n  Owner        583  2404\n  Rental       481   636\n\n\nThis is the table of expected values (what the data would be like if the null hypothesis of independence were true)\n\n\n        \n         Not Voted   Voted\n  Owner     774.41 2212.59\n  Rental    289.59  827.41\n\n\nTo calculate the \\(\\chi^2\\) all you need to do is plug in the relevant values in the formula\n\\[\\chi^2 = \\sum_{i=1}^{k}\\frac{(O_i - E_i)^2}{E_i} \\]\nSo the \\(\\chi^2\\) statistic for this table is:\n\\[\\chi^2 = \\frac{(583-774.41)^2}{774.41} + \\frac{(481-289.59)^2}{289.59} + \\\\ \\frac{(2404-2212.59)^2}{2212.59} + \\frac{(636-827.41)^2}{827.41} = 234.66 \\]\nThis number captures how large the difference is between the data and the expected values across the whole table (basically the sum of squared residuals relative to the expected value for each cell).\nThe second step in the chi-squared tests addresses the following question: What is the probability that the difference between observed and expected is at least as large as that captured by \\(\\chi^2\\) if the null hypothesis were true? In R this is quite easy to reproduce:\n\n#we run a chi-squared test \ntenvote&lt;-table(bes$vote05,bes$tenure)\nchi_tenvote&lt;-chisq.test(tenvote, correct = FALSE)\nchi_tenvote\n\n\n    Pearson's Chi-squared test\n\ndata:  tenvote\nX-squared = 234.66, df = 1, p-value &lt; 2.2e-16\n\n\nIn this case, we find a very small p-value indicating that if the null hypothesis were true, the probability of us observing such a large difference between observed and expected values is very small. We then say that there is a significant association between vote and housing tenure.\n\n\n\n\nKing, Gary, Robert O. Keohane, and Sidney Verba. 1994. Designing Social Inquiry. Princeton University Press.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
     ]
   },
   {
@@ -334,7 +474,7 @@
     "href": "references.html",
     "title": "References",
     "section": "",
-    "text": "Wickham, Hadley. 2010. “A Layered Grammar of Graphics.”\nJournal of Computational and Graphical Statistics 19 (1): 3–28.\nhttps://doi.org/10.1198/jcgs.2009.07098.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023.\nR for Data Science: Import, Tidy, Transform, Visualize, and Model\nData. O’Reilly.",
+    "text": "King, Gary, Robert O. Keohane, and Sidney Verba. 1994. Designing\nSocial Inquiry. Princeton University Press.\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.”\nJournal of Computational and Graphical Statistics 19 (1): 3–28.\nhttps://doi.org/10.1198/jcgs.2009.07098.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023.\nR for Data Science: Import, Tidy, Transform, Visualize, and Model\nData. O’Reilly.",
     "crumbs": [
       "References"
     ]
