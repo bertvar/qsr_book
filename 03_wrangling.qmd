@@ -127,7 +127,7 @@ Suppose you want to conduct an analysis on **female respondents only**. To do th
 
 There are basically two variants of this scenario: a) the categories are represented as numbers with their corresponding labels; and b) the categories are represented as text.
 
-#### Categories as numerical values with labels 
+#### Categories as numerical values with labels
 
 The function `read_dta()`, which we have used earlier to import the Stata data file, makes some decisions to how the data will be organised. In particular, it treats categorical variables in a similar way to how Stata and SPSS, among others, by using **values** and **labels.**
 

@@ -268,21 +268,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sampling-and-uncertainty" id="toc-sampling-and-uncertainty" class="nav-link active" data-scroll-target="#sampling-and-uncertainty"><span class="header-section-number">4.1</span> Sampling and uncertainty</a>
+  <li><a href="#sampling-and-uncertainty" id="toc-sampling-and-uncertainty" class="nav-link active" data-scroll-target="#sampling-and-uncertainty"><span class="header-section-number">4.1</span> Sampling and uncertainty</a></li>
+  <li><a href="#these-are-properties-of-estimators" id="toc-these-are-properties-of-estimators" class="nav-link" data-scroll-target="#these-are-properties-of-estimators"><span class="header-section-number">4.2</span> THESE ARE PROPERTIES OF ESTIMATORS!!!</a></li>
+  <li><a href="#representing-uncertainty-via-simulation" id="toc-representing-uncertainty-via-simulation" class="nav-link" data-scroll-target="#representing-uncertainty-via-simulation"><span class="header-section-number">4.3</span> Representing uncertainty via simulation</a></li>
+  <li><a href="#representing-uncertainty-with-probability-theory" id="toc-representing-uncertainty-with-probability-theory" class="nav-link" data-scroll-target="#representing-uncertainty-with-probability-theory"><span class="header-section-number">4.4</span> Representing uncertainty with probability theory</a>
   <ul class="collapse">
-  <li><a href="#what-if-we-do-not-have-a-population" id="toc-what-if-we-do-not-have-a-population" class="nav-link" data-scroll-target="#what-if-we-do-not-have-a-population"><span class="header-section-number">4.1.1</span> WHAT IF WE DO NOT HAVE A POPULATION?</a></li>
+  <li><a href="#confidence-intervals-for-means" id="toc-confidence-intervals-for-means" class="nav-link" data-scroll-target="#confidence-intervals-for-means"><span class="header-section-number">4.4.1</span> Confidence intervals for means</a></li>
+  <li><a href="#confidence-intervals-for-proportions" id="toc-confidence-intervals-for-proportions" class="nav-link" data-scroll-target="#confidence-intervals-for-proportions"><span class="header-section-number">4.4.2</span> Confidence intervals for proportions</a></li>
   </ul></li>
-  <li><a href="#representing-uncertainty" id="toc-representing-uncertainty" class="nav-link" data-scroll-target="#representing-uncertainty"><span class="header-section-number">4.2</span> Representing uncertainty</a>
+  <li><a href="#bivariate-inferences" id="toc-bivariate-inferences" class="nav-link" data-scroll-target="#bivariate-inferences"><span class="header-section-number">4.5</span> Bivariate inferences</a>
   <ul class="collapse">
-  <li><a href="#bootstrapping" id="toc-bootstrapping" class="nav-link" data-scroll-target="#bootstrapping"><span class="header-section-number">4.2.1</span> Bootstrapping</a></li>
-  <li><a href="#central-limit-theorem" id="toc-central-limit-theorem" class="nav-link" data-scroll-target="#central-limit-theorem"><span class="header-section-number">4.2.2</span> Central Limit Theorem</a></li>
+  <li><a href="#differences-in-means" id="toc-differences-in-means" class="nav-link" data-scroll-target="#differences-in-means"><span class="header-section-number">4.5.1</span> Differences in means</a></li>
   </ul></li>
-  <li><a href="#bivariate-inferences" id="toc-bivariate-inferences" class="nav-link" data-scroll-target="#bivariate-inferences"><span class="header-section-number">4.3</span> Bivariate inferences</a>
-  <ul class="collapse">
-  <li><a href="#differences-in-means" id="toc-differences-in-means" class="nav-link" data-scroll-target="#differences-in-means"><span class="header-section-number">4.3.1</span> Differences in means</a></li>
-  </ul></li>
-  <li><a href="#correlation-between-2-continuous-variables" id="toc-correlation-between-2-continuous-variables" class="nav-link" data-scroll-target="#correlation-between-2-continuous-variables"><span class="header-section-number">4.4</span> Correlation between 2 continuous variables</a></li>
-  <li><a href="#hypothesis-tests-for-contingency-tables" id="toc-hypothesis-tests-for-contingency-tables" class="nav-link" data-scroll-target="#hypothesis-tests-for-contingency-tables"><span class="header-section-number">4.5</span> Hypothesis tests for contingency tables</a></li>
+  <li><a href="#correlation-between-2-continuous-variables" id="toc-correlation-between-2-continuous-variables" class="nav-link" data-scroll-target="#correlation-between-2-continuous-variables"><span class="header-section-number">4.6</span> Correlation between 2 continuous variables</a></li>
+  <li><a href="#hypothesis-tests-for-contingency-tables" id="toc-hypothesis-tests-for-contingency-tables" class="nav-link" data-scroll-target="#hypothesis-tests-for-contingency-tables"><span class="header-section-number">4.7</span> Hypothesis tests for contingency tables</a></li>
   </ul>
 </nav>
     </div>
@@ -464,30 +463,39 @@ window.Quarto = {
 </div>
 </div>
 <p>Which brings us to an important aspect in how we think about sampling and estimates. Estimates from random samples will tend to approximate the population parameter fairly well over the long run, i.e.&nbsp;they tend to be <strong>unbiased.</strong> Yet the shape of their sampling distribution will be wider or narrower (more or less precise) depending on the amount of data you are drawing from the population. What’s critical here is that after a certain number of observations the amount of data will make very little difference to whether your estimate captures the quantity of interest!</p>
+</section>
+<section id="these-are-properties-of-estimators" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="these-are-properties-of-estimators"><span class="header-section-number">4.2</span> THESE ARE PROPERTIES OF ESTIMATORS!!!</h2>
+<p>In this sense, we can think of the quality of our estimates along two distinct dimensions which are represented graphically in <a href="#fig-targets" class="quarto-xref">Figure&nbsp;<span>4.1</span></a></p>
+<ul>
+<li><p>Bias: how accurately or on target the estimates are to the unknown population parameter.</p></li>
+<li><p>Precision: How consistently spread out the estimates are around the true population parameter.</p></li>
+</ul>
+<p>This is a property of our estimator rather than a property of the estimates!</p>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="04_inference_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-targets" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-targets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="04_inference_files/figure-html/fig-targets-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-targets-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Bias and precision in population estimates
+</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<section id="what-if-we-do-not-have-a-population" class="level3" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="what-if-we-do-not-have-a-population"><span class="header-section-number">4.1.1</span> WHAT IF WE DO NOT HAVE A POPULATION?</h3>
+</section>
+<section id="representing-uncertainty-via-simulation" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="representing-uncertainty-via-simulation"><span class="header-section-number">4.3</span> Representing uncertainty via simulation</h2>
+<p><strong>Sampling variability</strong> means that every time we sample from a population we will get different samples and therefore different estimates of the population parameter. Thus, the key to doing inference is to understand how such estimates vary across multiple repeated samples from the same population. This is known as the <strong>sampling distribution</strong>.</p>
 <p>True population parameters are assumed to be unknown because we cannot calculate them directly. We can however take an informed guess as to what their likely values are based on our data. This process is called <em>estimation.</em></p>
 <p>Faced with this fact, how confident can we be that estimated sample quantities are a good approximation to the true but unknown/unknowable population values?</p>
-</section>
-</section>
-<section id="representing-uncertainty" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="representing-uncertainty"><span class="header-section-number">4.2</span> Representing uncertainty</h2>
-<p><strong>Sampling variability</strong> means that every time we sample from a population we will get different samples and therefore different estimates of the population parameter. Thus, the key to doing inference is to understand how such estimates vary across multiple repeated samples from the same population. This is known as the <strong>sampling distribution</strong>.</p>
 <p>The problem is, however,that more often than not we can only get one sample, so we need to attempt to describe the sampling distribution of our estimate drawing from our sample data alone via simulation (bootstrapping) or via probability theory (the CLT)</p>
 <p>Measuring uncertainty is inherently relative - i.e.&nbsp;we are making a judgment about our sample relative to some benchmark.</p>
 <p>Typically, our questions about the uncertainty of our sample estimates refer to whether they are more or less close to what we would expect under some value that summarises a hypothetical distribution.</p>
 <p>In this case we will compare the sample estimate of the proportion of leave voters against the proportion of leave voters in an imaginary world where the referendum was a tie.</p>
-<section id="bootstrapping" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="bootstrapping"><span class="header-section-number">4.2.1</span> Bootstrapping</h3>
 <p>The bootstrap is a technique that involves drawing sub-samples (with replacement) from your data to generate the sampling distribution of your estimate:</p>
 <ul>
 <li><p>Draw one observation from your sample, record its value and put it back in the sample</p></li>
@@ -516,29 +524,34 @@ window.Quarto = {
 <div class="cell-output-display">
 <div>
 <figure class="figure">
+<p><img src="04_inference_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="representing-uncertainty-with-probability-theory" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="representing-uncertainty-with-probability-theory"><span class="header-section-number">4.4</span> Representing uncertainty with probability theory</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
 <p><img src="04_inference_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<section id="confidence-intervals-for-means" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="confidence-intervals-for-means"><span class="header-section-number">4.4.1</span> Confidence intervals for means</h3>
 </section>
-<section id="central-limit-theorem" class="level3" data-number="4.2.2">
-<h3 data-number="4.2.2" class="anchored" data-anchor-id="central-limit-theorem"><span class="header-section-number">4.2.2</span> Central Limit Theorem</h3>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="04_inference_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<section id="confidence-intervals-for-proportions" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="confidence-intervals-for-proportions"><span class="header-section-number">4.4.2</span> Confidence intervals for proportions</h3>
 </section>
 </section>
-<section id="bivariate-inferences" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="bivariate-inferences"><span class="header-section-number">4.3</span> Bivariate inferences</h2>
-<section id="differences-in-means" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="differences-in-means"><span class="header-section-number">4.3.1</span> Differences in means</h3>
+<section id="bivariate-inferences" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="bivariate-inferences"><span class="header-section-number">4.5</span> Bivariate inferences</h2>
+<section id="differences-in-means" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="differences-in-means"><span class="header-section-number">4.5.1</span> Differences in means</h3>
 <p>In standard quant methods courses, students are often taught a number of bivariate hypothesis tests prior to regression. In most of the social sciences, most of those tests are rarely used in the stand-alone form in applied work in part because they impose very restrictive assumptions about the data. Some of them, however, are worth covering because they help us understand the difference between description and inference as well as to provide a foundation for regression modelling.</p>
 <p>Today, we will pay attention to the t-test for independent samples, which is useful to make inferences about hypothetical differences in the group means on a continuous dependent variable.</p>
 <p>We return to the classic example of the gender pay gap using the lfs dataset</p>
@@ -546,7 +559,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="04_inference_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_inference_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -555,7 +568,7 @@ window.Quarto = {
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="04_inference_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_inference_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -607,14 +620,14 @@ sample estimates:
 <p>This is the 95% confidence interval for the difference in means, i.e.&nbsp;the plausible values for the population difference in means. We are 95% confident that the population difference in log pay between men and women is between 0.166 and 0.207. Since the CI does not contain 0, we are highly confident this is a significant difference.</p>
 </section>
 </section>
-<section id="correlation-between-2-continuous-variables" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="correlation-between-2-continuous-variables"><span class="header-section-number">4.4</span> Correlation between 2 continuous variables</h2>
+<section id="correlation-between-2-continuous-variables" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="correlation-between-2-continuous-variables"><span class="header-section-number">4.6</span> Correlation between 2 continuous variables</h2>
 <p>Why does inequality vary cross-nationally?</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="04_inference_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_inference_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -625,6 +638,15 @@ sample estimates:
 <li><p>Strong trade unions can contribute to lower pre-distribution inequalities, and consequently to lower post-distribution inequalities, because they have the capacity to negotiate up the wages of ordinary workers. The share of workers that are members of a trade union, or union density, is one of the key determinants of union’s power to push employers and governments to lift wages before welfare state redistribution even occurs. Thus, <strong>we hypothesize that on average the higher the union density the less unequal the country will be</strong>.</p></li>
 <li><p>ALSO: we suspect that <strong>social expenditure and union density are positively associated</strong>!</p></li>
 </ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="04_inference_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -661,15 +683,6 @@ sample estimates:
 </div>
 </div>
 </div>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="04_inference_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
 <p>To measure the strength and direction of association between 2 continuous variables we use the <strong>correlation coefficient</strong>.</p>
 <p>To calculate it we first need to measure the covariance, which is essentially the joint variance of the two variables simultaneously. In other words, how do these variables vary together which is calculated by averaging the multiplication of the errors each observation’s values for x and y relative to their means - i.e.&nbsp;the distance between each data point and the means of each variable x and y. Notice how similar the formula for the covariance is to that of the variance discussed in unit 3.</p>
 <p>The formula is as follows:</p>
@@ -679,7 +692,7 @@ sample estimates:
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="04_inference_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_inference_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -689,7 +702,7 @@ sample estimates:
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="04_inference_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+<p><img src="04_inference_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -766,8 +779,8 @@ sample estimates:
 </div>
 </div>
 </section>
-<section id="hypothesis-tests-for-contingency-tables" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="hypothesis-tests-for-contingency-tables"><span class="header-section-number">4.5</span> Hypothesis tests for contingency tables</h2>
+<section id="hypothesis-tests-for-contingency-tables" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="hypothesis-tests-for-contingency-tables"><span class="header-section-number">4.7</span> Hypothesis tests for contingency tables</h2>
 <p>The main purpose of a <strong>contingency table</strong> is to display numerically the <strong>cross-classification of two or more categorical variables</strong>. In plain English, all a contingency table does is to show the number of individual observations that belong to each combination of values of two categorical variables.</p>
 <p>The main substantive purpose of a contingency table is to describe the <strong>patterns of association between two or more categorical variables</strong>.</p>
 <p>In this case, we will examine the association between housing tenure</p>

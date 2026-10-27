@@ -163,7 +163,7 @@ ggplot(results %>% filter(n <= 5000),
   theme_minimal(base_size = 14)
 ```
 
-And finally, observe what happens as we increase the sample size of these samples:
+And finally, observe what happens as we increase the sample size of these samples: 
 
 ```{r}
 #| echo: false
@@ -183,6 +183,7 @@ p1 <-
        y = "Number of samples",
        title = "n = 1000") +
   xlim(0.2, .8) +
+  ylim(0,4000) +
   theme_bw()
 
 p2 <- 
@@ -199,6 +200,7 @@ p2 <-
        y = "Number of samples",
        title = "n = 200") +
   xlim(0.2, .8) +
+  ylim(0,4000) +
   theme_bw()
 
 p3 <- 
@@ -215,6 +217,7 @@ p3 <-
        y = "Number of samples",
        title = "n = 50") +
   xlim(0.2, .8) +
+  ylim(0,4000) +
   theme_bw()
 
 p1 + p2 + p3
@@ -222,10 +225,22 @@ p1 + p2 + p3
 
 Which brings us to an important aspect in how we think about sampling and estimates. Estimates from random samples will tend to approximate the population parameter fairly well over the long run, i.e. they tend to be **unbiased.** Yet the shape of their sampling distribution will be wider or narrower (more or less precise) depending on the amount of data you are drawing from the population. What's critical here is that after a certain number of observations the amount of data will make very little difference to whether your estimate captures the quantity of interest!
 
+## THESE ARE PROPERTIES OF ESTIMATORS!!!
+
+In this sense, we can think of the quality of our estimates along two distinct dimensions which are represented graphically in @fig-targets
+
+- Bias: how accurately or on target the estimates are to the unknown population parameter.
+
+- Precision: How consistently spread out the estimates are around the true population parameter.
+
+This is a property of our estimator rather than a property of the estimates!
+
 ```{r}
 #| echo: false
 #| message: false
 #| warning: false
+#| label: fig-targets 
+#| fig-cap: "Bias and precision in population estimates"
 
 # =====================================================
 # Panel labels
@@ -399,26 +414,24 @@ target_plot <- ggplot() +
     panel.spacing = unit(1.2, "cm"),
     plot.margin = margin(0, 0, 0, 0),
     plot.background = element_rect(
-      fill = "grey92",
+      fill = "white",
       colour = NA
     ),
     panel.background = element_rect(
-      fill = "grey92",
+      fill = "white",
       colour = NA
     )
   )
 target_plot
 ```
 
-### WHAT IF WE DO NOT HAVE A POPULATION?
+## Representing uncertainty via simulation
+
+**Sampling variability** means that every time we sample from a population we will get different samples and therefore different estimates of the population parameter. Thus, the key to doing inference is to understand how such estimates vary across multiple repeated samples from the same population. This is known as the **sampling distribution**.
 
 True population parameters are assumed to be unknown because we cannot calculate them directly. We can however take an informed guess as to what their likely values are based on our data. This process is called *estimation.*
 
 Faced with this fact, how confident can we be that estimated sample quantities are a good approximation to the true but unknown/unknowable population values?
-
-## Representing uncertainty
-
-**Sampling variability** means that every time we sample from a population we will get different samples and therefore different estimates of the population parameter. Thus, the key to doing inference is to understand how such estimates vary across multiple repeated samples from the same population. This is known as the **sampling distribution**.
 
 The problem is, however,that more often than not we can only get one sample, so we need to attempt to describe the sampling distribution of our estimate drawing from our sample data alone via simulation (bootstrapping) or via probability theory (the CLT)
 
@@ -427,8 +440,6 @@ Measuring uncertainty is inherently relative - i.e. we are making a judgment abo
 Typically, our questions about the uncertainty of our sample estimates refer to whether they are more or less close to what we would expect under some value that summarises a hypothetical distribution.
 
 In this case we will compare the sample estimate of the proportion of leave voters against the proportion of leave voters in an imaginary world where the referendum was a tie.
-
-### Bootstrapping
 
 The bootstrap is a technique that involves drawing sub-samples (with replacement) from your data to generate the sampling distribution of your estimate:
 
@@ -474,7 +485,7 @@ null_dist |>
 
 ```
 
-### Central Limit Theorem
+## Representing uncertainty with probability theory
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 # Generate data for a standard normal distribution and 1/2 SD range
@@ -527,6 +538,10 @@ ggplot() +
                                         size = 0.3),
         panel.background = element_blank())
 ```
+
+### Confidence intervals for means
+
+### Confidence intervals for proportions
 
 ## Bivariate inferences
 

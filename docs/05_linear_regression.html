@@ -342,7 +342,7 @@ X1    1 11635 12.96 13.8  10.38   11.45 5.63 0.15 1058 1057.85 41.4  2924.92
 X1 0.13</code></pre>
 </div>
 </div>
-<p>Next we run a quick histogram using hist(), though you could also use ggplot2, to see that the distribution of hourly pay is heavily right skewed - as it generally is with income and earnings distributions.</p>
+<p>Next we run a quick histogram using <code>hist()</code>, though you could also use ggplot2, to see that the distribution of hourly pay is heavily right skewed - as it generally is with income and earnings distributions.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(lfs<span class="sc">$</span>hourpay, <span class="at">breaks=</span><span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
@@ -657,7 +657,7 @@ F-statistic: 568.8 on 1 and 9724 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/confounding_variables.png" class="img-fluid figure-img"></p>
-<figcaption>Fig 2: Confounding Variables (Source: xkcd)</figcaption>
+<figcaption>Confounding Variables (Source: xkcd)</figcaption>
 </figure>
 </div>
 <p>These are our candidate controls:</p>
@@ -670,7 +670,7 @@ F-statistic: 568.8 on 1 and 9724 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/dagitty-model.png" class="img-fluid figure-img"></p>
-<figcaption>Figure 3: DAG for the effect of Working Hours on Hourly Pay Rates adjusted for confounders (Age, Sex and occupation)</figcaption>
+<figcaption>Figure 2: DAG for the effect of Working Hours on Hourly Pay Rates adjusted for confounders (Age, Sex and occupation)</figcaption>
 </figure>
 </div>
 <p>Let’s then examine first whether these control variables are indeed associated with working hours and with hourly pay - i.e.&nbsp;that they are potential confounders.</p>
