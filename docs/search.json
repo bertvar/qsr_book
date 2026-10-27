@@ -290,11 +290,31 @@
     ]
   },
   {
-    "objectID": "04_inference.html#representing-uncertainty",
-    "href": "04_inference.html#representing-uncertainty",
+    "objectID": "04_inference.html#these-are-properties-of-estimators",
+    "href": "04_inference.html#these-are-properties-of-estimators",
     "title": "4  Uncertainty and Inference",
-    "section": "4.2 Representing uncertainty",
-    "text": "4.2 Representing uncertainty\nSampling variability means that every time we sample from a population we will get different samples and therefore different estimates of the population parameter. Thus, the key to doing inference is to understand how such estimates vary across multiple repeated samples from the same population. This is known as the sampling distribution.\nThe problem is, however,that more often than not we can only get one sample, so we need to attempt to describe the sampling distribution of our estimate drawing from our sample data alone via simulation (bootstrapping) or via probability theory (the CLT)\nMeasuring uncertainty is inherently relative - i.e. we are making a judgment about our sample relative to some benchmark.\nTypically, our questions about the uncertainty of our sample estimates refer to whether they are more or less close to what we would expect under some value that summarises a hypothetical distribution.\nIn this case we will compare the sample estimate of the proportion of leave voters against the proportion of leave voters in an imaginary world where the referendum was a tie.\n\n4.2.1 Bootstrapping\nThe bootstrap is a technique that involves drawing sub-samples (with replacement) from your data to generate the sampling distribution of your estimate:\n\nDraw one observation from your sample, record its value and put it back in the sample\nRepeat the same sampling with replacement until you have a sample of equal size as the original data and then calculate quantity of interest\nRepeat the process until you have a very large number of bootstrapped samples and estimates\n\nWhere does the sample estimate fit?\n\nobs_prop_big &lt;-\n  ref_big |&gt; \n  specify(response = leave, success = \"Leave\") |&gt;\n  calculate(stat = \"prop\")\n\nobs_prop_big\n\nResponse: leave (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 0.528\n\nnull_dist |&gt; \n  visualise()  +\n  labs(title = \"Null distribution with sample proportion\") +\n  shade_p_value(obs_stat = obs_prop_big, direction = \"two-sided\")\n\n\n\n\n\n\n\n\n\n\n4.2.2 Central Limit Theorem",
+    "section": "4.2 THESE ARE PROPERTIES OF ESTIMATORS!!!",
+    "text": "4.2 THESE ARE PROPERTIES OF ESTIMATORS!!!\nIn this sense, we can think of the quality of our estimates along two distinct dimensions which are represented graphically in Figure 4.1\n\nBias: how accurately or on target the estimates are to the unknown population parameter.\nPrecision: How consistently spread out the estimates are around the true population parameter.\n\nThis is a property of our estimator rather than a property of the estimates!\n\n\n\n\n\n\n\n\nFigure 4.1: Bias and precision in population estimates",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#representing-uncertainty-via-simulation",
+    "href": "04_inference.html#representing-uncertainty-via-simulation",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.3 Representing uncertainty via simulation",
+    "text": "4.3 Representing uncertainty via simulation\nSampling variability means that every time we sample from a population we will get different samples and therefore different estimates of the population parameter. Thus, the key to doing inference is to understand how such estimates vary across multiple repeated samples from the same population. This is known as the sampling distribution.\nTrue population parameters are assumed to be unknown because we cannot calculate them directly. We can however take an informed guess as to what their likely values are based on our data. This process is called estimation.\nFaced with this fact, how confident can we be that estimated sample quantities are a good approximation to the true but unknown/unknowable population values?\nThe problem is, however,that more often than not we can only get one sample, so we need to attempt to describe the sampling distribution of our estimate drawing from our sample data alone via simulation (bootstrapping) or via probability theory (the CLT)\nMeasuring uncertainty is inherently relative - i.e. we are making a judgment about our sample relative to some benchmark.\nTypically, our questions about the uncertainty of our sample estimates refer to whether they are more or less close to what we would expect under some value that summarises a hypothetical distribution.\nIn this case we will compare the sample estimate of the proportion of leave voters against the proportion of leave voters in an imaginary world where the referendum was a tie.\nThe bootstrap is a technique that involves drawing sub-samples (with replacement) from your data to generate the sampling distribution of your estimate:\n\nDraw one observation from your sample, record its value and put it back in the sample\nRepeat the same sampling with replacement until you have a sample of equal size as the original data and then calculate quantity of interest\nRepeat the process until you have a very large number of bootstrapped samples and estimates\n\nWhere does the sample estimate fit?\n\nobs_prop_big &lt;-\n  ref_big |&gt; \n  specify(response = leave, success = \"Leave\") |&gt;\n  calculate(stat = \"prop\")\n\nobs_prop_big\n\nResponse: leave (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 0.528\n\nnull_dist |&gt; \n  visualise()  +\n  labs(title = \"Null distribution with sample proportion\") +\n  shade_p_value(obs_stat = obs_prop_big, direction = \"two-sided\")",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
+    ]
+  },
+  {
+    "objectID": "04_inference.html#representing-uncertainty-with-probability-theory",
+    "href": "04_inference.html#representing-uncertainty-with-probability-theory",
+    "title": "4  Uncertainty and Inference",
+    "section": "4.4 Representing uncertainty with probability theory",
+    "text": "4.4 Representing uncertainty with probability theory\n\n\n\n\n\n\n\n\n\n\n4.4.1 Confidence intervals for means\n\n\n4.4.2 Confidence intervals for proportions",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
     ]
@@ -547,36 +567,6 @@
     "text": "King, Gary, Robert O. Keohane, and Sidney Verba. 1994. Designing\nSocial Inquiry. Princeton University Press.\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.”\nJournal of Computational and Graphical Statistics 19 (1): 3–28.\nhttps://doi.org/10.1198/jcgs.2009.07098.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023.\nR for Data Science: Import, Tidy, Transform, Visualize, and Model\nData. O’Reilly.",
     "crumbs": [
       "References"
-    ]
-  },
-  {
-    "objectID": "04_inference.html#these-are-properties-of-estimators",
-    "href": "04_inference.html#these-are-properties-of-estimators",
-    "title": "4  Uncertainty and Inference",
-    "section": "4.2 THESE ARE PROPERTIES OF ESTIMATORS!!!",
-    "text": "4.2 THESE ARE PROPERTIES OF ESTIMATORS!!!\nIn this sense, we can think of the quality of our estimates along two distinct dimensions which are represented graphically in Figure 4.1\n\nBias: how accurately or on target the estimates are to the unknown population parameter.\nPrecision: How consistently spread out the estimates are around the true population parameter.\n\nThis is a property of our estimator rather than a property of the estimates!\n\n\n\n\n\n\n\n\nFigure 4.1: Bias and precision in population estimates",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
-    ]
-  },
-  {
-    "objectID": "04_inference.html#representing-uncertainty-via-simulation",
-    "href": "04_inference.html#representing-uncertainty-via-simulation",
-    "title": "4  Uncertainty and Inference",
-    "section": "4.3 Representing uncertainty via simulation",
-    "text": "4.3 Representing uncertainty via simulation\nSampling variability means that every time we sample from a population we will get different samples and therefore different estimates of the population parameter. Thus, the key to doing inference is to understand how such estimates vary across multiple repeated samples from the same population. This is known as the sampling distribution.\nTrue population parameters are assumed to be unknown because we cannot calculate them directly. We can however take an informed guess as to what their likely values are based on our data. This process is called estimation.\nFaced with this fact, how confident can we be that estimated sample quantities are a good approximation to the true but unknown/unknowable population values?\nThe problem is, however,that more often than not we can only get one sample, so we need to attempt to describe the sampling distribution of our estimate drawing from our sample data alone via simulation (bootstrapping) or via probability theory (the CLT)\nMeasuring uncertainty is inherently relative - i.e. we are making a judgment about our sample relative to some benchmark.\nTypically, our questions about the uncertainty of our sample estimates refer to whether they are more or less close to what we would expect under some value that summarises a hypothetical distribution.\nIn this case we will compare the sample estimate of the proportion of leave voters against the proportion of leave voters in an imaginary world where the referendum was a tie.\nThe bootstrap is a technique that involves drawing sub-samples (with replacement) from your data to generate the sampling distribution of your estimate:\n\nDraw one observation from your sample, record its value and put it back in the sample\nRepeat the same sampling with replacement until you have a sample of equal size as the original data and then calculate quantity of interest\nRepeat the process until you have a very large number of bootstrapped samples and estimates\n\nWhere does the sample estimate fit?\n\nobs_prop_big &lt;-\n  ref_big |&gt; \n  specify(response = leave, success = \"Leave\") |&gt;\n  calculate(stat = \"prop\")\n\nobs_prop_big\n\nResponse: leave (factor)\n# A tibble: 1 × 1\n   stat\n  &lt;dbl&gt;\n1 0.528\n\nnull_dist |&gt; \n  visualise()  +\n  labs(title = \"Null distribution with sample proportion\") +\n  shade_p_value(obs_stat = obs_prop_big, direction = \"two-sided\")",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
-    ]
-  },
-  {
-    "objectID": "04_inference.html#representing-uncertainty-with-probability-theory",
-    "href": "04_inference.html#representing-uncertainty-with-probability-theory",
-    "title": "4  Uncertainty and Inference",
-    "section": "4.4 Representing uncertainty with probability theory",
-    "text": "4.4 Representing uncertainty with probability theory\n\n\n\n\n\n\n\n\n\n\n4.4.1 Confidence intervals for means\n\n\n4.4.2 Confidence intervals for proportions",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Uncertainty and Inference</span>"
     ]
   }
 ]
