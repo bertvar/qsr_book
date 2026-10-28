@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Model building and Interactions – Quantitative Social Research: On-line textbook</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./summary.html" rel="next">
+<link href="./06_logistic_regression.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07_model_building.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model building and Interactions</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Social Research: On-line textbook</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome to Quantitative Social Research</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Ready</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Describing Categorical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_continuous.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Continuous Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Uncertainty and Inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Binary Logistic Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_model_building.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model building and Interactions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">7.1</span> Introduction</a></li>
+  <li><a href="#what-is-your-estimand" id="toc-what-is-your-estimand" class="nav-link" data-scroll-target="#what-is-your-estimand"><span class="header-section-number">7.2</span> What is your estimand?</a></li>
+  <li><a href="#thinking-about-controls" id="toc-thinking-about-controls" class="nav-link" data-scroll-target="#thinking-about-controls"><span class="header-section-number">7.3</span> Thinking about controls</a></li>
+  <li><a href="#building-a-regression-model" id="toc-building-a-regression-model" class="nav-link" data-scroll-target="#building-a-regression-model"><span class="header-section-number">7.4</span> Building a regression model</a>
+  <ul class="collapse">
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset"><span class="header-section-number">7.4.1</span> Dataset</a></li>
+  <li><a href="#preliminary-step-subset-complete-cases" id="toc-preliminary-step-subset-complete-cases" class="nav-link" data-scroll-target="#preliminary-step-subset-complete-cases"><span class="header-section-number">7.4.2</span> Preliminary step: Subset complete cases</a></li>
+  </ul></li>
+  <li><a href="#interactions" id="toc-interactions" class="nav-link" data-scroll-target="#interactions"><span class="header-section-number">7.5</span> Interactions</a>
+  <ul class="collapse">
+  <li><a href="#what-are-interaction-effects-and-when-should-we-consider-using-them-in-a-regression-model" id="toc-what-are-interaction-effects-and-when-should-we-consider-using-them-in-a-regression-model" class="nav-link" data-scroll-target="#what-are-interaction-effects-and-when-should-we-consider-using-them-in-a-regression-model"><span class="header-section-number">7.5.1</span> What are interaction “effects” and when should we consider using them in a regression model?</a></li>
+  <li><a href="#interaction-effects-in-linear-regression" id="toc-interaction-effects-in-linear-regression" class="nav-link" data-scroll-target="#interaction-effects-in-linear-regression"><span class="header-section-number">7.5.2</span> Interaction effects in linear regression</a></li>
+  <li><a href="#interactions-in-logistic-regression" id="toc-interactions-in-logistic-regression" class="nav-link" data-scroll-target="#interactions-in-logistic-regression"><span class="header-section-number">7.5.3</span> Interactions in logistic regression</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model building and Interactions</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">7.1</span> Introduction</h2>
+<p>In this workshop we will be looking into how to build a regression model from scratch. We are using the European Social Survey, paying attention to two different dependent variables (one continuous summated scale and one binary) that we will model with linear regression and logistic regression respectively.</p>
+<p>These will help you consolidate your understanding of the key issues we need to consider when building regression models for your final assignment or the dissertation project. In that sense, there will be less coding and a greater focus on thinking about data analysis from a substantive and research design point of view. We will pay particular attention to two issues that are fundamental to model building:</p>
+<ul>
+<li><p>Specifying the estimand.</p></li>
+<li><p>Choosing controls.</p></li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MASS)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjstats)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sjPlot)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jtools)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"ess_regression.rdata"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="what-is-your-estimand" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="what-is-your-estimand"><span class="header-section-number">7.2</span> What is your estimand?</h2>
+<p>First and foremost, before you apply a test or specify a regression model, you need to define precisely what is it that you are trying to estimate or measure. This is known as the <strong>theoretical estimand</strong> or quantity of interest, and it is theoretical because it exists outside of the statistical model<span class="citation" data-cites="lundberg">(<a href="references.html#ref-lundberg" role="doc-biblioref">Lundberg et al., n.d.</a>)</span>.</p>
+<p>The theoretical estimand involves specifying two distinct but, in your project, interrelated things:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Unit-specific quantity</th>
+<th>Target population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Effect of marriage on women’s probability of experiencing domestic violence</td>
+<td>Married and cohabiting couples (excludes singles, widowed, divorced…)</td>
+</tr>
+<tr class="even">
+<td>Effect of living in a former coal area on youth employment chances in Yorkshire</td>
+<td>Working age youth in Yorkshire who live in former coal mining areas and those who do not (excludes everyone else)</td>
+</tr>
+<tr class="odd">
+<td>Effect of having children (mitigation) on sentence length</td>
+<td>Court sentences involving time to be served (excludes suspended sentences, fines, …)</td>
+</tr>
+<tr class="even">
+<td>Effect of probation on re-offending</td>
+<td>Those who have been sentenced for offences that are eligible for probation (excludes very serious offences)</td>
+</tr>
+</tbody>
+</table>
+<p>Once you have defined your estimand with sufficient precision the next step is to link it to observable data into an empirical estimand and in turn to an estimation strategy.</p>
+</section>
+<section id="thinking-about-controls" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="thinking-about-controls"><span class="header-section-number">7.3</span> Thinking about controls</h2>
+<p>Suppose then that our estimand is the e<strong>ffect of ideology on attitudes towards the welfare state</strong> and that we expect that those located more to the left of the political spectrum are more likely to be supportive of and positive about the welfare state.</p>
+<p>To make the claim that ideology causes welfare state attitudes we should be able to show evidence that:</p>
+<ol type="1">
+<li><p>There is an association between the assumed cause and effect</p></li>
+<li><p>The direction flows from cause to effect</p></li>
+<li><p>Other explanations are ruled out</p></li>
+</ol>
+<p>The third is the key problem we face with observational data, like that derived from surveys. Unlike in an experimental setting, we cannot randomly allocate people into being left wing or right wing and then compare their views on the welfare state and on the basis of that conclude that ideology has a causal effect on welfare attitudes.</p>
+<p>Instead, we need a different strategy for ruling out other potential explanations, one that involves conditioning the effect of ideology on welfare attitudes on a range of variables that could be plausible common causes or <strong>confounders</strong> of the association between ideology and welfare attitudes.</p>
+<p>Now, consider the following candidate variables shown as nodes in the diagram below, draw the arrows or edges that connect them causally and identify which is the main association of interest and which variables act as controls. Make sure that you provide a theoretical rationale for how you have chosen to connect the nodes one way or another.</p>
+<p><img src="images/dag_empty.png" class="img-fluid"></p>
+<p>You should have come up with something like this:</p>
+<p><img src="images/dag_full.png" class="img-fluid"></p>
+<p>Conditioning (or controlling, or adjusting) requires an appropriate set of controls. The problem is that <strong>there is not correct number of control variables that you should include in any model</strong>. It should all be derived from substantive knowledge from your research area.</p>
+<ul>
+<li><p><strong>Omitted variable bias</strong> is the result of too few controls. This means that you have not been able to rule out that the association is not spurious.</p>
+<ul>
+<li>Solution: Think carefully about other common causes both observable and unobservable that could be confounding your target association and try to think of ways in which they could be introduce in your model.</li>
+</ul></li>
+<li><p>Over-adjustment bias is the result of including too many (and often bad) controls which may well bias your estimates.</p>
+<ul>
+<li>Solution: Think carefully whether it makes sense to control for a variable based on your substantive knowledge of the problem you are studying</li>
+</ul></li>
+</ul>
+<p>In general you should always adjust or control for confounding variables (either endogenous or exogenous). These are examples of <strong>good controls</strong></p>
+<p><img src="images/dag_good_controls.png" class="img-fluid"></p>
+<p>Remember that confounders must precede (or at least be concurrent with) the main predictor and be causally responsible for both the main predictor and the outcome/DV.</p>
+<p><strong>Avoid however controlling for variables that mediate the effect of interest</strong>, as this will tend to introduce a bias in the effect of x on y as it will then be split into a direct and an indirect effect (it will no longer be the total effect).</p>
+<p><img src="images/dag_mediator.png" class="img-fluid"></p>
+<p>There are many other types of bad controls, but you will learn more about those in semester 2.</p>
+</section>
+<section id="building-a-regression-model" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="building-a-regression-model"><span class="header-section-number">7.4</span> Building a regression model</h2>
+<section id="dataset" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="dataset"><span class="header-section-number">7.4.1</span> Dataset</h3>
+<p>The variable&nbsp;<strong>welfare</strong>&nbsp;- a summated scale of welfare related survey items that represents the overall view of respondents on the welfare state. The scale is coded in such a way that the higher the value the more positive the respondent is about the welfare state. The items are as follows:</p>
+<ul>
+<li><p>SBSTREC - SOCIAL BENEFITS/SERVICES PLACE TOO GREAT STRAIN ON ECONOMY</p></li>
+<li><p>SBPRVPV - SOCIAL BENEFITS/SERVICES PREVENT WIDESPREAD POVERTY</p></li>
+<li><p>SBEQSOC - SOCIAL BENEFITS/SERVICES LEAD TO A MORE EQUAL SOCIETY</p></li>
+<li><p>SBBSNTX - SOCIAL BENEFITS/SERVICES COST BUSINESSES TOO MUCH IN TAXES/CHARGES</p></li>
+<li><p>SBLAZY - SOCIAL BENEFITS/SERVICES MAKE PEOPLE LAZY</p></li>
+<li><p>SBLWCOA - SOCIAL BENEFITS/SERVICES MAKE PEOPLE LESS WILLING CARE FOR ONE ANOTHER</p></li>
+</ul>
+<p>The second variable we will analyse is a binary variable we will call&nbsp;<strong>sblazy2</strong>&nbsp;which is the result of recoding the original five categories of&nbsp;<strong>sblazy</strong> into two, where the first category is a combination of “Strongly agree”, “Agree” and “Neither” and the second category is a combination of “Disagree” and “Strongly disagree”. The rationale behind this coding decision is that we want to model the probability of having a positive view of the welfare state (as opposed to a neutral or negative one).</p>
+<p>We will regress both of those welfare attitudes as dependent variables on the left-right self-placement scales as main predictor. This will take place across two separate models as we have done in past workshops according to the measurement level of the DV.</p>
+</section>
+<section id="preliminary-step-subset-complete-cases" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="preliminary-step-subset-complete-cases"><span class="header-section-number">7.4.2</span> Preliminary step: Subset complete cases</h3>
+<p><strong>IMPORTANT: You will only be able to do this after you have selected your independent variables. So once you have a model you are satisfied with you need to select complete cases and run the models again</strong></p>
+<p>If regression models are fitted over different datasets, formal and informal comparisons of model fit are strictly speaking not valid. When we fit a model, however, we are only using the cases of respondents who have so-called full information, i.e.&nbsp;individuals who have provided valid answers to ALL the variables included in the model.</p>
+<p>In practice by including different independent variables with different patterns of missing data across different models, we end up with models that are based on slightly different datasets. Thus, if we want to meaningfully compare models, we need a dataset that has complete cases for all the variables we are considering.</p>
+<p>To do this we use the following command (NOTICE THE COMMA AT THE END!!!) or you could also use drop_na() in tidyverse style.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ess_reg <span class="ot">&lt;-</span> ess[<span class="fu">complete.cases</span>(ess<span class="sc">$</span>welfare, ess<span class="sc">$</span>lrscale, ess<span class="sc">$</span>cntry, ess<span class="sc">$</span>grad, ess<span class="sc">$</span>agea, ess<span class="sc">$</span>gndr) ,]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>What this line does is create a new dataset called <strong>ess_reg</strong> that includes only those observations that have complete information for every variable we will include in the model.</p>
+<p>Now we can proceed to fit the model:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># INTERACTIONS IN LINEAR REGRESSION</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ess_reg, <span class="fu">aes</span>(<span class="at">x =</span> lrscale, <span class="at">y =</span> welfare) ) <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">"lm"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># model2 pro-welf regressed on LR scale</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(welfare <span class="sc">~</span> lrscale, <span class="at">data =</span> ess_reg)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>model1c <span class="ot">&lt;-</span> <span class="fu">lm</span>(welfare <span class="sc">~</span> lrscale <span class="sc">+</span> cntry <span class="sc">+</span> grad <span class="sc">+</span> agea <span class="sc">+</span> gndr , <span class="at">data =</span> ess_reg)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(model1, model1c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">welfare</th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">welfare</th>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Estimates</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">p</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Estimates</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center;">p</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">29.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">28.96&nbsp;–&nbsp;29.48</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">29.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">28.81&nbsp;–&nbsp;29.58</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.50</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.54&nbsp;–&nbsp;-0.45</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.49</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.54&nbsp;–&nbsp;-0.44</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [DK]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.92&nbsp;–&nbsp;2.51</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [ES]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.59</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.31&nbsp;–&nbsp;0.87</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [GB]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.56</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.82&nbsp;–&nbsp;-1.29</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [IE]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.93</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.21&nbsp;–&nbsp;-0.64</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">grad [Graduate]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.99</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80&nbsp;–&nbsp;1.19</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">agea</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01&nbsp;–&nbsp;-0.00</td>
+<td style="text-align: center;"><strong>0.034</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gndr [2. Female]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.22&nbsp;–&nbsp;0.14</td>
+<td style="text-align: center;">0.654</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">8920</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">8920</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.042 / 0.042</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.118 / 0.118</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_summs</span>(model1c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(model1c, <span class="at">pred =</span> <span class="st">"lrscale"</span>, <span class="at">modx =</span> <span class="st">"cntry"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="interactions" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="interactions"><span class="header-section-number">7.5</span> Interactions</h2>
+<section id="what-are-interaction-effects-and-when-should-we-consider-using-them-in-a-regression-model" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="what-are-interaction-effects-and-when-should-we-consider-using-them-in-a-regression-model"><span class="header-section-number">7.5.1</span> What are interaction “effects” and when should we consider using them in a regression model?</h3>
+<p>So far, we have specified regression models in which predictors are included additively - i.e.&nbsp;the coefficients add or subtract some quantity from the intercept expressed in the metric of the dependent variable. This means that the independent variables in the model are assumed not to interact in predicting the outcome - hence the <em>ceteris paribus</em> assumption, whereby the coefficients are interpreted as the difference in the DV associated with one unit increase or a change of category in the IV when all other variables are held to be constant.</p>
+<p>An important implication of this is that the slope coefficient for any given independent variable is assumed to be equal across the levels the control variables. For instance, if we regress pay on sex and years spent in education we are implying that the differences in pay associated with sex are constant across all ages, or conversely that the association between pay and age is the same for men and women.</p>
+<p>This may not be a tenable assumption in many circumstances. Indeed, when independent variables have large main effects, it is highly likely that they will interact to some extent. For instance, since the gender pay gap has a crucial life course component related (though not exclusively) to child rearing and also that, historically, the pay gap has narrowed over time, it seems implausible that the difference in average pay between women and men in their 50s is the same as that for those in their 30s. In other words, we suspect that the association between pay and gender will vary over age groups. These kinds of questions are those that we can assess by specifying interaction terms in our regression models.</p>
+<p>Interaction terms are also called multiplicative terms because they are introduced in the regression model as the product of the two variables that are hypothesised to interact in order to produce a significant difference in the expected value of the dependent variable. Interaction terms can be the product of any combination of two or more variables regardless of their measurement level, as shown in the following examples</p>
+<ul>
+<li><p>Categorical x Categorical:</p>
+<ul>
+<li>Pay ~ Unionised x Economic sector: We know that unionised workers have on average higher pay than non-unionised workers, but does this pay premium vary across public and private sector workers?</li>
+<li>Part-time ~ Gender x Graduate: We know that women are much more likely to work part-time than men, but is the gap in working hours the same for graduate and non-graduates?</li>
+</ul></li>
+<li><p>Continuous x Categorical:</p>
+<ul>
+<li>Attitudes ~ Age x Urban: We know that as people get older they are more likely to oppose same-sex marriage, but is this pattern the same in rural and urban areas?</li>
+<li>Vote ~ Income x Country : We know that, on average, higher earners are more likely to vote conservative political parties. Is this association the same in the UK than in Sweden or Spain?</li>
+</ul></li>
+<li><p>Continuous x Continuous:</p>
+<ul>
+<li>Wellbeing ~ Income x local area deprivation: We know that on average people with higher incomes tend to enjoy greater psychological wellbeing, but is that association affected by the level of deprivation in one’s local environment?</li>
+<li>Inequality ~ Union density x Leftist Parties vote share: We know that across countries inequality is negatively associated with union density (union membership rates) as their demands often benefit those who get paid less. We may want to know whether this association is unaffected by whether governments are more or less left wing</li>
+</ul></li>
+</ul>
+<p>All these examples suggest that a particular association amongst two variables of interest, represented by its slope coefficient, is also affected or <em>moderated</em> by a third variable. The key to understanding this in a regression context, is that while <strong>main effect coefficients add or subtract from the intercept, interaction effects add or subtract from the slope main effect coefficients of each of the interacting variables</strong>.Substantively, this means that interaction effects, if significantly different from 0, modify in some way the slope - either by increasing or decreasing its slope gradient or expected difference. If the interaction effect is insignificant, then we can infer that the difference</p>
+<p>Some advice:</p>
+<ul>
+<li>Specify interaction effects when you have a sound substantive social scientific reason to do so.</li>
+<li>Always introduce <em>both</em> main effects as well as the interaction term (for the time being anyway and unless you have a good reason not to)</li>
+<li>Make sure you have large sample sizes for the dataset as a whole and also for the groups you are comparing (otherwise you may conclude insignificant results even though the “true” effect is significant).</li>
+<li>Some textbooks advise that there is not much point in interacting variables whose main effect coefficients are insignificant or very small on their own. This is however questionable from a causal inference perspective, so take that advice with a pinch of salt and use your substantive judgment.</li>
+<li>Unless you center or standardise your predictors (we do not cover this in this module), do not interpret the main effects of the predictors that you have allowed to interact as their interpretation will be affected by the assumption that the interaction is held constant.</li>
+</ul>
+</section>
+<section id="interaction-effects-in-linear-regression" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="interaction-effects-in-linear-regression"><span class="header-section-number">7.5.2</span> Interaction effects in linear regression</h3>
+<p>After interpreting the regression coefficients, you will have noticed that being on the right of ideological spectrum seems associated with less positive views of the welfare state. You may well suspect, given what we know about cross-national states arrangements that this association may vary across countries (amongst other things because respondents in different countries are being asked to express their views on welfare states that are different). To test that hypothesis as part of the regression we can introduce an interaction term which is the equivalent of multiplying two independent variables together.</p>
+<p>In R this is expressed by including a new predictor called <strong>lrscale:cntry</strong> which will measure how the differences in welfare attitudes across the ideological spectrum vary depending on the country of residence. The interaction effect can, however, also be interpreted as the extent to which the average differences in attitudes between countries vary depending on the respondent’s ideology. <strong>Remember, interaction terms are symmetrical, it’s our substantive interpretation that gives them a particular meaning in terms of causal direction.</strong></p>
+<p>Here’s the same model as before, now with the interaction term:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>model_int <span class="ot">&lt;-</span> <span class="fu">lm</span>(welfare <span class="sc">~</span> lrscale <span class="sc">+</span> cntry <span class="sc">+</span> grad <span class="sc">+</span> agea <span class="sc">+</span> gndr <span class="sc">+</span> lrscale<span class="sc">:</span>cntry , <span class="at">data =</span> ess_reg)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(model1, model1c, model_int)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">welfare</th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">welfare</th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">welfare</th>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Estimates</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">p</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Estimates</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">Estimates</td>
+<td style="text-align: center;">CI</td>
+<td style="text-align: center;">p</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">29.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">28.96&nbsp;–&nbsp;29.48</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">29.19</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">28.81&nbsp;–&nbsp;29.58</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">29.06</td>
+<td style="text-align: center;">28.52&nbsp;–&nbsp;29.60</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.50</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.54&nbsp;–&nbsp;-0.45</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.49</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.54&nbsp;–&nbsp;-0.44</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">-0.46</td>
+<td style="text-align: center;">-0.56&nbsp;–&nbsp;-0.36</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [DK]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.22</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.92&nbsp;–&nbsp;2.51</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">3.86</td>
+<td style="text-align: center;">3.10&nbsp;–&nbsp;4.63</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [ES]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.59</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.31&nbsp;–&nbsp;0.87</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">0.04</td>
+<td style="text-align: center;">-0.66&nbsp;–&nbsp;0.75</td>
+<td style="text-align: center;">0.902</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [GB]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.56</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.82&nbsp;–&nbsp;-1.29</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">-0.88</td>
+<td style="text-align: center;">-1.61&nbsp;–&nbsp;-0.15</td>
+<td style="text-align: center;"><strong>0.018</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [IE]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.93</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-1.21&nbsp;–&nbsp;-0.64</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">-2.24</td>
+<td style="text-align: center;">-3.07&nbsp;–&nbsp;-1.40</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">grad [Graduate]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.99</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.80&nbsp;–&nbsp;1.19</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">0.99</td>
+<td style="text-align: center;">0.79&nbsp;–&nbsp;1.18</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">agea</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.01&nbsp;–&nbsp;-0.00</td>
+<td style="text-align: center;"><strong>0.034</strong></td>
+<td style="text-align: center;">-0.01</td>
+<td style="text-align: center;">-0.01&nbsp;–&nbsp;-0.00</td>
+<td style="text-align: center;"><strong>0.029</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gndr [2. Female]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.04</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">-0.22&nbsp;–&nbsp;0.14</td>
+<td style="text-align: center;">0.654</td>
+<td style="text-align: center;">-0.05</td>
+<td style="text-align: center;">-0.23&nbsp;–&nbsp;0.13</td>
+<td style="text-align: center;">0.572</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale × cntry [DK]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.32</td>
+<td style="text-align: center;">-0.46&nbsp;–&nbsp;-0.17</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale × cntry [ES]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.12</td>
+<td style="text-align: center;">-0.02&nbsp;–&nbsp;0.26</td>
+<td style="text-align: center;">0.098</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale × cntry [GB]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">-0.14</td>
+<td style="text-align: center;">-0.28&nbsp;–&nbsp;0.00</td>
+<td style="text-align: center;">0.057</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale × cntry [IE]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.25</td>
+<td style="text-align: center;">0.09&nbsp;–&nbsp;0.41</td>
+<td style="text-align: center;"><strong>0.002</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">8920</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">8920</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">8920</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> / R<sup>2</sup> adjusted</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.042 / 0.042</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.118 / 0.118</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.124 / 0.123</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_summs</span>(model_int)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(model_int, <span class="at">pred =</span> <span class="st">"lrscale"</span>, <span class="at">modx =</span> <span class="st">"cntry"</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">x.label =</span> <span class="st">"Left-Right Scale"</span>, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">y.label =</span> <span class="st">"Pro-welfare attitudes"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">main.title =</span> <span class="st">"Model 3: Welfare attitudes and ideology across countries"</span>,  </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.main =</span> <span class="st">"Country"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we could do the same for education x country</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>model_int2<span class="ot">&lt;-</span> <span class="fu">lm</span>(welfare <span class="sc">~</span> lrscale <span class="sc">+</span> cntry <span class="sc">+</span> grad <span class="sc">+</span> agea <span class="sc">+</span> gndr <span class="sc">+</span> grad<span class="sc">:</span>cntry , <span class="at">data =</span> ess_reg)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_summs</span>(model_int2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat_plot</span>(model_int2, <span class="at">pred =</span> <span class="st">"cntry"</span>, <span class="at">modx =</span> <span class="st">"grad"</span>,</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">x.label =</span> <span class="st">"Educational qualifications"</span>, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">y.label =</span> <span class="st">"Pro-welfare attitudes"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">main.title =</span> <span class="st">"Model 3: Welfare attitudes and education across countries"</span>,  </span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">legend.main =</span> <span class="st">"Country"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-5-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interactions-in-logistic-regression" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="interactions-in-logistic-regression"><span class="header-section-number">7.5.3</span> Interactions in logistic regression</h3>
+<p>We can also specific interaction terms within a logistic regression model. <strong>Suppose that instead of being interested in examining the effect of ideology in broader welfare attitudes, our model is instead focused on the effect of ideology on the probability that respondents believe that social benefits makes people lazy</strong>, and by analogy to our first batch of models, we have substantive reasons to believe that these differences may vary depending on country. Since this is a binary outcome, we will opt for a binary logistic regression.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 4: WS makes people lazy regressed on LR scale + other</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ess<span class="sc">$</span>sblazy2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Agree/neutral      Disagree 
+         6824          3060 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model without interactions</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>model4a <span class="ot">&lt;-</span> <span class="fu">glm</span>(sblazy2 <span class="sc">~</span> lrscale <span class="sc">+</span> cntry <span class="sc">+</span> grad <span class="sc">+</span> agea <span class="sc">+</span> gndr,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> ess, <span class="at">family=</span><span class="st">"binomial"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 4b: WS makes people lazy regressed on LR scale + LR: cntry interaction</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>model4b <span class="ot">&lt;-</span> <span class="fu">glm</span>(sblazy2 <span class="sc">~</span> lrscale <span class="sc">+</span> cntry <span class="sc">+</span> grad <span class="sc">+</span> agea <span class="sc">+</span> gndr <span class="sc">+</span> lrscale<span class="sc">:</span>cntry ,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> ess, <span class="at">family=</span><span class="st">"binomial"</span>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Model 4c: WS makes people lazy regressed on grad + grad: cntry interaction</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>model4c <span class="ot">&lt;-</span> <span class="fu">glm</span>(sblazy2 <span class="sc">~</span> grad <span class="sc">+</span> lrscale <span class="sc">+</span> cntry <span class="sc">+</span> grad <span class="sc">+</span> agea <span class="sc">+</span> gndr <span class="sc">+</span> grad<span class="sc">:</span>cntry ,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">data =</span> ess, <span class="at">family=</span><span class="st">"binomial"</span>)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tab_model</span>(model4a, model4b, model4c)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<th data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">&nbsp;</th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">sblazy 2</th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">sblazy 2</th>
+<th colspan="3" data-quarto-table-cell-role="th" style="text-align: center; border-top: double; font-style: normal; font-weight: bold; padding: 0.2cm;">sblazy 2</th>
+</tr>
+<tr class="even">
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Predictors</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">p</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">Odds Ratios</td>
+<td style="text-align: center; border-bottom: 1px solid; font-style: italic; font-weight: normal;">CI</td>
+<td style="text-align: center;">p</td>
+<td style="text-align: center;">Odds Ratios</td>
+<td style="text-align: center;">CI</td>
+<td style="text-align: center;">p</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">(Intercept)</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.87</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.72&nbsp;–&nbsp;1.06</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.162</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.94</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.72&nbsp;–&nbsp;1.23</td>
+<td style="text-align: center;">0.636</td>
+<td style="text-align: center;">0.92</td>
+<td style="text-align: center;">0.76&nbsp;–&nbsp;1.13</td>
+<td style="text-align: center;">0.439</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.83</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.81&nbsp;–&nbsp;0.85</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.81</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.77&nbsp;–&nbsp;0.85</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">0.83</td>
+<td style="text-align: center;">0.80&nbsp;–&nbsp;0.85</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [DK]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.11</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.83&nbsp;–&nbsp;2.43</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">3.36</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">2.30&nbsp;–&nbsp;4.93</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">1.80</td>
+<td style="text-align: center;">1.50&nbsp;–&nbsp;2.15</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [ES]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.25</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.09&nbsp;–&nbsp;1.43</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.72</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.51&nbsp;–&nbsp;1.00</td>
+<td style="text-align: center;">0.053</td>
+<td style="text-align: center;">1.17</td>
+<td style="text-align: center;">1.00&nbsp;–&nbsp;1.36</td>
+<td style="text-align: center;">0.052</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [GB]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.48</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.42&nbsp;–&nbsp;0.56</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.57</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.39&nbsp;–&nbsp;0.84</td>
+<td style="text-align: center;"><strong>0.004</strong></td>
+<td style="text-align: center;">0.44</td>
+<td style="text-align: center;">0.36&nbsp;–&nbsp;0.54</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">cntry [IE]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.60</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.52&nbsp;–&nbsp;0.70</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.38</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.25&nbsp;–&nbsp;0.59</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">0.68</td>
+<td style="text-align: center;">0.56&nbsp;–&nbsp;0.83</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">grad [Graduate]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.52</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.38&nbsp;–&nbsp;1.68</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"><strong>&lt;0.001</strong></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.52</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.38&nbsp;–&nbsp;1.68</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;">1.34</td>
+<td style="text-align: center;">1.11&nbsp;–&nbsp;1.61</td>
+<td style="text-align: center;"><strong>0.002</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">agea</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00&nbsp;–&nbsp;1.01</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.053</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.00&nbsp;–&nbsp;1.01</td>
+<td style="text-align: center;">0.060</td>
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">1.00&nbsp;–&nbsp;1.01</td>
+<td style="text-align: center;">0.082</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">gndr [2. Female]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.05</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95&nbsp;–&nbsp;1.15</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.327</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.04</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.95&nbsp;–&nbsp;1.14</td>
+<td style="text-align: center;">0.412</td>
+<td style="text-align: center;">1.04</td>
+<td style="text-align: center;">0.95&nbsp;–&nbsp;1.14</td>
+<td style="text-align: center;">0.427</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale × cntry [DK]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.92</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.85&nbsp;–&nbsp;0.99</td>
+<td style="text-align: center;"><strong>0.021</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale × cntry [ES]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.13</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.06&nbsp;–&nbsp;1.22</td>
+<td style="text-align: center;"><strong>&lt;0.001</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale × cntry [GB]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.96</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">0.89&nbsp;–&nbsp;1.04</td>
+<td style="text-align: center;">0.361</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">lrscale × cntry [IE]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.10</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">1.01&nbsp;–&nbsp;1.20</td>
+<td style="text-align: center;"><strong>0.032</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">grad [Graduate] × cntry<br>
+[DK]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1.51</td>
+<td style="text-align: center;">1.13&nbsp;–&nbsp;2.02</td>
+<td style="text-align: center;"><strong>0.005</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">grad [Graduate] × cntry<br>
+[ES]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1.29</td>
+<td style="text-align: center;">0.94&nbsp;–&nbsp;1.76</td>
+<td style="text-align: center;">0.111</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">grad [Graduate] × cntry<br>
+[GB]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1.24</td>
+<td style="text-align: center;">0.93&nbsp;–&nbsp;1.67</td>
+<td style="text-align: center;">0.148</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;">grad [Graduate] × cntry<br>
+[IE]</td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: left; padding: 0.2cm; vertical-align: top;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0.80</td>
+<td style="text-align: center;">0.59&nbsp;–&nbsp;1.08</td>
+<td style="text-align: center;">0.149</td>
+</tr>
+<tr class="even">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">Observations</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">9044</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">9044</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm; border-top: 1px solid;">9044</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">R<sup>2</sup> Tjur</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.081</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.085</td>
+<td colspan="3" style="text-align: left; padding: 0.2cm; vertical-align: top; padding-top: 0.1cm; padding-bottom: 0.1cm;">0.083</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">effect_plot</span>(model4a, <span class="at">pred =</span> <span class="st">"lrscale"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(model4b, <span class="at">pred =</span> <span class="st">"lrscale"</span>, <span class="at">modx =</span> <span class="st">"cntry"</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-6-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat_plot</span>(model4c, <span class="at">pred =</span> <span class="st">"cntry"</span>, <span class="at">modx =</span>  <span class="st">"grad"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_model_building_files/figure-html/unnamed-chunk-6-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-lundberg" class="csl-entry" role="listitem">
+Lundberg, Ian, Rebecca Johnson, and Brandon M Stewart. n.d. <span>“What Is Your Estimand? Defining the Target Quantity Connects Statistical Evidence to Theory.”</span> <em>American Sociological Review</em>, 34.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./06_logistic_regression.html" class="pagination-link" aria-label="Binary Logistic Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Binary Logistic Regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

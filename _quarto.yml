@@ -18,6 +18,8 @@ book:
     - 03_wrangling.qmd
     - 04_inference.qmd
     - 05_linear_regression.qmd
+    - 06_logistic_regression.qmd
+    - 07_model_building.qmd
     - summary.qmd
     - 12_slides.qmd
     - references.qmd

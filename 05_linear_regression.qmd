@@ -2,7 +2,7 @@
 title: "Linear Regression"
 ---
 
-# Preliminaries
+## Preliminaries
 
 In this unit we begin our work with statistical models by introducing bivariate inference techniques (t-test and correlations) and a first attempt at how to use linear regression models in R. We will discuss each of these methods separately and show the R code that is necessary to implement them.
 
@@ -113,9 +113,9 @@ hist(lfs$loghrpay)
 
 As you can see the new variable **loghrpay** is much more symmetrical which makes it appropriate to use regression analysis.
 
-# Bivariate inference I : 1 continuous DV and 1 categorical IV.
+## Bivariate inference I : 1 continuous DV and 1 categorical IV.
 
-## Testing the difference in pay between FT and PT workers
+### Testing the difference in pay between FT and PT workers
 
 Now that we have completed the recoding of the variables we begin by differences in pay by working hours. As usual we begin by comparing the distributions of full-time and part-time earnings by means of boxplots and density plots.
 
@@ -180,11 +180,11 @@ This is the 95% confidence interval for the difference in means. Remember that a
 
 These are the actual means for each group as estimated from the sample.
 
-# Bivariate inference I : 1 continuous DV and 1 continuous IV.
+## Bivariate inference I : 1 continuous DV and 1 continuous IV.
 
 Now we turn our attention to exploring how the number of hours worked are associated with hourly pay.
 
-## Exploring bivariate associations between 2 continuous variables using the correlation coefficient
+### Exploring bivariate associations between 2 continuous variables using the correlation coefficient
 
 To measure the strength and direction of association between 2 continuous variables we use the correlation coefficient. To calculate it we first need to measure the covariance, which is essentially the joint variance of the two variables simultaneously. In other words, how do these variables vary together. The formula is as follows:
 
@@ -204,7 +204,7 @@ cor.test(lfs$loghrpay, lfs$tothrs, use="complete.obs")
 
 So the correlation coefficient for the association between pay and hours worked is +0.28. This indicates a positive (as hours worked increases pay also increases) but weak relation (one variable predicts the other one to a very limited extent). Notice that the p-value is also very small, so we can concluded that the correlation is significant at the 95% confidence level - it is highly unlikely that we would find a correlation of this magnitude if in the population from which the data was sampled the correlation was actually 0 (i.e. the null hypothesis).
 
-## Exploring bivariate associations between 2 continuous variables using a scatterplot
+### Exploring bivariate associations between 2 continuous variables using a scatterplot
 
 We can explore this association graphically, using scatterplots. Scatterplots plot each individual observation as a point on the 2 dimensional space defined by two axis that represent the levels of each one of the variables. Each point represents the scores of each observation for the variable on the horizontal or x axis and variable on the vertical or y axis.
 
@@ -227,7 +227,7 @@ ggplot(data=lfs, aes(y=loghrpay, x=tothrs)) +
 
 The line has a positive or upward slope indicating that on average as total hour increases, average pay per hour also increases. Notice however how far the points are from the line on average, suggesting that total hours is only a weak predictor of hourly pay.
 
-# Simple linear regression
+## Simple linear regression
 
 We will then proceed to fit simple regression models. We will begin by fitting what's known as an empty model to show a key property of linear regression models and then move on to the bivariate regression between pay and working hours.
 
@@ -237,7 +237,7 @@ So let us begin by making sure that we have full information on all cases. Other
 lfs<-lfs[complete.cases(lfs$loghrpay, lfs$ftpt, lfs$tothrs, lfs$class, lfs$age, lfs$sex), ]
 ```
 
-## The empty model
+### The empty model
 
 Now that we understand what the coefficients mean let us fit our first model. This will be an empty or null model, i.e. a model with no independent variables. We do this to highlight that the mean is also a model - a simplified representation - of our data:
 
@@ -278,7 +278,7 @@ You will get exactly the same: $$\bar{Y} = 2.40$$
 
 In other words, regressing Y without predictors is equal to estimating the mean. Remember that after all, the a property of the mean is that it minimises the errors (total sum of distances between each data point and the mean), which is in essence what the regression line does (albeit with squared residuals).
 
-## Model 1: Regressing hourly pay on working hours
+### Model 1: Regressing hourly pay on working hours
 
 This will be our first model that specifically targets our research question by regressing hourly pay on working hours ONLY. This means that the estimated mean working hours is allowed to vary by the number of working hours reported by respondents.
 
@@ -338,7 +338,7 @@ exp(0.22)
 
 Which indicates that a person working 40h would earn around 25% more per hour than someone working 20 hours. Bear in mind however, that this quite a large difference that is unadjusted by many possible confounding variables and we should expect it to shrink (or attenuate) as a result of controlling for such variables.
 
-## Model 2: Regressing hourly pay on full-time vs part-time status
+### Model 2: Regressing hourly pay on full-time vs part-time status
 
 We now re-specify our model full-time vs part-time status. This means that the estimated mean working hours is allowed to vary by whether the respondent is a full-time vs a part-time worker:
 
@@ -370,7 +370,7 @@ exp(0.305)
 
 So $e^{b_1} = e^{0.305} = 1.357$, indicates that part-time workers received on average 35% lower pay per hour than full-time workers. Again, a very large difference that we would expect to shrink as we control for other antecedent/confounder variables.
 
-# Thinking about confounders
+## Thinking about confounders
 
 Now, we may suspect that the association between working hours and pay may be the product of other variables that are correlated with both the independent and the dependent variable.
 
@@ -392,7 +392,7 @@ And this is how we expect them to be causally related based on relevant academic
 
 Let's then examine first whether these control variables are indeed associated with working hours and with hourly pay - i.e. that they are potential confounders.
 
-## Control 1: Sex
+### Control 1: Sex
 
 We suspect that both the number of hours worked and pay vary by sex. If this is the case, *sex* would be a good control candidate variable for our regression model later on.
 
@@ -442,7 +442,7 @@ p3 + p4
 
 We can see how the male data points (red) are over-represented in the longer hours and higher pay, while female data points are over-represented in the shorter hours and lower pay side of the cloud of points. Similarly, we see an over-representations of male workers in higher-paid full-time and an over-representation of female workers on part-time in the mid and low pay. All in all, the bivariate analysis suggests that sex is plausible confounder that we should account for when assessing the association between working hours and pay.
 
-## Control 2: Age
+### Control 2: Age
 
 We will also consider age as a possible confounder, again following a similar logic and running bivariate tests for all the relevant associations with our main predictor (working hours) and dependent variable (pay).
 
@@ -488,7 +488,7 @@ summary(logit1)
 
 There is no evidence of an effect of age on part-time work based on the logistic regression we have fitted. On the whole, we have some evidence that this variable could be a plausible confounder, because it correlates with the DV and the predictor, but rather weakly and only if using total working hours rather than the full-time vs part-time divide. We will however explore this further in the regression to see whether its inclusion as a control is warranted.
 
-## Control 3: Occupation
+### Control 3: Occupation
 
 We will also consider occupation as a possible confounder, again following a similar logic and running bivariate tests for all the relevant associations with our main predictor (working hours) and dependent variable (pay).
 
@@ -538,9 +538,9 @@ chisq.test(occupftpt)
 
 Both the plot and the bivariate test support the intuition that occupation and FTPT status are associated. All in all, as in the case of sex, we have further evidence that FTPT could be a plausible candidate control in our regression of pay on working hours.
 
-# Multiple regression
+## Multiple regression
 
-## Model 1c: Pay regressed on Working hours + All controls included
+### Model 1c: Pay regressed on Working hours + All controls included
 
 Now we will introduce introduce sex, class and age as controls
 
@@ -575,7 +575,7 @@ tab_model(fit1, fit1c)
 
 As you can see as a result of controlling for occupation, sex and age the coefficient for the effect of working hours on pay has become much smaller (from 0.011 in model 1 to 0.003, that is the adjusted effect is just over a quarter of the raw or unadjusted effect from model 1) but it is still positive and significant. This means that while working hours are still positively associated with pay per hour holding all other variables constant, a large part of the raw association can be accounted for by variables that are causally responsible for **both** working hours and pay. Indeed, if you exponentiate the coefficient, you will see that the an additional hour of work is associated with an increase in pay of by a multiple of $e^{b_1} = e^{0.003} = 1.003$ - i.e. 0.3%.
 
-## Model 2c: Pay regressed on Working hours + All controls included
+### Model 2c: Pay regressed on Working hours + All controls included
 
 We can also run the model with FTPT this time including controls:
 
@@ -592,7 +592,7 @@ tab_model(fit2, fit2c)
 
 Just like in the model with total working hours as predictor, in this model the coefficient for part-time status is negative and statistically significant, but it is also much smaller than in the first version of the model without controls - from -0.30 to -0.09, less than a third. This is again the product of controlling for confounding variables that acccount for a large part of the association between work and pay. So while in the model with controls the average pay gap between full-time and part-time workers was around 35% it is now "just" 9% holding age, sex and occupation constant.
 
-# Model Fit:
+## Model Fit:
 
 We have already seen in the output that the $R^2$ was growing as we added new variables. As models become more complex (i.e. as they capture more and more features of the reality we are trying to study) they also explain a greater share of the variance in the DV. It is useful, however, to understand where this $R^2$ statistic comes from, what does it tell us about our model and how should we use it.
 
@@ -640,7 +640,7 @@ tab_model(fit2, fit2c)
 
 As expected the more complex our model is (the more independent variables or predictors we incliude) the better our model gets at explaining the variation in pay. Remember that you can think of this in terms of information. Making a guess about something is much more difficult (and it is much more likely that we get it wrong) when we do not have much information about it. The more we know, the better our position is to make such guess.
 
-# Model Diagnostics
+## Model Diagnostics
 
 For a regression to produce valid estimates of the coefficients there are a number of assumptions that our data and model must meet. Otherwise, there are limits to which you can make inferences about the data and generalise your findings.
 
@@ -651,7 +651,7 @@ These assumptions do not concern the overall fit of the model, but rather how we
 | Note: |
 | In terms of the code, you can use all the syntax below in your own analysis by just changing the names of the models. So if you have named your model *mod5* then you need to replace all the *fit2* in the syntax for *mod5*. |
 
-## Assessing outliers and influential observations
+### Assessing outliers and influential observations
 
 The OLS regression method assumes that no data points are so large or so small that they influence the estimation of the regression coefficients. If there were extreme values or outliers we should make sure they did not significantly bias the parameter estimates.
 
@@ -689,7 +689,7 @@ Again, we get a similar story with Cook' distance varying across observations, b
 
 How is it that our outliers seem to have little effect influence on the model? This is mainly the result of having a very large sample size. The larger the number of observation, the less likely it will be that a single data point can bias the regression estimates.
 
-## Normality of residuals
+### Normality of residuals
 
 The linear regression model also assumes that the error term in the regression equation is normally distributed. By extension, this means that the regression residuals should also be approximately normally distributed. The easiest way to check such normality assumption is to plot the residuals and inspect them.
 
@@ -719,7 +719,7 @@ All in all, however, the residuals are distributed approximately like a Normal d
 | Note |
 | If we had not done the log-transformation of our dependent variable we would have had serious issues of non-normality with the residuals that would have made our model problematic. This is why it is so important that we examine the distribution of the dependent continuous variable, and potentially transform it, before we build the linear regression model. |
 
-## Constant Variance of Residuals
+### Constant Variance of Residuals
 
 The next assumption our model must meet is that the spread of the residuals has to be constant across different levels of the predicted values. This is known as the "homoscedasticity" or constant variance assumption. The reason why this matters is that if residuals are larger for some predicted values than others, this means that our model is better at describing some parts of the data than others!
 
@@ -731,7 +731,7 @@ spreadLevelPlot(fit1c)
 
 The fact that the line is slightly upwards indicates that there is some evidence that as the values of predicted income ($\hat{Y_i}$) increase the variance or spread of residuals also increases. Now, given that the line is not too steep we can still use our findings, but bear in mind that what this plot tells us is that our model predicts the lower earnings with more precision than it predicts higher earnings.
 
-## Excessive correlation amongst predictors (a.k.a. multicollinearity)
+### Excessive correlation amongst predictors (a.k.a. multicollinearity)
 
 Finally, we test that our independent variables are not too highly correlated (multicollinearity) amongs themselves. We do this because (a) we want to avoid feeding redundant information into our model and (b) because if two independent variables in a model are heavily correlated they will basically mitigate each other's effects.
 
@@ -744,7 +744,7 @@ sqrt(vif(fit1c)) > 2 # problem?
 
 As we can see none of VIF values are remotely close to 2, so we conclude there is no collinearity. If however you encountered values higher than 2, you should consider removing such variable from the analysis (or another variable that is highly related).
 
-## Using the **performance package**
+### Using the **performance package**
 
 There are packages that allow you to conduct many of this diagnostics easily and produce automatic plots for all of those.
 
