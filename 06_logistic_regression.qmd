@@ -4,7 +4,7 @@ title: "Binary Logistic Regression"
 
 ## Introduction
 
-Many social phenomena are discrete or categorical rather than continuous in nature, and such phenomena are often measured by means of a dichotomous or dummy variable - i.e. categorical dependent variables that can only take 2 values. Indeed in sociology and social policy we are much more likely to deal with categorical than continuous variables (poor vs non-poor, in work vs out of work, graduate vs non-graduate, etc.).
+Many social phenomena are discrete or categorical rather than continuous in nature, and such phenomena are often measured by means of a dichotomous or dummy variable - i.e. categorical dependent variables that can only take 2 values. Indeed in sociology and social policy we are much more likely to deal with categorical than continuous variables (poor vs non-poor, custodial vs non-custodial sentence, participation vs non-participation in cultural events, voted Remain vs voted Leave, etc.).
 
 For reasons we will discuss below, the assumptions made by the linear regression model - a.k.a. ordinary least-squares regression (OLS) - are not best suited to handle binary outcomes. To analyse a binary dependent variable as a function of multiple independent variables, we need to specify a regression model in such a way that it takes into consideration the nature of binary variables.
 
@@ -273,7 +273,7 @@ Once we have the odds of each event we can compare how likely each event is comp
 
 $$OR =  \frac{O_{vote|owner}}{O_{vote|tenant}}=\frac{4.13}{1.32} = 3.12 $$
 
-This indicates that a homeowner is three times more likely to vote than someone who lives in rented accommodation.
+This indicates that a homeowner is on average three times more likely than a renter to vote rather than not vote.
 
 ### Odds to Logits
 
@@ -351,15 +351,17 @@ To understand odds-ratio coefficients here's a brief introduction:
 
 - If the OR are smaller than 1 then the probability of experiencing an event is smaller for the target group than for the reference group. If OR are equal to 0.5 that means that on average the target group is 50% less likely than the reference group to experience an event. You could also say that, conversely, the reference group is twice as likely as the target group to experience the event.
 
-So if the OR comparing the probability of voting between renters to owners is 0.29, all you need to do is subtract than from 1 and you'll have the percentage decrease in probability associated with such group:
+So if the OR comparing the probability of voting between renters to owners is 0.29, all you need to do is subtract than from 1 and you'll have the percentage difference in the odds of voting associated with such group:
 
-$$1-0.29=0.71$$ This means that on average the target group is 71% less likely than the reference group to report being worried.
+$$1-0.29=0.71$$This means that on average the target group is 71% less likely than the reference group to report being worried.
 
 Alternatively, if you find the "% less likely" wording a bit awkward, you could just always invert the odds ratio:
 
 $$1/0.29=3.45$$
 
 Which means that on average owners are 3.45 times more likely than the renters to vote.
+
+Note, however, that odds-ratios can be quite [tricky to interpret](https://rpsychologist.com/odds-ratio#risk-and-odds) and in recent years there's been considerable debate as to whether we should use them at all. This [short article](https://www.the100.ci/2026/07/30/reviewer-notes-odds-ratios-are-really-odd/) provides a very good overview of the issue. In one of the following units, we will introduce a different way of reporting regression coefficients, for both linear and logit models, than will be easier to interpret.
 
 ### Reporting simple logistic regression:
 

@@ -6,6 +6,8 @@ title: "Linear Regression"
 
 In this unit we begin our work with statistical models by introducing bivariate inference techniques (t-test and correlations) and a first attempt at how to use linear regression models in R. We will discuss each of these methods separately and show the R code that is necessary to implement them.
 
+Note in any case that common statistical tests can be treated as special cases of a linear model, so this is all related. For more on this, check out this [excellent guide](https://lindeloev.github.io/tests-as-linear/) by JK Lindeløv.
+
 In terms of data and substantive rationale, we will look at the association between working hours and pay.
 
 Our **dependent variables** will be *HOURPAY* which is measured in pounds per hour.
@@ -647,7 +649,7 @@ For a regression to produce valid estimates of the coefficients there are a numb
 These assumptions do not concern the overall fit of the model, but rather how well the model predicts specific observations or range of observations.
 
 |  |
-|:-----------------------------------------------------------------------|
+|:---|
 | Note: |
 | In terms of the code, you can use all the syntax below in your own analysis by just changing the names of the models. So if you have named your model *mod5* then you need to replace all the *fit2* in the syntax for *mod5*. |
 
@@ -715,7 +717,7 @@ lines(xfit, yfit)
 All in all, however, the residuals are distributed approximately like a Normal distibution so our model seems adequate. You should be more concerned if you found that the majority of points do not fall nicely on the line!
 
 |  |
-|:-----------------------------------------------------------------------|
+|:---|
 | Note |
 | If we had not done the log-transformation of our dependent variable we would have had serious issues of non-normality with the residuals that would have made our model problematic. This is why it is so important that we examine the distribution of the dependent continuous variable, and potentially transform it, before we build the linear regression model. |
 

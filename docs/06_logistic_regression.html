@@ -318,7 +318,7 @@ window.Quarto = {
 
 <section id="introduction" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">6.1</span> Introduction</h2>
-<p>Many social phenomena are discrete or categorical rather than continuous in nature, and such phenomena are often measured by means of a dichotomous or dummy variable - i.e.&nbsp;categorical dependent variables that can only take 2 values. Indeed in sociology and social policy we are much more likely to deal with categorical than continuous variables (poor vs non-poor, in work vs out of work, graduate vs non-graduate, etc.).</p>
+<p>Many social phenomena are discrete or categorical rather than continuous in nature, and such phenomena are often measured by means of a dichotomous or dummy variable - i.e.&nbsp;categorical dependent variables that can only take 2 values. Indeed in sociology and social policy we are much more likely to deal with categorical than continuous variables (poor vs non-poor, custodial vs non-custodial sentence, participation vs non-participation in cultural events, voted Remain vs voted Leave, etc.).</p>
 <p>For reasons we will discuss below, the assumptions made by the linear regression model - a.k.a. ordinary least-squares regression (OLS) - are not best suited to handle binary outcomes. To analyse a binary dependent variable as a function of multiple independent variables, we need to specify a regression model in such a way that it takes into consideration the nature of binary variables.</p>
 <p>This workshop will introduce you to the foundations and application of such type of statistical model: <strong>the logistic regression</strong></p>
 <section id="data-and-goals-of-the-analysis" class="level3" data-number="6.1.1">
@@ -552,7 +552,7 @@ X-squared = 235, df = 1, p-value &lt;2e-16</code></pre>
 <p><span class="math display">\[O_{vote|tenant} = \frac{P(vote|tenant)}{1-P(vote|tenant)}=\frac{0.569}{0.431} = 1.32 \]</span></p>
 <p>Once we have the odds of each event we can compare how likely each event is compared to the other by means of the Odds Ratio (OR) or relative odds which is nothing more than the ratio of two odds. For instance the Odds Ratio of a homeowner voting as opposed to a tenant voting is:</p>
 <p><span class="math display">\[OR =  \frac{O_{vote|owner}}{O_{vote|tenant}}=\frac{4.13}{1.32} = 3.12 \]</span></p>
-<p>This indicates that a homeowner is three times more likely to vote than someone who lives in rented accommodation.</p>
+<p>This indicates that a homeowner is on average three times more likely than a renter to vote rather than not vote.</p>
 </section>
 <section id="odds-to-logits" class="level3" data-number="6.3.3">
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="odds-to-logits"><span class="header-section-number">6.3.3</span> Odds to Logits</h3>
@@ -638,11 +638,12 @@ tenureRental 0.289 0.235  0.355</code></pre>
 <li><p>If the OR are larger than 1 then the probability of experiencing an event is greater for the target group than for the reference group. If OR are equal to 1.5 that means that on average the target group is 50% (or 1.5 times) more likely than the reference group to experience an event. If OR are equal to 3 that means that on average the target group is 3 times more likely than the reference group to experience an event.</p></li>
 <li><p>If the OR are smaller than 1 then the probability of experiencing an event is smaller for the target group than for the reference group. If OR are equal to 0.5 that means that on average the target group is 50% less likely than the reference group to experience an event. You could also say that, conversely, the reference group is twice as likely as the target group to experience the event.</p></li>
 </ul>
-<p>So if the OR comparing the probability of voting between renters to owners is 0.29, all you need to do is subtract than from 1 and you’ll have the percentage decrease in probability associated with such group:</p>
-<p><span class="math display">\[1-0.29=0.71\]</span> This means that on average the target group is 71% less likely than the reference group to report being worried.</p>
+<p>So if the OR comparing the probability of voting between renters to owners is 0.29, all you need to do is subtract than from 1 and you’ll have the percentage difference in the odds of voting associated with such group:</p>
+<p><span class="math display">\[1-0.29=0.71\]</span>This means that on average the target group is 71% less likely than the reference group to report being worried.</p>
 <p>Alternatively, if you find the “% less likely” wording a bit awkward, you could just always invert the odds ratio:</p>
 <p><span class="math display">\[1/0.29=3.45\]</span></p>
 <p>Which means that on average owners are 3.45 times more likely than the renters to vote.</p>
+<p>Note, however, that odds-ratios can be quite <a href="https://rpsychologist.com/odds-ratio#risk-and-odds">tricky to interpret</a> and in recent years there’s been considerable debate as to whether we should use them at all. This <a href="https://www.the100.ci/2026/07/30/reviewer-notes-odds-ratios-are-really-odd/">short article</a> provides a very good overview of the issue. In one of the following units, we will introduce a different way of reporting regression coefficients, for both linear and logit models, than will be easier to interpret.</p>
 </section>
 <section id="reporting-simple-logistic-regression" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="reporting-simple-logistic-regression"><span class="header-section-number">6.4.2</span> Reporting simple logistic regression:</h3>
