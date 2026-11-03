@@ -579,7 +579,7 @@ X-squared = 235, df = 1, p-value &lt;2e-16</code></pre>
 <section id="fitting-a-simple-logistic-regression-in-r" class="level3" data-number="6.4.1">
 <h3 data-number="6.4.1" class="anchored" data-anchor-id="fitting-a-simple-logistic-regression-in-r"><span class="header-section-number">6.4.1</span> Fitting a simple logistic regression in R:</h3>
 <p>The basic syntax for a logistic regression in R is as follows:</p>
-<p><span class="math display">\[\text{model1 &lt;- glm(DV ~ IV1 + IV2 + ... + IV, data = dataset, family = "binomial")}\]</span></p>
+<p><span class="math display">\[\text{model1 &lt;- glm(DV $\sim$ IV1 + IV2 + ... + IV, data = dataset, family = "binomial")}\]</span></p>
 <p>Before we run the model and interpret coefficients R will produce, consider the following:</p>
 <ul>
 <li><p>The table of coefficients produced by R for a logistic regression has many similarities with the linear regression output.</p></li>
@@ -639,7 +639,7 @@ tenureRental 0.289 0.235  0.355</code></pre>
 <li><p>If the OR are smaller than 1 then the probability of experiencing an event is smaller for the target group than for the reference group. If OR are equal to 0.5 that means that on average the target group is 50% less likely than the reference group to experience an event. You could also say that, conversely, the reference group is twice as likely as the target group to experience the event.</p></li>
 </ul>
 <p>So if the OR comparing the probability of voting between renters to owners is 0.29, all you need to do is subtract than from 1 and you’ll have the percentage difference in the odds of voting associated with such group:</p>
-<p><span class="math display">\[1-0.29=0.71\]</span>This means that on average the target group is 71% less likely than the reference group to report being worried.</p>
+<p><span class="math display">\[1-0.29=0.71\]</span>This means that on average the target group is 71% less likely than the reference group to respond having voted.</p>
 <p>Alternatively, if you find the “% less likely” wording a bit awkward, you could just always invert the odds ratio:</p>
 <p><span class="math display">\[1/0.29=3.45\]</span></p>
 <p>Which means that on average owners are 3.45 times more likely than the renters to vote.</p>
@@ -647,7 +647,7 @@ tenureRental 0.289 0.235  0.355</code></pre>
 </section>
 <section id="reporting-simple-logistic-regression" class="level3" data-number="6.4.2">
 <h3 data-number="6.4.2" class="anchored" data-anchor-id="reporting-simple-logistic-regression"><span class="header-section-number">6.4.2</span> Reporting simple logistic regression:</h3>
-<p>I have fitted a simple logistic regressio model with “whether or not voted in the General Election” as binary dependent variable and Tenure (owner/renter) as independent variable. The model coefficients show that the log odds of voting are statistically significantly smaller amongst those respondents who rent their homes (b=-1.24, z=-11.8, p&lt;0.001). Expressing the coefficient as odds-ratio, we find that renters are 71% less likely (CI = 64%, 77%) to report having voted in the previous general election than those who own their homes. This confirms our expectation that voter turnout amongst renters is much lower than amongst owners, thus pointing to a possible association between wealth or socioeconomic status and electoral participation.</p>
+<p>I have fitted a simple logistic regression model with “whether or not voted in the General Election” as binary dependent variable and Tenure (owner/renter) as independent variable. The model coefficients show that the log odds of voting are statistically significantly smaller amongst those respondents who rent their homes (b=-1.24, z=-11.8, p&lt;0.001). Expressing the coefficient as odds-ratio, we find that renters are 71% less likely (CI = 64%, 77%) to report having voted in the previous general election than those who own their homes. This confirms our expectation that voter turnout amongst renters is much lower than amongst owners, thus pointing to a possible association between wealth or socioeconomic status and electoral participation.</p>
 </section>
 <section id="fitting-a-multiple-logistic-regression-in-r" class="level3" data-number="6.4.3">
 <h3 data-number="6.4.3" class="anchored" data-anchor-id="fitting-a-multiple-logistic-regression-in-r"><span class="header-section-number">6.4.3</span> Fitting a multiple logistic regression in R</h3>
@@ -1029,7 +1029,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </section>
 <section id="classification-rate" class="level3" data-number="6.5.4">
 <h3 data-number="6.5.4" class="anchored" data-anchor-id="classification-rate"><span class="header-section-number">6.5.4</span> Classification rate</h3>
-<p>Another interesting indication of how well our model fits the data is by estimating the classification rate of our model. This means calculating the percentage of cases that our model predicts should be “worried” and “not worried” about cybercrime and comparing it to the actual data. This is achieved by building a contingency table with the cyber variable on the rows and the predicted values on the columns.</p>
+<p>Another interesting indication of how well our model fits the data is by estimating the classification rate of our model. This means calculating the percentage of cases that our model predicts should have “voted” and “not voted” about in the General Election and comparing it to the actual data. This is achieved by building a contingency table with the variable <code>vote05</code> on the rows and the predicted values on the columns.</p>
 <p>Remember however that the predicted values of the logistic regression will be probabilities rather than 0 or 1s, so we need to trick R into transforming values that exceed the 0.5 probability into 1s. This is achieved as follows:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>predict <span class="ot">&lt;-</span> <span class="fu">predict</span>(model2, <span class="at">type =</span> <span class="st">'response'</span>)</span>
@@ -1044,7 +1044,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
   Voted        82 1804</code></pre>
 </div>
 </div>
-<p>The diagonal of the table captures the cases that have been correctly classified - i.e.&nbsp;Not Worried &amp; FALSE and Worried &amp; TRUE. While the remaining off-diagonal cells are those cases that the model got wrong. As you can see, many the cases have been classified in the wrong category based on our prediction, so it is useful to know exactly what percentage of the cases our model actually got right. We can find the <strong>classification rate</strong> by running the line below which essentially sums the cases in the diagonal, divides them by the total sum of cases and multiplies that by 100:</p>
+<p>The diagonal of the table captures the cases that have been correctly classified - i.e.&nbsp;Not Voted &amp; FALSE and Voted &amp; TRUE. While the remaining off-diagonal cells are those cases that the model got wrong. As you can see, many the cases have been classified in the wrong category based on our prediction, so it is useful to know exactly what percentage of the cases our model actually got right. We can find the <strong>classification rate</strong> by running the line below which essentially sums the cases in the diagonal, divides them by the total sum of cases and multiplies that by 100:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#add the diagonal and divide it by the total</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">diag</span>(accuracy))<span class="sc">/</span><span class="fu">sum</span>(accuracy)<span class="sc">*</span><span class="dv">100</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
