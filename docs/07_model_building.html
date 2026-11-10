@@ -293,9 +293,10 @@ div.csl-indent {
 <p>In this workshop we will be looking into how to build a regression model from scratch. We are using the European Social Survey, paying attention to two different dependent variables (one continuous summated scale and one binary) that we will model with linear regression and logistic regression respectively.</p>
 <p>These will help you consolidate your understanding of the key issues we need to consider when building regression models for your final assignment or the dissertation project. In that sense, there will be less coding and a greater focus on thinking about data analysis from a substantive and research design point of view. We will pay particular attention to two issues that are fundamental to model building:</p>
 <ul>
-<li><p>Specifying the estimand.</p></li>
-<li><p>Choosing controls.</p></li>
+<li><p>Thinking more clearly about your <strong>estimand</strong> or quantity of interest</p></li>
+<li><p>Choosing <strong>controls</strong>.</p></li>
 </ul>
+<p>Finally, we will spend some time on <strong>interaction effects</strong>. These are parameters you can add to your regression model when you have a substantive reason to expect that the effect of your main predictor on your dependent variable may not be constant across the levels or categories of a third variable, which we called a <strong>moderator or effect-modifier</strong>.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
@@ -579,7 +580,7 @@ div.csl-indent {
 <li>Inequality ~ Union density x Leftist Parties vote share: We know that across countries inequality is negatively associated with union density (union membership rates) as their demands often benefit those who get paid less. We may want to know whether this association is unaffected by whether governments are more or less left wing</li>
 </ul></li>
 </ul>
-<p>All these examples suggest that a particular association amongst two variables of interest, represented by its slope coefficient, is also affected or <em>moderated</em> by a third variable. The key to understanding this in a regression context, is that while <strong>main effect coefficients add or subtract from the intercept, interaction effects add or subtract from the slope main effect coefficients of each of the interacting variables</strong>.Substantively, this means that interaction effects, if significantly different from 0, modify in some way the slope - either by increasing or decreasing its slope gradient or expected difference. If the interaction effect is insignificant, then we can infer that the difference</p>
+<p>All these examples suggest that a particular association between two variables of interest, represented by its slope coefficient, is also affected or <em>moderated</em> by a third variable. The key to understanding this in a regression context, is that while <strong>main effect coefficients add or subtract from the intercept, interaction effects add or subtract from the slope main effect coefficients of each of the interacting variables</strong>. Substantively, this means that interaction effects, if significantly different from 0, modify in some way the slope - either by increasing or decreasing its slope gradient or expected difference. If the interaction effect is insignificant, then we cannot rule out that the slope does not vary along the levels of the third variable.</p>
 <p>Some advice:</p>
 <ul>
 <li>Specify interaction effects when you have a sound substantive social scientific reason to do so.</li>

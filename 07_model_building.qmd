@@ -8,11 +8,13 @@ In this workshop we will be looking into how to build a regression model from sc
 
 These will help you consolidate your understanding of the key issues we need to consider when building regression models for your final assignment or the dissertation project. In that sense, there will be less coding and a greater focus on thinking about data analysis from a substantive and research design point of view. We will pay particular attention to two issues that are fundamental to model building:
 
-- Specifying the estimand.
+- Thinking more clearly about your **estimand** or quantity of interest
 
-- Choosing controls.
+- Choosing **controls**.
 
-```{r, message=FALSE, warning=FALSE}
+Finally, we will spend some time on **interaction effects**. These are parameters you can add to your regression model when you have a substantive reason to expect that the effect of your main predictor on your dependent variable may not be constant across the levels or categories of a third variable, which we called a **moderator or effect-modifier**.
+
+```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 library(psych)
 library(ggfortify)
@@ -168,7 +170,7 @@ Interaction terms are also called multiplicative terms because they are introduc
   - Wellbeing \~ Income x local area deprivation: We know that on average people with higher incomes tend to enjoy greater psychological wellbeing, but is that association affected by the level of deprivation in one's local environment?
   - Inequality \~ Union density x Leftist Parties vote share: We know that across countries inequality is negatively associated with union density (union membership rates) as their demands often benefit those who get paid less. We may want to know whether this association is unaffected by whether governments are more or less left wing
 
-All these examples suggest that a particular association amongst two variables of interest, represented by its slope coefficient, is also affected or *moderated* by a third variable. The key to understanding this in a regression context, is that while **main effect coefficients add or subtract from the intercept, interaction effects add or subtract from the slope main effect coefficients of each of the interacting variables**.Substantively, this means that interaction effects, if significantly different from 0, modify in some way the slope - either by increasing or decreasing its slope gradient or expected difference. If the interaction effect is insignificant, then we can infer that the difference
+All these examples suggest that a particular association between two variables of interest, represented by its slope coefficient, is also affected or *moderated* by a third variable. The key to understanding this in a regression context, is that while **main effect coefficients add or subtract from the intercept, interaction effects add or subtract from the slope main effect coefficients of each of the interacting variables**. Substantively, this means that interaction effects, if significantly different from 0, modify in some way the slope - either by increasing or decreasing its slope gradient or expected difference. If the interaction effect is insignificant, then we cannot rule out that the slope does not vary along the levels of the third variable.
 
 Some advice:
 

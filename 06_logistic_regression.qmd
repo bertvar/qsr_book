@@ -309,7 +309,7 @@ $$log\bigg(\frac{P(\text{Voted})}{P(\text{Not voted})}\bigg) = b_0 + b1 \text{TE
 
 The basic syntax for a logistic regression in R is as follows:
 
-$$\text{model1 <- glm(DV ~ IV1 + IV2 + ... + IV, data = dataset, family = "binomial")}$$
+$$\text{model1 <- glm(DV $\sim$ IV1 + IV2 + ... + IV, data = dataset, family = "binomial")}$$
 
 Before we run the model and interpret coefficients R will produce, consider the following:
 
@@ -353,7 +353,7 @@ To understand odds-ratio coefficients here's a brief introduction:
 
 So if the OR comparing the probability of voting between renters to owners is 0.29, all you need to do is subtract than from 1 and you'll have the percentage difference in the odds of voting associated with such group:
 
-$$1-0.29=0.71$$This means that on average the target group is 71% less likely than the reference group to report being worried.
+$$1-0.29=0.71$$This means that on average the target group is 71% less likely than the reference group to respond having voted.
 
 Alternatively, if you find the "% less likely" wording a bit awkward, you could just always invert the odds ratio:
 
@@ -365,7 +365,7 @@ Note, however, that odds-ratios can be quite [tricky to interpret](https://rpsyc
 
 ### Reporting simple logistic regression:
 
-I have fitted a simple logistic regressio model with "whether or not voted in the General Election" as binary dependent variable and Tenure (owner/renter) as independent variable. The model coefficients show that the log odds of voting are statistically significantly smaller amongst those respondents who rent their homes (b=-1.24, z=-11.8, p\<0.001). Expressing the coefficient as odds-ratio, we find that renters are 71% less likely (CI = 64%, 77%) to report having voted in the previous general election than those who own their homes. This confirms our expectation that voter turnout amongst renters is much lower than amongst owners, thus pointing to a possible association between wealth or socioeconomic status and electoral participation.
+I have fitted a simple logistic regression model with "whether or not voted in the General Election" as binary dependent variable and Tenure (owner/renter) as independent variable. The model coefficients show that the log odds of voting are statistically significantly smaller amongst those respondents who rent their homes (b=-1.24, z=-11.8, p\<0.001). Expressing the coefficient as odds-ratio, we find that renters are 71% less likely (CI = 64%, 77%) to report having voted in the previous general election than those who own their homes. This confirms our expectation that voter turnout amongst renters is much lower than amongst owners, thus pointing to a possible association between wealth or socioeconomic status and electoral participation.
 
 ### Fitting a multiple logistic regression in R
 
@@ -468,7 +468,7 @@ The very small p-value suggests that there is a significant improvement in intro
 
 ### Classification rate
 
-Another interesting indication of how well our model fits the data is by estimating the classification rate of our model. This means calculating the percentage of cases that our model predicts should be "worried" and "not worried" about cybercrime and comparing it to the actual data. This is achieved by building a contingency table with the cyber variable on the rows and the predicted values on the columns.
+Another interesting indication of how well our model fits the data is by estimating the classification rate of our model. This means calculating the percentage of cases that our model predicts should have "voted" and "not voted" about in the General Election and comparing it to the actual data. This is achieved by building a contingency table with the variable `vote05` on the rows and the predicted values on the columns.
 
 Remember however that the predicted values of the logistic regression will be probabilities rather than 0 or 1s, so we need to trick R into transforming values that exceed the 0.5 probability into 1s. This is achieved as follows:
 
@@ -481,7 +481,7 @@ accuracy
 
 ```
 
-The diagonal of the table captures the cases that have been correctly classified - i.e. Not Worried & FALSE and Worried & TRUE. While the remaining off-diagonal cells are those cases that the model got wrong. As you can see, many the cases have been classified in the wrong category based on our prediction, so it is useful to know exactly what percentage of the cases our model actually got right. We can find the **classification rate** by running the line below which essentially sums the cases in the diagonal, divides them by the total sum of cases and multiplies that by 100:
+The diagonal of the table captures the cases that have been correctly classified - i.e. Not Voted & FALSE and Voted & TRUE. While the remaining off-diagonal cells are those cases that the model got wrong. As you can see, many the cases have been classified in the wrong category based on our prediction, so it is useful to know exactly what percentage of the cases our model actually got right. We can find the **classification rate** by running the line below which essentially sums the cases in the diagonal, divides them by the total sum of cases and multiplies that by 100:
 
 ```{r}
 #add the diagonal and divide it by the total
