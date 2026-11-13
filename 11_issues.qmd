@@ -2,21 +2,27 @@
 
 ## Introduction
 
-This chapter addresses a range of issuea and questions that are relevant to the assessment and that have come up in class discussions, open door conversations and email exchanges we have had with students over the years.
+This chapter addresses a range of issues and questions that are relevant to the assessment and that have come up in class discussions, open door conversations and email exchanges we have had with students over the years.
 
-It covers three different aspects:
+The first section outlines the key practical steps involved in conducting the research project and advice on the main issues to consider when undertaking it.
 
-1.  Analytical steps
-2.  Analytical issues
-3.  Writing and substantive issues
+The second section is focused on common problems that can be experienced when conducting a quantitative social research project. It is divided into two sections, the first focused on analytical issues and the second that's concerned with substantive coherence and writing technique.
 
 # Analytical steps {#sec-practical-data-analysis-steps}
 
-The analysis leading to this report should be based on the material we have covered in the module workshops and guides.  Here is an overview of the main steps you should follow while conducting your research.
+The analysis leading to this report should be based on the material we have covered in the module workshops and guides. Here is an overview of the main steps you should follow while conducting your research.
 
-Bear in mind, however, that after fitting your first batch of tests and model you may well come up with new ideas from readings and your own thinking that can inform further model revisions and improvements (e.g. adding other independent variables or an interaction). Thus, you may need to go back and forth between some of the steps.
+## Specifying research questions 
 
-I would, however, strongly advise you not to alter your research questions or hypotheses after looking at the data and then re-running your analysis – i.e. double-dipping, p-hacking, post-hoc rationalisations of other sorts  – if you find insignificant results. The main objective is ultimately to assess the weight of evidence in favour or against a particular explanation of how a very narrow part of the social world works and therefore to learn about it. It is not about our theories or pre-existing beliefs being “right” or us getting significant results. Remember that  “if you torture the data long enough, it will eventually confess”.
+As discussed in Unit 7, having a clearly defined research question and a precisely delimited estimand is crucial to ensure that your research design can *a priori* produce the findings that could plausibly address the questions that motivated the study. In this sense, it's important to **focus on a specific association of interest** - e.g. what is the effect of X on Y or what is the difference in Y between the different categories of X - and **avoid open-ended research questions about the determinants or causes of Y** that do not imply a clear estimand.
+
+The specification of the research question raises an important problem in applied research, especially at this level. A standard textbook-like model of research proposes a linear sequence where the research question and estimand are fixed throughout the project. Bear in mind, however, that partly because this is one of your first research projects and also the fact that you will be relying on secondary data, there will inevitably be some back and forth between your research questions and your analysis.
+
+It's in this sense plausible that after fitting your first descriptive analysis and modesl you may well come up with new ideas from readings and your own thinking that can inform further model revisions and improvements (e.g. adding other independent variables or an interaction). Thus, your experience of conducting your research project may not resemble that linear textbook account, and this is not necessarily a problem.
+
+That being said, I **would strongly advise you NOT to alter your research questions or hypotheses after looking at the data if you find insignificant results or results that do not fit your expectations** and then re-running your analysis - i.e. double-dipping, p-hacking, or going on a fishing expedition - until you get the results you like or wanted.
+
+Remember that the main objective is, ultimately, to assess the weight of evidence in favour or against a particular explanation of how a very narrow part of the social world works and therefore to learn about it. It is not about our theories or pre-existing beliefs being “right” or us getting significant results. Remember that  “if you torture the data long enough, it will eventually confess”.
 
 ## Choosing your data:
 
@@ -132,7 +138,7 @@ There is no magic number of predictors you should include. It all comes down to 
 
 Remember that all models are wrong, but some are useful. The key to a good analysis and report is how well you can justify that your model is good enough to help you answer (if tentatively) your research question.
 
-# [Hic sunt dracones](https://en.wikipedia.org/wiki/Here_be_dragons)
+# [Hic sunt dracones](https://en.wikipedia.org/wiki/Here_be_dragons) {target="_blank"}
 
 While the structure and expectations of this assignment are clear, this is a real world research-based assignment using real data in real conditions. This means there is still plenty of room for things to go wrong that will affect to varying extent the quality of your written assignment and thus the mark you receive. In this section I introduce a list of issues that you should watch out for so you can recognise when they occur and be able to find a way around them.
 
