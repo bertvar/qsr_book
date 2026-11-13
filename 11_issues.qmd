@@ -1,10 +1,16 @@
-# Practical issues {.unnumbered}
+# Practical issues for the assessment (and beyond) {.unnumbered}
 
 ## Introduction
 
-This chapter addresses a range of questions and issues that have come up in class discussions and emails we have received from students over the years. It is worth taking some time to read it through so you can spot these
+This chapter addresses a range of issuea and questions that are relevant to the assessment and that have come up in class discussions, open door conversations and email exchanges we have had with students over the years.
 
-# Practical data analysis steps:
+It covers three different aspects:
+
+1.  Analytical steps
+2.  Analytical issues
+3.  Writing and substantive issues
+
+# Analytical steps {#sec-practical-data-analysis-steps}
 
 The analysis leading to this report should be based on the material we have covered in the module workshops and guides.  Here is an overview of the main steps you should follow while conducting your research.
 
@@ -130,9 +136,9 @@ Remember that all models are wrong, but some are useful. The key to a good analy
 
 While the structure and expectations of this assignment are clear, this is a real world research-based assignment using real data in real conditions. This means there is still plenty of room for things to go wrong that will affect to varying extent the quality of your written assignment and thus the mark you receive. In this section I introduce a list of issues that you should watch out for so you can recognise when they occur and be able to find a way around them.
 
-## Analytical issues
+## Analytical issues {#sec-analytical-issues}
 
-### Fitting and comparing models based on different sample sizes. 
+### Fitting and comparing models based on different sample sizes
 
 Regression models only include **those observations that have valid values across all variables (dependent and independent) in your model specification**. This has important implications for model interpretation and comparison.
 
@@ -271,7 +277,7 @@ The solution to this is to load them in such order that the function you actuall
 
 For these and many other common troubleshooting issues, you can find more information [here](https://bookdown.org/pdr_higgins/rmrwr/interpreting-error-messages.html#the-common-errors-table),[ here](https://bookdown.org/yih_huynh/Guide-to-R-Book/trouble.html) and [here](https://jtr13.github.io/cc21/common-errors-in-r.html).
 
-## Substantive and writing issues 
+## Substantive and writing issues  {#sec-substantive-and-writing-issues-}
 
 Finally, here’s a brief outline of some substantive and writing issues that you ought to bear in mind when working on your assignments.
 
