@@ -1,0 +1,6 @@
+---
+title: "Reporting your findings: Marginal effects"
+bibliography: references.bib
+---
+
+Terrific reference [@heiss] <https://www.andrewheiss.com/blog/2022/05/20/marginalia/#regression-sliders-switches-and-mixing-boards>

@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Practical issues – Quantitative Social Research: On-line textbook</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./12_slides.html" rel="next">
+<link href="./summary.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./11_issues.html">Practical issues</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Quantitative Social Research: On-line textbook</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome to Quantitative Social Research</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Getting Ready</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01_categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Describing Categorical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02_continuous.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Describing Continuous Data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03_wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Data Wrangling</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04_inference.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Uncertainty and Inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05_linear_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06_logistic_regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Binary Logistic Regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07_model_building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Model building and Interactions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08_reporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Reporting your findings: Marginal effects</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_issues.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Practical issues</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12_slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Resources</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#practical-data-analysis-steps" id="toc-practical-data-analysis-steps" class="nav-link" data-scroll-target="#practical-data-analysis-steps">Practical data analysis steps:</a>
+  <ul class="collapse">
+  <li><a href="#choosing-your-data" id="toc-choosing-your-data" class="nav-link" data-scroll-target="#choosing-your-data">Choosing your data:</a></li>
+  <li><a href="#choosing-variables" id="toc-choosing-variables" class="nav-link" data-scroll-target="#choosing-variables">Choosing Variables:</a></li>
+  <li><a href="#preparing-your-data" id="toc-preparing-your-data" class="nav-link" data-scroll-target="#preparing-your-data">Preparing your data</a>
+  <ul class="collapse">
+  <li><a href="#univariate-analysis" id="toc-univariate-analysis" class="nav-link" data-scroll-target="#univariate-analysis">Univariate analysis</a></li>
+  <li><a href="#bivariate-analysis" id="toc-bivariate-analysis" class="nav-link" data-scroll-target="#bivariate-analysis">Bivariate analysis</a></li>
+  <li><a href="#modelling" id="toc-modelling" class="nav-link" data-scroll-target="#modelling">Modelling</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#hic-sunt-dracones" id="toc-hic-sunt-dracones" class="nav-link" data-scroll-target="#hic-sunt-dracones">Hic sunt dracones</a>
+  <ul class="collapse">
+  <li><a href="#analytical-issues" id="toc-analytical-issues" class="nav-link" data-scroll-target="#analytical-issues">Analytical issues</a>
+  <ul class="collapse">
+  <li><a href="#fitting-and-comparing-models-based-on-different-sample-sizes." id="toc-fitting-and-comparing-models-based-on-different-sample-sizes." class="nav-link" data-scroll-target="#fitting-and-comparing-models-based-on-different-sample-sizes.">Fitting and comparing models based on different sample sizes.</a></li>
+  <li><a href="#sparseness" id="toc-sparseness" class="nav-link" data-scroll-target="#sparseness">Sparseness</a></li>
+  <li><a href="#complete-separation-and-non-convergence" id="toc-complete-separation-and-non-convergence" class="nav-link" data-scroll-target="#complete-separation-and-non-convergence">Complete separation and non-convergence</a></li>
+  <li><a href="#the-race-of-the-variables" id="toc-the-race-of-the-variables" class="nav-link" data-scroll-target="#the-race-of-the-variables">The race of the variables</a></li>
+  <li><a href="#the-table-2-fallacy" id="toc-the-table-2-fallacy" class="nav-link" data-scroll-target="#the-table-2-fallacy">The table 2 fallacy</a></li>
+  <li><a href="#importing-data-using-haven-or-foreign-has-different-implications" id="toc-importing-data-using-haven-or-foreign-has-different-implications" class="nav-link" data-scroll-target="#importing-data-using-haven-or-foreign-has-different-implications">Importing data using <em>haven</em> or <em>foreign</em> has different implications</a></li>
+  <li><a href="#interactions-and-intervening-variables" id="toc-interactions-and-intervening-variables" class="nav-link" data-scroll-target="#interactions-and-intervening-variables">Interactions and intervening variables</a></li>
+  <li><a href="#otherwise-correct-code-that-will-nonetheless-break" id="toc-otherwise-correct-code-that-will-nonetheless-break" class="nav-link" data-scroll-target="#otherwise-correct-code-that-will-nonetheless-break">Otherwise “correct” code that will nonetheless break</a></li>
+  </ul></li>
+  <li><a href="#substantive-and-writing-issues" id="toc-substantive-and-writing-issues" class="nav-link" data-scroll-target="#substantive-and-writing-issues">Substantive and writing issues</a>
+  <ul class="collapse">
+  <li><a href="#mismatch-between-concept-and-measurement" id="toc-mismatch-between-concept-and-measurement" class="nav-link" data-scroll-target="#mismatch-between-concept-and-measurement">Mismatch between concept and measurement</a></li>
+  <li><a href="#mismatch-between-question-and-literature" id="toc-mismatch-between-question-and-literature" class="nav-link" data-scroll-target="#mismatch-between-question-and-literature">Mismatch between question and literature</a></li>
+  <li><a href="#interpretation-of-results" id="toc-interpretation-of-results" class="nav-link" data-scroll-target="#interpretation-of-results">Interpretation of results</a></li>
+  <li><a href="#writing-issues" id="toc-writing-issues" class="nav-link" data-scroll-target="#writing-issues">Writing issues</a></li>
+  <li><a href="#workflow-and-choice" id="toc-workflow-and-choice" class="nav-link" data-scroll-target="#workflow-and-choice">Workflow and choice</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Practical issues</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>This chapter addresses a range of questions and issues that have come up in class discussions and emails we have received from students over the years. It is worth taking some time to read it through so you can spot these</p>
+</section>
+<section id="practical-data-analysis-steps" class="level1">
+<h1>Practical data analysis steps:</h1>
+<p>The analysis leading to this report should be based on the material we have covered in the module workshops and guides.&nbsp; Here is an overview of the main steps you should follow while conducting your research.</p>
+<p>Bear in mind, however, that after fitting your first batch of tests and model you may well come up with new ideas from readings and your own thinking that can inform further model revisions and improvements (e.g.&nbsp;adding other independent variables or an interaction). Thus, you may need to go back and forth between some of the steps.</p>
+<p>I would, however, strongly advise you not to alter your research questions or hypotheses after looking at the data and then re-running your analysis – i.e.&nbsp;double-dipping, p-hacking, post-hoc rationalisations of other sorts &nbsp;– if you find insignificant results. The main objective is ultimately to assess the weight of evidence in favour or against a particular explanation of how a very narrow part of the social world works and therefore to learn about it. It is not about our theories or pre-existing beliefs being “right” or us getting significant results. Remember that&nbsp; “if you torture the data long enough, it will eventually confess”.</p>
+<section id="choosing-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-your-data">Choosing your data:</h2>
+<p>Based on your research question and reading conduct a <strong>data search</strong> in the UK Data service to find an appropriate dataset. If you want to use another relevant dataset that is not available in the UKDS, like the European Social Survey, that’s fine too.</p>
+<p>Whenever possible try to use the <strong>most recent data</strong> if you are dealing with repeated cross-sectional surveys, like CSEW or BSA. If your dataset is quite dated but you have not found any better alternative to answer your research question (and explain as much in the methodology, including the disadvantage of using old datasets) you will not be penalised in any way.</p>
+<p>If you are merging datasets for different time points because you want to capture changes in associations over time or maybe enhance your sample, <strong>make sure that the choice of time waves reflects your research design and questions.</strong></p>
+<p><strong>Read the dataset user’s guide and data dictionary</strong> to learn more about where your data comes from, what variables that are available and what questions are behind them, the coding of variables, the sampling method, etc. This is absolutely necessary to be able to write up the methodology section.</p>
+</section>
+<section id="choosing-variables" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-variables">Choosing Variables:</h2>
+<p>Now, based on your reading of substantive literature and your research questions you need to select:</p>
+<ul>
+<li><p>A dependent variable that best captures the phenomenon you are trying to study, ,</p></li>
+<li><p>The independent variable whose effect on, or group differences in, the dependent variable you want to measure;</p></li>
+<li><p>The variables you want to adjust the differences or effects for, including any variables you want to use as part of an interaction effect, if applicable.</p></li>
+</ul>
+<p>The number of control variables you should include in your model will depend on your choice of research question. This is why it is so important to outline in your literature review the different relevant factors that are associated with the dependent variables so that your regression model can mirror the theoretical model. In this sense, drawing your own DAG can help clarify your choice of independent variables.</p>
+</section>
+<section id="preparing-your-data" class="level2">
+<h2 class="anchored" data-anchor-id="preparing-your-data">Preparing your data</h2>
+<p>Now, load the data into R and begin exploring your variables to make sure they are categorised or measured as close as possible to what you require in your analysis. &nbsp;This involves:</p>
+<ul>
+<li><p>defining missing values</p></li>
+<li><p>recoding categorical variables</p></li>
+<li><p>categorising continuous variable</p></li>
+<li><p>trimming or capping the values of continuous variables</p></li>
+<li><p>merging datasets</p></li>
+<li><p>summating or averaging of several Likert items to form a scale</p></li>
+<li><p>re-ordering categories</p></li>
+<li><p>Any other necessary data manipulation technique.</p></li>
+</ul>
+<section id="univariate-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="univariate-analysis">Univariate analysis</h3>
+<p>Describe the univariate distribution of the dependent variable and main predictor variable.</p>
+<ul>
+<li><p>Counts and percentages if categorical</p></li>
+<li><p>Mean, standard deviation, 95% confidence interval, median, min, max and IQR</p></li>
+</ul>
+<p>Produce an appropriate plot of the dependent variable AND main predictor (and if applicable a third variable interacting with the predictor). <strong>These must be displayed and described clearly in the main body of the report.</strong></p>
+<ul>
+<li><p>If continuous use a boxplot, histogram or density plot</p></li>
+<li><p>If categorical use a bar chart (pie charts are forbidden by law)</p></li>
+</ul>
+<p><strong>Include tables for the univariate distribution of all other variables in the appendices</strong>. You do not need to produce plots for those or describe them in the main body. Simply signpost in the main body where in the appendices the tables are, unless there is something of substantive interest in their distribution in which case briefly mention it.</p>
+</section>
+<section id="bivariate-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="bivariate-analysis">Bivariate analysis</h3>
+<p>Conduct bivariate analysis of the data as the first step to address your research question.&nbsp;</p>
+<p>This should involve:</p>
+<ul>
+<li><p>An analysis of how the dependent variable varies across each of the independent variables, with special emphasis on the association between the dependent variable and the main predictor;</p></li>
+<li><p>An analysis of how the main predictor is associated with the control variables.</p></li>
+</ul>
+<p>In practice this involves using a combination of:</p>
+<ul>
+<li><p>Comparison of group means, t-tests and using multiple boxplots or density <strong>plots if the dependent variable is continuous and the predictors are categorical</strong>;</p></li>
+<li><p>Scatterplots and correlation coefficients if <strong>both variables are continuous</strong>;</p></li>
+<li><p>Crosstabs, stacked/cluster bar charts and chi-squared tests if <strong>both variables are categorical</strong>.</p></li>
+<li><p>In case that you have a <strong>categorical dependent variable and a continuous independent variable</strong> it is a lot trickier because it largely depends on how large the range of the continuous variable is. The easiest option is to break the continuous variable on the basis of some percentile (in quintiles or deciles for instance) and then run a crosstab and a stacked or clustered bar chart based on the new variable to see how the categorical dependent variable varies across different discrete levels of the predictor. Alternatively, you can run a simple logistic regression and then plot the predicted probabilities.</p></li>
+</ul>
+<p>In any case:</p>
+<ul>
+<li><p>Produce an appropriate bivariate plot and table of the association between the dependent variable AND main predictor. <strong>This must be displayed and described clearly in the main body of the report (including bivariate tests).</strong></p></li>
+<li><p><strong>Include the bivariate distribution of all other variables with the dependent variable and with the main predictor (including bivariate tests) in the appendices</strong>.&nbsp; You do not need to produce plots for those. Do however, briefly report in the main body the nature of those associations. This will be also useful to justify the inclusion of variables in the regression model.</p></li>
+</ul>
+</section>
+<section id="modelling" class="level3">
+<h3 class="anchored" data-anchor-id="modelling">Modelling</h3>
+<p>Once you have decided your theoretical model you need to specify a regression model that includes the key independent variables that play a role in confounding the association between your main independent and dependent variables:</p>
+<p>Remember that if the DV…</p>
+<ul>
+<li><p>is <strong>continuous use linear/OLS regression</strong></p></li>
+<li><p><strong>is categorical use logistic regression</strong> – This may involve dichotomising variables with more than 2 categories, which has to be appropriately justified.</p></li>
+</ul>
+<p>In the <strong>main body of the report</strong> you need to present the following models:</p>
+<ul>
+<li><p>the model with the dependent variable and the main predictor only;</p></li>
+<li><p>the model with the dependent variable, the main predictor and the control variables;</p></li>
+<li><p>and, if you are specifying a model with interactions, also the model with the dependent variable, the main predictor, the control variables and the interaction “effect” between the predictor and the moderator.</p></li>
+</ul>
+<p>For all models presented you must interpret and discuss the <strong>regression coefficients for the main association of interest (and interactions if applicable) and model fit statistics, including tests comparing model fit</strong>. For the <strong>final model without interactions</strong> on which your main findings rely, you also need to report <strong>regression diagnostics</strong> (multicollinearity, heteroskedasticity, linearity, normality of residuals, …) as applicable to the type of model you are using. The workshop guides provide detailed instructions on how to do this and how to interpret them. You are however not expected to re-specify models to address any violations (you will learn about this in QSR II).</p>
+<p><strong>If you are using automatically formatted tables and plots to display model coefficients, or plot for predicted values in order to assist presentation and interpretation, then also include the full regression output from R in the appendices.</strong></p>
+<p><strong>Also include in the appendices any other models you estimated but decided against but think it’s worth highlighting for a statistical or substantive reason</strong> (e.g.&nbsp;a control variable you specified based on theory but which turned up to be insignificant and you decided to leave it out – again not something you should do necessarily).</p>
+<p>In practice it is likely that you will fit many models with different combinations of control variables (some may perhaps not be significant or may correlate too highly with the other variables - multicollinearity). Here you need to use measures of model fit, model diagnostics and your own judgment based on the knowledge about the literature to decide on what the best model is.</p>
+<p>There is no magic number of predictors you should include. It all comes down to how well your regression model mimics the theoretical model. For instance, if I say that the relation between occupation and pay also depends on age, sex, ethnicity and education level (a bit simplistic) then there should be variables for all of those factors. So, think first about what it is important about the social phenomenon you are studying (pay disparity, exposure to poverty, experience of violence, more or less favourable views of unemployment benefits, etc.), think and read about the mechanisms by which some people vary in such measures, and then build a regression model that represents how that mechanism works (i.e.&nbsp;choose the variables that must be part of the explanation).</p>
+<p>Remember that all models are wrong, but some are useful. The key to a good analysis and report is how well you can justify that your model is good enough to help you answer (if tentatively) your research question.</p>
+</section>
+</section>
+</section>
+<section id="hic-sunt-dracones" class="level1">
+<h1><a href="https://en.wikipedia.org/wiki/Here_be_dragons">Hic sunt dracones</a></h1>
+<p>While the structure and expectations of this assignment are clear, this is a real world research-based assignment using real data in real conditions. This means there is still plenty of room for things to go wrong that will affect to varying extent the quality of your written assignment and thus the mark you receive. In this section I introduce a list of issues that you should watch out for so you can recognise when they occur and be able to find a way around them.</p>
+<section id="analytical-issues" class="level2">
+<h2 class="anchored" data-anchor-id="analytical-issues">Analytical issues</h2>
+<section id="fitting-and-comparing-models-based-on-different-sample-sizes." class="level3">
+<h3 class="anchored" data-anchor-id="fitting-and-comparing-models-based-on-different-sample-sizes.">Fitting and comparing models based on different sample sizes.</h3>
+<p>Regression models only include <strong>those observations that have valid values across all variables (dependent and independent) in your model specification</strong>. This has important implications for model interpretation and comparison.</p>
+<p>Let’s illustrate this problem with an example. Suppose you want to fit the following regression models to a dataset:</p>
+<ul>
+<li><p>M1 &lt;- lm(Ideology ~ Income, data = dataset)</p></li>
+<li><p>M2 &lt;- lm(Ideology ~ Income + educ + gender, data = dataset)</p></li>
+<li><p>M3 &lt;- lm(Ideology ~ Income + educ + occup + gender, data = dataset)</p></li>
+</ul>
+<p>Now, consider the following dataset where NA indicates a missing value. Due to the fact that each variable has its own unique missing data pattern and that each model requiring a different combination of variables, the effective dataset used for each model is not the same across models.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/missingness_table.png" class="img-fluid figure-img"></p>
+<figcaption>Missing data patterns and listwise deletion in regression models</figcaption>
+</figure>
+</div>
+<p>This is a very common problem that renders model comparison invalid because you are essentially comparing how different models fit different datasets! The good news is that it is easy to spot if you read your regression tables carefully as shown below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/missingness_regtable.png" class="img-fluid figure-img"></p>
+<figcaption>Non-overlapping missing data patterns leads to regression models with unequal effective samples</figcaption>
+</figure>
+</div>
+<p>To avoid this, remember to fit your regression models in a dataset that only contains those observations without any missing values across the dependent and independent variables that you will include in the model specification. You can use functions like <code>complete.cases()</code> or <code>drop_na()</code> for all the variables included in the final model to achieve that as demonstrated in previous workshops.</p>
+</section>
+<section id="sparseness" class="level3">
+<h3 class="anchored" data-anchor-id="sparseness">Sparseness</h3>
+<p>Sparseness refers to the presence of zero or low counts in the values of a variable or for a given combination of values across two or more variables in your data. Note that this is not a problem in and of itself, it is just how the distribution of variables pans out in the real world. It is not implausible that some combinations of values that are theoretically possible are simply rare or even not realised in practice. Consider the table below where the severe skew of the variable in the rows lead to very low counts in some of the cells when cross-classified over a second variable.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sparseness_crosstab.png" class="img-fluid figure-img"></p>
+<figcaption>Sparseness in a large (10 x 6) contingency table</figcaption>
+</figure>
+</div>
+<p>As you can see, there are 8 cells where the count is tiny . This is, to be clear, not a problem with the data but it can lead to problems when estimating quantities of interest from your data because the model has very little information to work with, thus the estimates will be much more uncertain,&nbsp; i.e.&nbsp;they will have much wider confidence intervals. Importantly<strong>, it also makes it quite hard to interpret the table. For instance, the</strong> <span class="math inline">\(\chi^2\)</span> test will not be appropriate for tables where the expected cell counts are small<span class="citation" data-cites="haberman">(<a href="references.html#ref-haberman" role="doc-biblioref">Haberman, n.d.</a>)</span>.</p>
+<p>In the context of regression, this can be a problem when estimating coefficients (even more so for interaction effects) for specific categories or combination of categories with low counts in the data <strong>because the standard error will be large and therefore it will be less likely to find statistical significance even when the effect size is large</strong>. When this happens you can recode the relevant variables into a narrower range of categories, but be mindful that this can effectively change the substantive or practical meaning of the variable and can render some comparisons impossible. For a classic example, consider that merging detailed ethnic groups (e.g.&nbsp;British Pakistani, British Indian, British Bangladeshi, etc) into an aggregate ethnic group (British Asian) may allow for greater samples that are useful to compare against other aggregate ethnic groups (White British or Black British) but it will obliterate the often large differences existing within each of the aggregate ethnic categories.</p>
+</section>
+<section id="complete-separation-and-non-convergence" class="level3">
+<h3 class="anchored" data-anchor-id="complete-separation-and-non-convergence">Complete separation and non-convergence</h3>
+<p>Related to the problem of sparseness is that of complete separation. For those using logistic regression, you may encounter that problem when your binary dependent variable is a) highly skewed due to the fact that one of the categories is very rare and/or b) has a zero or very small sample size for some cells when cross-classified with another variable due to the independent variables perfectly predicting one of the outcomes.</p>
+<p>Here’s an example. Suppose that you have 100 new graduates applying for a highly selective postgraduate course, that half of the students have high marks from their undergrad degree and the other half have low marks, and that the course selects students on previous academic results. Once the admissions process is finalised, the outcome can be represented as a contingency table:</p>
+<table class="caption-top table">
+<caption>Zero cell count in a contingency table of previous academic performance and admission status</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: center;">Admission</th>
+<th style="text-align: center;">No admission</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>High Marks</td>
+<td style="text-align: center;">30 (30%)</td>
+<td style="text-align: center;">20 (20%)</td>
+</tr>
+<tr class="even">
+<td>Low Marks</td>
+<td style="text-align: center;">0 (0%)</td>
+<td style="text-align: center;">50 (50%)</td>
+</tr>
+</tbody>
+</table>
+<p>Note that here, having achieved low marks perfectly predicts no admission – i.e if the student got low marks it is impossible for them to get a place in that course. Now, to understand why this is a problem for a logistic regression see what happens when you try to calculate the odds ratio of admission for a student with high marks relative to that of a student with low marks:</p>
+<p><span class="math display">\[
+text{OR} = \frac{\text{Odds of admission}_{\text{high marks}}}{\text{Odds of admission}_{\text{low marks}}} = \frac{\frac{0.3}{0.2}}{\frac{0}{0.5}} = \frac{1.5}{0} = \infty
+\]</span></p>
+<p>Essentially, the <strong>odds ratio are undefined</strong>. In the context of logistic regression this will show up in your tables as <strong>implausibly large coefficients AND standard errors</strong> which is indicative that the model estimation could not converge into a stable solution. You can think of this as a specific case of the more general issue of sparse tables where the model essentially has not enough information in a cell to estimate the coefficient with any precision.</p>
+<p>When this occurs there are a <a href="http://people.vcu.edu/~dbandyop/BIOS625/Convergence_Logistic.pdf">number of options</a>, but for the assignment the more straightforward is to recategorize the dependent and/or the independent variable such that the separation problem can be bypassed. This is however not possible when the variable is strictly binary so you may need to choose a different DV to work with.</p>
+</section>
+<section id="the-race-of-the-variables" class="level3">
+<h3 class="anchored" data-anchor-id="the-race-of-the-variables">The race of the variables</h3>
+<p>In a classic political methodology paper, <span class="citation" data-cites="king1986">King (<a href="references.html#ref-king1986" role="doc-biblioref">1986</a>)</span> describes, amongst many others, two important problems in statistical reporting that are very commonly seen in both assignments as well as published work. The first problem <strong>involves comparing regression coefficients for different variables in order to check which variable has a larger effect</strong>. For instance, if from the table below you compared the coefficient for <em>lrscale</em> (b = -.50) and <em>agea</em> (b = -.04) you could be tempted to conclude that ideology has a larger effect than age on welfare attitudes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/vars_race_regtable.png" class="img-fluid figure-img"></p>
+<figcaption>Regression table of welfare attitudes scale and Left-Right ideological self-placement</figcaption>
+</figure>
+</div>
+<p>This makes little sense because the comparison involves interpreting the change in the DV associated with an increase in one unit in two variables measured in different units of measurement (age in years and ideology in an arbitrary 0-10 scale). Even when such regression coefficients are standardised in the form of beta-coefficients (by dividing them by their standard deviation) the substantive meaning of the difference in coefficients remains elusive. Thus, in general, <strong>’only when explanatory variables are on meaningfully common units of measurement is there a chance of comparison’ [</strong>@king1986, p.&nbsp;670]. Additionally, remember that our models are mostly concerned with identifying some specific effect of interest (in this case the effect of ideology on welfare attitudes) and the control variables are included to adjust for confounders so the comparison does not have any substantive value in and of itself.</p>
+<p>The second problem raised by King concerns the <span class="math inline">\(R^2\)</span> statistic as a measure of model fit. In the linear regression workshop we discussed that the <span class="math inline">\(R^2\)</span>statistic captures the share of the overall variance in the dependent variable that is accounted by the combination of independent variables included in the model. By adding more predictors to your model – in essence by adding information - your predictions will get more and more accurate and therefore your <span class="math inline">\(R^2\)</span> statistic will become larger. The problem King points to in the article is <strong>when we treat the</strong> <span class="math inline">\(R^2\)</span> <strong>statistic as a quantity to maximise for its own sake and at any cost</strong> rather than just as another bit of information about how our model fits the data. If we do this we may be tempted to increase the number of independent variables just for the sake of getting a higher value, but in doing so we may risk <strong>losing control of our control variables</strong>, such that the effect we are really after can become biased by over-adjustment and/or uninterpretable because it no longer seems plausible to say that this is the effect of x on y holding a whole raft of variables constant whose role in the model we no longer understand.</p>
+</section>
+<section id="the-table-2-fallacy" class="level3">
+<h3 class="anchored" data-anchor-id="the-table-2-fallacy">The table 2 fallacy</h3>
+<p>A problem identified and labelled by <span class="citation" data-cites="westreich2013">(<a href="references.html#ref-westreich2013" role="doc-biblioref">Westreich and Greenland 2013</a>)</span> and described really well for a social science audience by <span class="citation" data-cites="keele2020">(<a href="references.html#ref-keele2020" role="doc-biblioref">Keele et al. 2020</a>)</span> is known as the <strong>table 2 fallacy</strong>. This involves the causal interpretation of the estimated associations for control variables, often to check that the direction and statistical significance of the coefficients for the control variables are broadly in line with existing literature. Indeed, it is not uncommon to see researchers interpret unexpected signs or magnitudes of coefficients as perhaps indicative of problems in the data or the model.</p>
+<p>What these authors show is that this is definitely not a good practice because, all else being equal, each effect of interest should be estimated with different models underpinned by different causal assumptions or mechanisms. &nbsp;Suppose you have a model like this:</p>
+<p>If your objective is to estimate the effect of part-time work on pay <span class="math inline">\(b_1\)</span> then this model is appropriate because you are controlling for Sex and Age which are plausible confounders or common causes of both part-time work and pay. It is however not warranted to interpret the coefficient <span class="math inline">\(b_2\)</span> as an estimate of the causal effect of Sex on Pay because you’d be implicitly adjusting for part-time status which is not a confounder (part-time status cannot cause sex!) but rather a mediator so <span class="math inline">\(b_2\)</span> would only be capturing the direct effect of sex on pay but not the indirect effect of sex that is mediated through part-time status.</p>
+<p>Two implications from this:</p>
+<ul>
+<li><p>There are no all-purpose models to address multiple research questions in one go. In other wors, each effect or quantity of interest requires a distinctly specified model.</p></li>
+<li><p>Do not draw or report causal interpretations of the regression coefficients of the control variables in your model, at best they are meaningless at worst they can mislead you.</p></li>
+</ul>
+</section>
+<section id="importing-data-using-haven-or-foreign-has-different-implications" class="level3">
+<h3 class="anchored" data-anchor-id="importing-data-using-haven-or-foreign-has-different-implications">Importing data using <em>haven</em> or <em>foreign</em> has different implications</h3>
+<p>In the workshops we have often used datasets that are native to SPSS (extension *. sav) or Stata (*. sav), and these are likely the formats that you will encounter when downloading datasets from data repositories such as the UK Data Archive. To use them in R you cannot just use the function <code>load()</code> for native R files ( extensions *. rdata, or *.rda) but you will instead need to use an appropriate function from either the <code>haven</code>or <code>foreign</code> packages.</p>
+<p>Be aware that there are differences in how each of those packages processes the data which can in turn have consequences in how you need to work with the variables. Indeed, a recurrent issue is that code written to work with data imported with haven may break when running it on the same dataset imported with foreign (and vice-versa).</p>
+<p>A key difference, amongst others, and which tends to induce many a headache is how haven and foreign handle <strong>labelled variables</strong>, which are extremely common in survey datasets like those with which we have worked during the workshops.&nbsp; Labelled variables are a class of variable that contain numeric values as well as text labels that are associated with each of those values – for instance 1 may be “Employed” and 2 “Unemployed”. The key difference between haven and foreign is that <em>foreign</em> automatically converts labelled variables into factors (how R treats categorical variables with values and levels) whereas <em>haven</em> stores them as a class called haven_labelled which is slightly different and more tidyverse-friendly.</p>
+<p>This difference can be seen in the screenshot below where the same BSA 2013 dataset is imported using both foreign and haven:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/foreign_haven_issue.png" class="img-fluid figure-img"></p>
+<figcaption>Same dataset imported with <code>haven</code> and <code>foreign</code></figcaption>
+</figure>
+</div>
+<p>Apart from the fact that the resulting class (type of object) for the same variable and dataset is different across different packages, the way that base R functions like table() process the data is also different. Thus, when using foreign to import data, a frequency table of the religion variable will show the levels (category labels) rather than the values, whereas when using haven to import the same dataset the frequency table will show only the category values but not the labels. Indeed, we will need to transform it into a factor to get the labels to show up. If, however, you were to use tidyverse syntax the labels would then show too, as in the screenshot below, without having to declare that variable as a factor:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bsa_haven.png" class="img-fluid figure-img"></p>
+<figcaption>How factors appear in datasets imported with <code>haven</code></figcaption>
+</figure>
+</div>
+<p>These differences do not just have consequences for analysis, they also pose issues when undertaking data manipulation work as shown below when trying to create a new variable that collapses religious identity in just two categories “Church of England” vs “Other”:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/bsa_haven_foreign.png" class="img-fluid figure-img"></p>
+<figcaption>Recoding labelled data imported with haven does not recognise numeric values</figcaption>
+</figure>
+</div>
+<p>Notice that by not transforming the variable into a factor, haven imports the data in such a way that R can recognise the categories by their numeric values so operators like “greater than” or “smaller than” can work. In contrast, when the variable is forced by foreign to become a factor, R will no longer recognise the numerical values and will only accept the levels or text labels associated with the values.&nbsp;</p>
+<p>The lesson here is that different packages (and not only those used to import non-native datasets) will handle data in different ways and it is crucial that you understand how each package does it so that you know how to work with it.</p>
+</section>
+<section id="interactions-and-intervening-variables" class="level3">
+<h3 class="anchored" data-anchor-id="interactions-and-intervening-variables">Interactions and intervening variables</h3>
+<p>In the module we have discussed many times the issue of good and bad controls and how, in principle, <strong>we should avoid controlling for variables that lie in the path between our main predictor and our dependent variable</strong>. This is so because by controlling for intervening variables we basically split the total effect of interest between its direct component (x -&gt; y) and its indirect component (x -&gt; z -&gt; y) and therefore the interpretation of the coefficient needs to be interpreted differently to avoid incurring in post-treatment bias. In a previous section we have referred to whether controlling for part-time status is warranted when examining the effect of gender on pay.</p>
+<p>This, however, does not mean that you cannot estimate regression models with interaction effect between gender and part-time on pay. This is because of two things: a) the question (or estimand) that is answered (estimated) by the inclusion of an interaction effect is no longer a question about the main effect of sex, but about how women and men’s pay differ in part-time compared to full-time work; and b) because interactions are fundamentally symmetrical and in a way are agnostic as to the causal direction. Thus the interaction effect under consideration can be understood as measuring how the gender pay gap varies by employment contract, but also how the differences in pay between employment contracts vary by gender.</p>
+<p>The key idea here is that different kinds of questions require different kinds of models and that before you decide whether a candidate variable for inclusion as a control is “good” or “bad” or whether an interaction is needed or not, the first thing to consider is what is it that you are after.</p>
+</section>
+<section id="otherwise-correct-code-that-will-nonetheless-break" class="level3">
+<h3 class="anchored" data-anchor-id="otherwise-correct-code-that-will-nonetheless-break">Otherwise “correct” code that will nonetheless break</h3>
+<p>Sometimes code that seems to work ok, suddenly out of the blue stops working and no matter how much you check for inactive packages, unclosed brackets, missing commas, misplaced operators or misspelled variable names R will keep throwing errors at you or it will produce the wrong objects or output.</p>
+<p>Such situations can send even the most confident analyst into bouts of profound despair and existential angst, so here are some tips on what to do:</p>
+<ul>
+<li><p>Do not despair and/or panic.</p></li>
+<li><p>Take a break from the screen and ideally go for a walk to clear your head.</p></li>
+<li><p>Reboot R or start a fresh R session (via Menu &gt; Session &gt; Restart R or pressing Shift-Cmd-F10 or Shift-Ctrl-F10).</p></li>
+<li><p>Run your code slowly one line at a time and look carefully at the console to check for errors, warnings or messages and to check that the output looks ok (yes, that may take a while).</p></li>
+</ul>
+<p>Assuming there are no typographical errors, two issues that are quite common are:</p>
+<p><strong>Dependencies between different parts of your script</strong>. When you are working with a very long script or across separate scripts for different parts of your analysis (e.g.&nbsp;one script for data wrangling, another script for models, etc) there is a risk of losing track of the dependencies between the different steps in your analysis. For example, if after running a regression you figure out you need another variable that you perhaps need to recode, then you need to consider the implications this will have for the rest of the analysis such as the missing cases in the new variable for your effective sample size. In general, if you make a change to your data (e.g.&nbsp;renaming a variable or a dataset, change the subsetting criteria, etc ) you need to check all your code to make sure the new change is reflected the rest of analysis and obviously re-run all the code.</p>
+<p><strong>Conflicts or incompatibilities between packages.</strong> It happens occasionally that functions from different packages have the exact same name so that when you load them R needs to decide what to do with the conflict. What R does is to use the function for the package that was called last as shown here:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/tidy_mass_conflict.png" class="img-fluid figure-img"></p>
+<figcaption>Conflict between function <code>select()</code> between package <code>dplyr</code> (from <code>tidyverse</code>) and package <code>MASS</code></figcaption>
+</figure>
+</div>
+<p>In this case, the <code>select()</code> function from <code>MASS</code> (because it was called second, after <code>tidyverse</code>) will be the one that R chooses in case of conflict. R tells you that the function <code>select()</code> from <code>dplyr</code> (within the <code>tidyverse</code> package suite) is masked, that is, it will not be used.</p>
+<p>The solution to this is to load them in such order that the function you actually need is not masked by the other package. A perhaps better alternative is to call one of the libraries whose functions you actually need - as usual with <code>library(package)</code> <strong>-</strong> and then, instead of loading a second library that you know will be in conflict with the first, use the expression <code>package::function()</code>to use a function from the second package without needing to call it.</p>
+<p>For these and many other common troubleshooting issues, you can find more information <a href="https://bookdown.org/pdr_higgins/rmrwr/interpreting-error-messages.html#the-common-errors-table">here</a>,<a href="https://bookdown.org/yih_huynh/Guide-to-R-Book/trouble.html">here</a> and <a href="https://jtr13.github.io/cc21/common-errors-in-r.html">here</a>.</p>
+</section>
+</section>
+<section id="substantive-and-writing-issues" class="level2">
+<h2 class="anchored" data-anchor-id="substantive-and-writing-issues">Substantive and writing issues</h2>
+<p>Finally, here’s a brief outline of some substantive and writing issues that you ought to bear in mind when working on your assignments.</p>
+<section id="mismatch-between-concept-and-measurement" class="level3">
+<h3 class="anchored" data-anchor-id="mismatch-between-concept-and-measurement">Mismatch between concept and measurement</h3>
+<p>Sometimes the dependent variable used in the analysis does not match well the concept at the heart of your research question. For instance, one may say they are studying fear of crime in the question but then they use a variable that capture <em>how much quality of life is affected by fear of crime</em>.</p>
+<p>Obviously, variables are necessarily simplified representations of reality, and no variable will capture perfectly the underlying concept you are trying to study but you should still aim to get as close as possible. If you cannot then explain what drove you to choose that variable instead and tell us what are the implications are for your study and for your results and contribution to existing knowledge on your topic of interest. This can be part of your discussion of the limitations.</p>
+</section>
+<section id="mismatch-between-question-and-literature" class="level3">
+<h3 class="anchored" data-anchor-id="mismatch-between-question-and-literature">Mismatch between question and literature</h3>
+<p>To inform your research question, design and subsequent data analysis you will need to draw on existing published research that deals with different aspects of your phenomena of interest.</p>
+<p>Here, especially because of the limited wordcount, it is important to delimit what is important and what is related but not important. You should aim to be narrow in delimiting the study and to review literature that is focused on the specific estimand defined for a particular unit of analysis and a specific population of interest.&nbsp; Try, in this sense, not to waste words on material that only serves as background information.</p>
+<p>Also think carefully about the context in which mechanism you are trying to grapple with operates. It is not the same to understand the differences in political behaviour of Catholics and Protestants in England than it is to do so in Northern Ireland, so make sure that your reading, thinking and writing reflects that context. In that sense, especially if the literature about this topic is underdeveloped in your chosen context, by all means draw from international evidence to frame a problem, draw ideas and concepts or borrow methods, but be careful not to assume that these will “travel” well.</p>
+</section>
+<section id="interpretation-of-results" class="level3">
+<h3 class="anchored" data-anchor-id="interpretation-of-results">Interpretation of results</h3>
+<p>Make the most of your tables and report all the quantities of interest. For instance, if you have more than two categories in your main predictor&nbsp; do not focus on only comparing – e.g.&nbsp;like the differences in the DV between extremes of the distribution, instead of examining the differences amongst the middle categories.</p>
+<p>Remember that insignificant results are informative of something, whether or not they agree with your theoretical expectations. Finding insignificant results is NOT a problem in and of itself, it’s simply an indication that your model is not able to conclude whether the effect under consideration is positive or negative. This can be because the effect is so small that is nearly zero or because you cannot estimate it with sufficient precision (standard errors are large relative to the coefficient value) generally due to small sample size or model specification problems. Either way, it is a finding and can be discussed in relation to your literature derived expectations.</p>
+<p>Be very precise in how you report your findings.</p>
+<p>Interpret your findings, do not just report them. Tell us not just what your findings are&nbsp; but also what they mean. Remember that, after all, you are a social scientist doing research on sociology, social policy, criminology, political science topics to answer substantively meaningful questions in your field of study. This needs to be very prominent in your assignment. Without domain knowledge and expertise backing your research design and analytical choices, all these numbers mean very little.</p>
+</section>
+<section id="writing-issues" class="level3">
+<h3 class="anchored" data-anchor-id="writing-issues">Writing issues</h3>
+<p>Try to present data as clearly and tidily as possible. Make sure that tables and graphs are correctly titled, labelled and formatted. In this sense, aim for all statistical output you present in your paper to be self-contained – i.e.&nbsp;that all the information needed to make sense of it is included.</p>
+<p>Allocate time for proofreading or ask friends, ideally those on the module, to look for glaring errors in presentation of findings, unclear sentences or structural issues. Pay it back by doing the same for them.</p>
+<p>Finally, please write sentences and paragraphs that are clear and direct, and go straight to the point. As the great medievalist, philosopher and novelist Umberto Eco used to say “<a href="https://thereader.mitpress.mit.edu/umberto-eco-how-to-write-a-thesis/">You are not Proust</a>” so do not write using flowery and over-wrought language that eats up on your word count and makes your writing hard to read and your argument difficult to follow.</p>
+</section>
+<section id="workflow-and-choice" class="level3">
+<h3 class="anchored" data-anchor-id="workflow-and-choice">Workflow and choice</h3>
+<p>In this assignment you are essentially replicating work you have already done in workshops and homework tasks so technically nothing that you will do here is new, except for one thing: you are now having to make the key choices regarding question, data and research design, which makes the assignment understandably harder and more uncertain.</p>
+<p>The key thing here is to not to over-think your choices by anticipating every single thing that could potentially go wrong in your project. Instead, once you have a more or less reasonable research question and dataset (and you probably do if I have checked your assignment plan) just get on with the analysis. If you then come across obstacles or problems then deal with them, find ways around them, and if you are still stuck pivot and do something else. Even if this may feel inefficient or even wasteful, it is immensely more effective than spending day after day planning rather than doing.&nbsp;</p>
+<p>So my final piece of advice is to trust the technical skills and workflow you have learnt throughout the semester. This combined with substantive knowledge of your subject area (and plenty of time in front of RStudio) should be enough to be able to produce a strong assignment that demonstrates your attainment of the learning outcomes.</p>
+<p>Good luck!</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-haberman" class="csl-entry" role="listitem">
+Haberman, Shelby J. n.d. <em>A Warning on the Use of Chi-Squared Statistics with Frequency Tables with Small Expected Cell Counts</em>.
+</div>
+<div id="ref-keele2020" class="csl-entry" role="listitem">
+Keele, Luke, Randolph T. Stevenson, and Felix Elwert. 2020. <span>“The Causal Interpretation of Estimated Associations in Regression Models.”</span> <em>Political Science Research and Methods</em> 8 (1): 1–13. <a href="https://doi.org/10.1017/psrm.2019.31">https://doi.org/10.1017/psrm.2019.31</a>.
+</div>
+<div id="ref-king1986" class="csl-entry" role="listitem">
+King, Gary. 1986. <span>“How Not to Lie with Statistics: Avoiding Common Mistakes in Quantitative Political Science.”</span> <em>American Journal of Political Science</em> 30 (3): 666. <a href="https://doi.org/10.2307/2111095">https://doi.org/10.2307/2111095</a>.
+</div>
+<div id="ref-westreich2013" class="csl-entry" role="listitem">
+Westreich, D., and S. Greenland. 2013. <span>“The Table 2 Fallacy: Presenting and Interpreting Confounder and Modifier Coefficients.”</span> <em>American Journal of Epidemiology</em> 177 (4): 292–98. <a href="https://doi.org/10.1093/aje/kws412">https://doi.org/10.1093/aje/kws412</a>.
+</div>
+</div>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Summary</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./12_slides.html" class="pagination-link" aria-label="Resources">
+        <span class="nav-page-text">Resources</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -20,7 +20,9 @@ book:
     - 05_linear_regression.qmd
     - 06_logistic_regression.qmd
     - 07_model_building.qmd
+    - 08_reporting.qmd
     - summary.qmd
+    - 11_issues.qmd
     - 12_slides.qmd
     - references.qmd
 

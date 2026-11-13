@@ -34,7 +34,7 @@ First and foremost, before you apply a test or specify a regression model, you n
 The theoretical estimand involves specifying two distinct but, in your project, interrelated things:
 
 | Unit-specific quantity | Target population |
-|------------------------------------|------------------------------------|
+|----|----|
 | Effect of marriage on women's probability of experiencing domestic violence | Married and cohabiting couples (excludes singles, widowed, divorced...) |
 | Effect of living in a former coal area on youth employment chances in Yorkshire | Working age youth in Yorkshire who live in former coal mining areas and those who do not (excludes everyone else) |
 | Effect of having children (mitigation) on sentence length | Court sentences involving time to be served (excludes suspended sentences, fines, ...) |
