@@ -12,13 +12,31 @@ The second section is focused on common problems that can be experienced when co
 
 The analysis leading to this report should be based on the material we have covered in the module workshops and guides. Here is an overview of the main steps you should follow while conducting your research.
 
-## Specifying research questions 
+## Literature
+
+You need to identify and read some quantitative papers in a similar space, to guide your project framing, modelling and write-up. Questions you should ask yourself when reading quant papers: 
+
+1.  What theories did other researchers draw on?
+
+2.  How did they code their variables?
+
+3.  How do they present descriptive statistics?
+
+4.  How did they model the same or a similar association?
+
+5.  What did they find?
+
+6.  How do they present and write about their results? 
+
+## Specifying research questions
 
 As discussed in Unit 7, having a clearly defined research question and a precisely delimited estimand is crucial to ensure that your research design can *a priori* produce the findings that could plausibly address the questions that motivated the study. In this sense, it's important to **focus on a specific association of interest** - e.g. what is the effect of X on Y or what is the difference in Y between the different categories of X - and **avoid open-ended research questions about the determinants or causes of Y** that do not imply a clear estimand.
 
+You should have max 2 research questions, which you specify hypotheses for and run analyses to answer. The first will be the main effect or different under study, the second, if applicable, would concern some interaction term that is defensible according to theory and substantive knowledge. All elements must be present and should connect: hypotheses should state the expectations derived from a specific research questions; analyses should addresses specific research questions and test specific hypotheses. 
+
 The specification of the research question raises an important problem in applied research, especially at this level. A standard textbook-like model of research proposes a linear sequence where the research question and estimand are fixed throughout the project. Bear in mind, however, that partly because this is one of your first research projects and also the fact that you will be relying on secondary data, there will inevitably be some back and forth between your research questions and your analysis.
 
-It's in this sense plausible that after fitting your first descriptive analysis and modesl you may well come up with new ideas from readings and your own thinking that can inform further model revisions and improvements (e.g. adding other independent variables or an interaction). Thus, your experience of conducting your research project may not resemble that linear textbook account, and this is not necessarily a problem.
+It's in this sense plausible that after fitting your first descriptive analysis and models you may well come up with new ideas from readings and your own thinking that can inform further model revisions and improvements (e.g. adding other independent variables or an interaction). Thus, your experience of conducting your research project may not resemble that linear textbook account, and **this is not necessarily a problem.**
 
 That being said, I **would strongly advise you NOT to alter your research questions or hypotheses after looking at the data if you find insignificant results or results that do not fit your expectations** and then re-running your analysis - i.e. double-dipping, p-hacking, or going on a fishing expedition - until you get the results you like or wanted.
 
@@ -46,7 +64,27 @@ Now, based on your reading of substantive literature and your research questions
 
 The number of control variables you should include in your model will depend on your choice of research question. This is why it is so important to outline in your literature review the different relevant factors that are associated with the dependent variables so that your regression model can mirror the theoretical model. In this sense, drawing your own DAG can help clarify your choice of independent variables.
 
-## Preparing your data 
+## Thinking about measurement
+
+When considering what variables to choose you should think carefully about measurement. Variables are a useful but imperfect product that results from a complex process that anchors or connects an abstract concept to empirical "reality". This process inevitably involves compromises and loss of information - that is, your measurement will never perfectly capture the complexity of your underlying concept. This is, in and of itself, not a problem, but a fact of life, like snow in Alaska and rain in Britain.
+
+That being said, there are better and worse and more or less appropriate measures given your research questions and strategy. In this sense, you must reflect on the strengths and weaknesses of your dependent and key independent variables.
+
+In survey research, the questions respondents are asked to answer go through a rigorous process of design and testing to ensure that they a) capture as well as possible the constructs that researchers use in their theories and b) that are understood and answered consistently by participants so that the differences in responses reflect the differences in the underlying construct rather than any other process. That being said, you need to consider the possibility that some issues remain:
+
+- Do they suffer from social desirability bias?
+
+<!-- -->
+
+- Is the wording clear or a bit ambiguous or confused?
+
+- Could the same wording be interpreted differently by different types of people or across different historical or geographical contexts?
+
+- How would you answer the exact same questions if they’d interviewed you?
+
+Given that you are working with secondary data, you may well have to accept some degree of mismatch between the variables you have in your dataset and the variables you would have ideally liked to have if you could control the data collection process. To be clear, these are the limitations of the survey as such, not your own research, but good submissions contextualise findings and recognise limitations. This means acknowledging and reflecting upon the fact that the validity of your findings may hinge on the particular measure you used.
+
+## Preparing your data
 
 Now, load the data into R and begin exploring your variables to make sure they are categorised or measured as close as possible to what you require in your analysis.  This involves:
 
@@ -110,13 +148,15 @@ In any case:
 
 ### Modelling
 
-Once you have decided your theoretical model you need to specify a regression model that includes the key independent variables that play a role in confounding the association between your main independent and dependent variables:
+Once you have decided your theoretical model you need to specify a regression model that includes the key variables that play a role in confounding the association between your main independent and dependent variables:
 
 Remember that if the DV…
 
 - is **continuous use linear/OLS regression**
 
 - **is categorical use logistic regression** – This may involve dichotomising variables with more than 2 categories, which has to be appropriately justified.
+
+Critically, there needs to be variation in both the dependent variable and the independent variable. A **common error when working with categorical predictors is to** exclusively **think about and sample your target group** (e.g. Labour voters, higher income households, people who have been victims of crime) but not identifying or including in the sample the reference group or groups against which they are being compared (e.g. Non-labour voters, low- and middle-income households, or people who have not been victims of crime). Thus, your effective sample must contain the people you are most interested in and people with other values across the same variable - otherwise you have no variation to study - so that you can compare how the dependent variables differs between them.
 
 In the **main body of the report** you need to present the following models:
 
@@ -132,11 +172,11 @@ For all models presented you must interpret and discuss the **regression coeffic
 
 **Also include in the appendices any other models you estimated but decided against but think it’s worth highlighting for a statistical or substantive reason** (e.g. a control variable you specified based on theory but which turned up to be insignificant and you decided to leave it out – again not something you should do necessarily).
 
-In practice it is likely that you will fit many models with different combinations of control variables (some may perhaps not be significant or may correlate too highly with the other variables - multicollinearity). Here you need to use measures of model fit, model diagnostics and your own judgment based on the knowledge about the literature to decide on what the best model is.
+In practice it is likely that you will fit many models with different combinations of control variables. Here you need to use measures of model fit, model diagnostics and your own judgment based on the knowledge about the literature to decide on what the best model is.
 
 You are **strongly advised against choosing your variables using step-wise regression algorithms** or on the basis of whether or not the effects are significant.
 
-Ultimately, there is no magic number of predictors you should include. It all comes down to how well your regression model mimics the theoretical model. For instance, if I say that the relation between occupation and pay also depends on age, sex, ethnicity and education level (a bit simplistic) then there should be variables for all of those factors. So, think first about what it is important about the social phenomenon you are studying (pay disparity, exposure to poverty, experience of violence, more or less favourable views of unemployment benefits, etc.), think and read about the mechanisms by which some people vary in such measures, and then build a regression model that represents how that mechanism works (i.e. choose the variables that must be part of the explanation).
+Ultimately, there is no magic number of predictors you should include. It all comes down to how well your regression model mimics the theoretical model. For instance, if I believe that the relation between occupation and pay could be confounded by age, sex, ethnicity and education level (a bit simplistic) then there should be control variables for all of those. So, think first about what it is important about the social phenomenon you are studying (pay disparity, exposure to poverty, experience of violence, more or less favourable views of unemployment benefits, etc.), think and read about the mechanisms by which some people vary in such measures, and then build a regression model that represents how that mechanism works (i.e. choose the variables that must be part of the explanation).
 
 Remember that all models are wrong, but some are useful. The key to a good analysis and report is how well you can justify that your model is good enough to help you answer (if tentatively) your research question.
 
@@ -154,7 +194,7 @@ Let’s illustrate this problem with an example. Suppose you want to fit the fol
 
 - M1 \<- lm(Ideology \~ Income, data = dataset)
 
--  M2 \<- lm(Ideology \~ Income + educ + gender, data = dataset)
+- M2 \<- lm(Ideology \~ Income + educ + gender, data = dataset)
 
 - M3 \<- lm(Ideology \~ Income + educ + occup + gender, data = dataset)
 
@@ -207,7 +247,7 @@ In a classic political methodology paper, @king1986 describes, amongst many othe
 
 ![Regression table of welfare attitudes scale and Left-Right ideological self-placement](images/vars_race_regtable.png){fig-align="center"}
 
-This makes little sense because the comparison involves interpreting the change in the DV associated with an increase in one unit in two variables measured in different units of measurement (age in years and ideology in an arbitrary 0-10 scale). Even when such regression coefficients are standardised in the form of beta-coefficients (by dividing them by their standard deviation) the substantive meaning of the difference in coefficients remains elusive. Thus, in general, **'only when explanatory variables are on meaningfully common units of measurement is there a chance of comparison’ \[**@king1986, p. 670\]. Additionally, remember that our models are mostly concerned with identifying some specific effect of interest (in this case the effect of ideology on welfare attitudes) and the control variables are included to adjust for confounders so the comparison does not have any substantive value in and of itself.
+This makes little sense because the comparison involves interpreting the change in the DV associated with an increase in one unit in two variables measured in different units of measurement (age in years and ideology in an arbitrary 0-10 scale). Even when such regression coefficients are standardised in the form of beta-coefficients (by dividing them by their standard deviation) the substantive meaning of the difference in coefficients remains elusive. Thus, in general, **'only when explanatory variables are on meaningfully common units of measurement is there a chance of comparison’ \[**\@king1986, p. 670\]. Additionally, remember that our models are mostly concerned with identifying some specific effect of interest (in this case the effect of ideology on welfare attitudes) and the control variables are included to adjust for confounders so the comparison does not have any substantive value in and of itself.
 
 The second problem raised by King concerns the $R^2$ statistic as a measure of model fit. In the linear regression workshop we discussed that the $R^2$statistic captures the share of the overall variance in the dependent variable that is accounted by the combination of independent variables included in the model. By adding more predictors to your model – in essence by adding information - your predictions will get more and more accurate and therefore your $R^2$ statistic will become larger. The problem King points to in the article is **when we treat the** $R^2$ **statistic as a quantity to maximise for its own sake and at any cost** rather than just as another bit of information about how our model fits the data. If we do this we may be tempted to increase the number of independent variables just for the sake of getting a higher value, but in doing so we may risk **losing control of our control variables**, such that the effect we are really after can become biased by over-adjustment and/or uninterpretable because it no longer seems plausible to say that this is the effect of x on y holding a whole raft of variables constant whose role in the model we no longer understand.
 
@@ -251,11 +291,11 @@ The lesson here is that different packages (and not only those used to import no
 
 ### Interactions and intervening variables
 
-In the module we have discussed many times the issue of good and bad controls and how, in principle, **we should avoid controlling for variables that lie in the path between our main predictor and our dependent variable**. This is so because by controlling for intervening variables we basically split the total effect of interest between its direct component (x -\> y) and its indirect component (x -\> z -\> y) and therefore the interpretation of the coefficient needs to be interpreted differently to avoid incurring in post-treatment bias. In a previous section we have referred to whether controlling for part-time status is warranted when examining the effect of gender on pay.
+In the module we have discussed many times the issue of good and bad controls and how, in principle, **we should avoid controlling for variables that lie in the path between our main predictor and our dependent variable**. This is so because by controlling for intervening variables we basically split the total effect of interest between its direct component (x -\> y) and its indirect component (x -\> z -\> y) and therefore the the coefficient needs to be interpreted differently to avoid incurring in post-treatment bias. For instance, in a previous unit we have referred to whether controlling for part-time status is warranted when examining the effect of gender on pay, given that part-time work is caused by gender.
 
 This, however, does not mean that you cannot estimate regression models with interaction effect between gender and part-time on pay. This is because of two things: a) the question (or estimand) that is answered (estimated) by the inclusion of an interaction effect is no longer a question about the main effect of sex, but about how women and men’s pay differ in part-time compared to full-time work; and b) because interactions are fundamentally symmetrical and in a way are agnostic as to the causal direction. Thus the interaction effect under consideration can be understood as measuring how the gender pay gap varies by employment contract, but also how the differences in pay between employment contracts vary by gender.
 
-The key idea here is that different kinds of questions require different kinds of models and that before you decide whether a candidate variable for inclusion as a control is “good” or “bad” or whether an interaction is needed or not, the first thing to consider is what is it that you are after.
+The key idea here is that **different questions and estimands require different models** and that before you decide whether a candidate variable for inclusion as a control is “good” or “bad” or whether an interaction is needed or not, the first thing to consider is what is it that you are after. In this sense, **note that an interaction effect is only appropriate if you have a research question that requires one, some literature or a theory that justifies one and a hypothesis which specifies your expectations**. To be clear, an interaction effect is not expected nor necessary for a good mark, and given their more challenging interpretation
 
 ### Otherwise “correct” code that will nonetheless break
 
@@ -283,9 +323,9 @@ In this case, the `select()` function from `MASS` (because it was called second,
 
 The solution to this is to load them in such order that the function you actually need is not masked by the other package. A perhaps better alternative is to call one of the libraries whose functions you actually need - as usual with `library(package)` **-** and then, instead of loading a second library that you know will be in conflict with the first, use the expression `package::function()`to use a function from the second package without needing to call it.
 
-For these and many other common troubleshooting issues, you can find more information [here](https://bookdown.org/pdr_higgins/rmrwr/interpreting-error-messages.html#the-common-errors-table),[ here](https://bookdown.org/yih_huynh/Guide-to-R-Book/trouble.html) and [here](https://jtr13.github.io/cc21/common-errors-in-r.html).
+For these and many other common troubleshooting issues, you can find more information [here](https://bookdown.org/pdr_higgins/rmrwr/interpreting-error-messages.html#the-common-errors-table),[here](https://bookdown.org/yih_huynh/Guide-to-R-Book/trouble.html) and [here](https://jtr13.github.io/cc21/common-errors-in-r.html).
 
-## Substantive and writing issues  {#sec-substantive-and-writing-issues-}
+## Substantive and writing issues {#sec-substantive-and-writing-issues-}
 
 Finally, here’s a brief outline of some substantive and writing issues that you ought to bear in mind when working on your assignments.
 
@@ -299,19 +339,19 @@ Obviously, variables are necessarily simplified representations of reality, and 
 
 To inform your research question, design and subsequent data analysis you will need to draw on existing published research that deals with different aspects of your phenomena of interest.
 
-Here, especially because of the limited wordcount, it is important to delimit what is important and what is related but not important. You should aim to be narrow in delimiting the study and to review literature that is focused on the specific estimand defined for a particular unit of analysis and a specific population of interest.  Try, in this sense, not to waste words on material that only serves as background information.
+Here, especially because of the limited wordcount, it is **crucial to delimit what is important, and what is related but not important**. You should aim to be narrow in determining the scope of the study and to review literature that is focused on the specific estimand defined for a particular unit of analysis and a specific population of interest. Try, in this sense, not to use up words on material that only serves as background information.
 
-Also think carefully about the context in which mechanism you are trying to grapple with operates. It is not the same to understand the differences in political behaviour of Catholics and Protestants in England than it is to do so in Northern Ireland, so make sure that your reading, thinking and writing reflects that context. In that sense, especially if the literature about this topic is underdeveloped in your chosen context, by all means draw from international evidence to frame a problem, draw ideas and concepts or borrow methods, but be careful not to assume that these will “travel” well.
+Also think carefully about **the context** in which mechanism you are trying to grapple with operates. It is not the same to understand the differences in political behaviour of Catholics and Protestants in England than it is to do so in Northern Ireland, so make sure that your reading, thinking and writing reflects that context. In that sense, especially if the literature about this topic is underdeveloped in your chosen context, by all means draw from international evidence to frame a problem, draw ideas and concepts or borrow methods, but be careful not to assume that these will “travel” well.
 
 ### Interpretation of results
 
-Make the most of your tables and report all the quantities of interest. For instance, if you have more than two categories in your main predictor  do not focus on only comparing – e.g. like the differences in the DV between extremes of the distribution, instead of examining the differences amongst the middle categories.
+Make the most of your tables and report all the quantities of interest. For instance, if you have more than two categories in your main predictor do not focus on only comparing two of them – e.g. like the differences in the DV between extremes of the distribution, instead of examining the differences across the middle categories.
 
-Remember that insignificant results are informative of something, whether or not they agree with your theoretical expectations. Finding insignificant results is NOT a problem in and of itself, it’s simply an indication that your model is not able to conclude whether the effect under consideration is positive or negative. This can be because the effect is so small that is nearly zero or because you cannot estimate it with sufficient precision (standard errors are large relative to the coefficient value) generally due to small sample size or model specification problems. Either way, it is a finding and can be discussed in relation to your literature derived expectations.
+Remember that **insignificant results are informative of something**, whether or not they agree with your theoretical expectations. Finding insignificant results is NOT a problem in and of itself, it’s simply an indication that your model is not able to conclude whether the effect under consideration is positive or negative. This can be because the effect is so small that is nearly zero or because you cannot estimate it with sufficient precision (standard errors are large relative to the coefficient value) generally due to small sample size or model specification problems. Either way, it is a finding and can be discussed in relation to your literature derived expectations.
 
-Be very precise in how you report your findings.
+Be very precise in how you report your findings, but also **interpret** them. . Tell us not just what your findings are but also what they mean in relation to the literature you have read and the expectation that you have derived from it (e.g. did you find what you expected? Did you not? Why do you think that is? etc).
 
-Interpret your findings, do not just report them. Tell us not just what your findings are  but also what they mean. Remember that, after all, you are a social scientist doing research on sociology, social policy, criminology, political science topics to answer substantively meaningful questions in your field of study. This needs to be very prominent in your assignment. Without domain knowledge and expertise backing your research design and analytical choices, all these numbers mean very little.
+Remember that, after all, you are a social scientist doing research on sociology, social policy, criminology, political science topics to answer substantively meaningful questions in your field of study. This needs to be prominent in your assignment. Without domain knowledge and expertise backing your research design and analytical choices, all these numbers mean very little.
 
 ### Writing issues
 
